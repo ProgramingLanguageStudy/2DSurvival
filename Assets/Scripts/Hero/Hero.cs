@@ -7,12 +7,17 @@ using UnityEngine;
 /// </summary>
 public class Hero : MonoBehaviour
 {
+    [Header("----- 컴포넌트 -----")]
+    [SerializeField] HeroModel _model;
     [SerializeField] Mover _mover;
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _renderer;
+    
 
     public void Initialize()
     {
+        _model.Initialize();
+
         _mover.OnMoved += OnMoved;
     }
 
@@ -33,5 +38,10 @@ public class Hero : MonoBehaviour
         }
         _animator.SetFloat(AnimatorParameters.MoveSpeed,
             velocity.magnitude);
+    }
+
+    public void TakeHit(float damage)
+    {
+        _model.TakeDamage(damage);
     }
 }
