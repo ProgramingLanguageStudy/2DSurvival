@@ -1,16 +1,24 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-// 1. ÁÖÀÎ°ø Ä³¸¯ÅÍ¸¦ µû¶ó´Ù´Ï´Â ¿ùµå UI Ã¼·Â¹Ù¸¦ ¸¸µé¾î ÁÖ¼¼¿ä.
-// 2. HpBarÀÇ fillAmount °ªÀ» Á¶ÀıÇÏ´Â Ã¼·Â¹Ù ±â´ÉÀ» ¸¸µé¾î ÁÖ¼¼¿ä.
-// 3. HeroÀÇ ºÎÇ°À¸·Î CharacterHud¸¦ Ãß°¡ÇØ¼­ HeroModelÀÇ Hp ÀÌº¥Æ®¸¦ È°¿ëÇØ
-//    Ã¼·ÂÀÌ º¯°æµÉ ¶§¸¶´Ù Ã¼·Â¹Ù UIµµ °»½ÅµÇ°Ô ÇØ ÁÖ¼¼¿ä.
+// 1. ì£¼ì¸ê³µ ìºë¦­í„°ë¥¼ ë”°ë¼ë‹¤ë‹ˆëŠ” ì›”ë“œ UI ì²´ë ¥ë°”ë¥¼ ë§Œë“¤ì–´ ì£¼ì„¸ìš”.
+// 2. HpBarì˜ fillAmount ê°’ì„ ì¡°ì ˆí•˜ëŠ” ì²´ë ¥ë°” ê¸°ëŠ¥ì„ ë§Œë“¤ì–´ ì£¼ì„¸ìš”.
+// 3. Heroì˜ ë¶€í’ˆìœ¼ë¡œ CharacterHudë¥¼ ì¶”ê°€í•´ì„œ HeroModelì˜ Hp ì´ë²¤íŠ¸ë¥¼ í™œìš©í•´
+//    ì²´ë ¥ì´ ë³€ê²½ë  ë•Œë§ˆë‹¤ ì²´ë ¥ë°” UIë„ ê°±ì‹ ë˜ê²Œ í•´ ì£¼ì„¸ìš”.
 
 public class CharacterHud : MonoBehaviour
 {
-    public void Initialize()
+    [SerializeField] Image _image;
+    
+    public void Initialize(HeroModel model)
     {
+        model.OnHpChanged += OnHpChanged;
+    }
 
+    public void OnHpChanged(float currentHp, float maxHp)
+    {
+        _image.fillAmount = currentHp / maxHp;
     }
 }

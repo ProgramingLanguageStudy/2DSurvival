@@ -4373,8 +4373,9 @@ GameObject:
   - component: {fileID: 262744378}
   - component: {fileID: 262744377}
   - component: {fileID: 262744376}
+  - component: {fileID: 262744379}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: CharacterHud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4463,6 +4464,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &262744379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262744374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38c0d48370ba14d9016026db383dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 719015302}
 --- !u!1 &462635194
 GameObject:
   m_ObjectHideFlags: 0
@@ -8962,7 +8976,7 @@ GameObject:
   - component: {fileID: 719015303}
   - component: {fileID: 719015302}
   m_Layer: 0
-  m_Name: Image
+  m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21735,6 +21749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 955146820}
+  _hud: {fileID: 262744379}
   _mover: {fileID: 955146816}
   _animator: {fileID: 955146818}
   _renderer: {fileID: 1143494291}

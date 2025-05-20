@@ -9,16 +9,18 @@ public class Hero : MonoBehaviour
 {
     [Header("----- 컴포넌트 -----")]
     [SerializeField] HeroModel _model;
+    [SerializeField] CharacterHud _hud;
     [SerializeField] Mover _mover;
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _renderer;
-    
 
     public void Initialize()
     {
         _model.Initialize();
+        _hud.Initialize(_model);
 
         _mover.OnMoved += OnMoved;
+        _model.OnDeath += OnDeath;
     }
 
     public void Move(Vector3 direction)
@@ -43,5 +45,18 @@ public class Hero : MonoBehaviour
     public void TakeHit(float damage)
     {
         _model.TakeDamage(damage);
+    }
+
+    public void OnDeath()
+    {
+        _animator.SetTrigger(AnimatorParameters.OnDeath);
+        StartCoroutine(WaitAndDestroy());
+    }
+
+    IEnumerator WaitAndDestroy()
+    {
+        yield return new WaitForSeconds(2f); // 애니메이션 길이만큼 대기
+        Destroy(gameObject);
+        
     }
 }
