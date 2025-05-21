@@ -17,10 +17,10 @@ public class Hero : MonoBehaviour
     public void Initialize()
     {
         _model.Initialize();
-        _hud.Initialize(_model);
 
         _mover.OnMoved += OnMoved;
         _model.OnDeath += OnDeath;
+        _model.OnHpChanged += _hud.SetHpBar;
     }
 
     public void Move(Vector3 direction)

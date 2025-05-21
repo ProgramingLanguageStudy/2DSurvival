@@ -9,10 +9,12 @@ public class PlayScene : MonoBehaviour
 {
     [SerializeField] InputHandler _inputHandler;
     [SerializeField] Hero _hero;
+    [SerializeField] Enemy _enemy;
 
     void Start()
     {
         _hero.Initialize();
+        _enemy.Initialize(_hero.transform);
 
         // 이동 입력 이벤트 구독
         _inputHandler.OnMoveInput += OnMoveInput;

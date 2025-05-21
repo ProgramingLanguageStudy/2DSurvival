@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 적 캐릭터 담당 역할
+/// </summary>
 public class Enemy : MonoBehaviour
 {
     [Header("----- 컴포넌트 참조 -----")]
@@ -16,11 +19,16 @@ public class Enemy : MonoBehaviour
 
     // 임시
     [Header("----- 임시 -----")]
-    [SerializeField] Transform _target;
+    Transform _target;
 
     private void Start()
     {
         _mover.OnMoved += onMoved;
+    }
+
+    public void Initialize(Transform target)
+    {
+        _target = target;
     }
 
     private void FixedUpdate()
@@ -52,17 +60,43 @@ public class Enemy : MonoBehaviour
     // 3. 주인공 캐릭터 공격
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // TODO: LayerMask 사용 방법
-
-        // 2. 주인공 캐릭터 확인
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Hero"))
+        // 1) 만들어 놓은 함수로 Layer 체크하는 방법
+        if (_targetLayerMask.Contains(collision.gameObject.layer))
         {
             Hero hero = collision.gameObject.GetComponent<Hero>();
-            if (hero != null) 
+            if (hero != null)
             {
+                // 3. 주인공 캐릭터 공격
                 hero.TakeHit(_model.Damage);
             }
         }
+        
+        //// 2) Layer가 LayerMask에 포함되는지 확인하는 방법 ('비트 연산')
+
+        //// Enemy 입장에서
+        //// 내가 부딪힌 상대 게임오브젝트의 레이어가
+        //// 내가 목표로 하는 레이어마스크(_targetMaskLayer_)에 해당되면
+        //if (((1 << collision.gameObject.layer) & _targetLayerMask.value) != 0)
+        //{
+        //    Hero hero = collision.gameObject.GetComponent<Hero>();
+        //    if (hero != null)
+        //    {
+        //        // 3. 주인공 캐릭터 공격
+        //        hero.TakeHit(_model.Damage);
+        //    }
+        //}
+
+        //// 3) Layer 자체를 비교하는 방법
+        //// 2. 주인공 캐릭터 확인
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Hero"))
+        //{
+        //    Hero hero = collision.gameObject.GetComponent<Hero>();
+        //    if (hero != null) 
+        //    {
+        //        // 3. 주인공 캐릭터 공격
+        //        hero.TakeHit(_model.Damage);
+        //    }
+        //}
     }
 
 }
