@@ -38,8 +38,7 @@ public class Hero : MonoBehaviour
         {
             _renderer.flipX = true;
         }
-        _animator.SetFloat(AnimatorParameters.MoveSpeed,
-            velocity.magnitude);
+        _animator.SetFloat(AnimatorParameters.MoveSpeed,velocity.magnitude);
     }
 
     public void TakeHit(float damage)
@@ -50,13 +49,6 @@ public class Hero : MonoBehaviour
     public void OnDeath()
     {
         _animator.SetTrigger(AnimatorParameters.OnDeath);
-        StartCoroutine(WaitAndDestroy());
-    }
-
-    IEnumerator WaitAndDestroy()
-    {
-        yield return new WaitForSeconds(2f); // 애니메이션 길이만큼 대기
-        Destroy(gameObject);
         
     }
 }

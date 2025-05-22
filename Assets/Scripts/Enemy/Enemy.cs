@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] EnemyModel _model;
+    [SerializeField] CharacterHud _hud;
     [SerializeField] Mover _mover;
     [SerializeField] Animator _animtor;
     [SerializeField] SpriteRenderer _renderer;
@@ -21,14 +22,15 @@ public class Enemy : MonoBehaviour
     [Header("----- 임시 -----")]
     Transform _target;
 
-    private void Start()
-    {
-        _mover.OnMoved += onMoved;
-    }
-
     public void Initialize(Transform target)
     {
         _target = target;
+
+        _model.Initialize();
+
+        _mover.OnMoved += OnMoved;
+        //_model.OnDeath += OnDeath;
+        _model.OnHpChanged += _hud.SetHpBar;
     }
 
     private void FixedUpdate()
@@ -43,7 +45,7 @@ public class Enemy : MonoBehaviour
         _mover.Move(dir);
     }
 
-    void onMoved(Vector3 moveVec)
+    void OnMoved(Vector3 moveVec)
     {
         if (moveVec.x > 0)
         {
