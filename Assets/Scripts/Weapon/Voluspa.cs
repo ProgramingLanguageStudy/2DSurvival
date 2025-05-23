@@ -14,16 +14,24 @@ public class VoluspaSkill : MonoBehaviour
 
         if (enemies.Length == 0) return;
 
-        // 적들의 Y 위치 수집 및 중복 제거
         List<float> uniqueY = new List<float>();
+
         foreach (var enemy in enemies)
         {
-            float y = Mathf.Round(enemy.transform.position.y * 10f) / 10f;
-            if (!uniqueY.Contains(y))
-                uniqueY.Add(y);
+            // 적의 월드 좌표 → 뷰포트 좌표로 변환
+            Vector3 viewPos = Camera.main.WorldToViewportPoint(enemy.transform.position);
+
+            // 화면 안에 있는 적만 대상으로 함
+            if (viewPos.x >= 0f && viewPos.x <= 1f && viewPos.y >= 0f && viewPos.y <= 1f)
+            {
+                float y = Mathf.Round(enemy.transform.position.y * 10f) / 10f;
+                if (!uniqueY.Contains(y))
+                    uniqueY.Add(y);
+            }
         }
 
-        // 레벨 수만큼 랜덤 Y 선택
+        if (uniqueY.Count == 0) return;
+
         List<float> selectedY = uniqueY.OrderBy(x => Random.value).Take(artifactLevel).ToList();
 
         foreach (float y in selectedY)
@@ -46,4 +54,5 @@ public class VoluspaSkill : MonoBehaviour
             sword.GetComponent<Sword>().Initialize(moveDir);
         }
     }
+
 }
