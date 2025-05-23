@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 8094714361410867144}
   - component: {fileID: 5785424450683635943}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Enemy0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   _model: {fileID: 5785424450683635943}
   _hud: {fileID: 3087813435934568723}
   _mover: {fileID: 1546537326967489921}
-  _animtor: {fileID: 8094714361410867144}
+  _animator: {fileID: 8094714361410867144}
   _renderer: {fileID: 2689185700750196176}
   _targetLayerMask:
     serializedVersion: 2

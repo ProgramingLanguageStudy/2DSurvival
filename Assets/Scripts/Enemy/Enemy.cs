@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemyModel _model;
     [SerializeField] CharacterHud _hud;
     [SerializeField] Mover _mover;
-    [SerializeField] Animator _animtor;
+    [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _renderer;
 
     [Header("----- 공격 -----")]
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         _model.Initialize();
 
         _mover.OnMoved += OnMoved;
-        //_model.OnDeath += OnDeath;
+        _model.OnDeath += OnDeath;
         _model.OnHpChanged += _hud.SetHpBar;
     }
 
@@ -107,5 +107,13 @@ public class Enemy : MonoBehaviour
 
         _model.TakeDamage(damage);
     }
+
+    public void OnDeath()
+    {
+        _mover.SetSpeed(0);
+        _animator.SetTrigger(AnimatorParameters.OnDeath);
+        Destroy(gameObject, 1.0f);
+    }
+
 
 }

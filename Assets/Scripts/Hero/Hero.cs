@@ -13,14 +13,28 @@ public class Hero : MonoBehaviour
     [SerializeField] Mover _mover;
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _renderer;
+    [SerializeField] VoluspaSkill _skill;
+
+    Coroutine _spawnVoluspa;
 
     public void Initialize()
     {
         _model.Initialize();
 
         _mover.OnMoved += OnMoved;
-        
+
         _model.OnHpChanged += _hud.SetHpBar;
+
+        _spawnVoluspa = StartCoroutine(SpawnVoluspa());
+    }
+
+    IEnumerator SpawnVoluspa()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3.0f);
+            _skill.Activate();
+        }
     }
 
     public void Move(Vector3 direction)
@@ -45,5 +59,5 @@ public class Hero : MonoBehaviour
     {
         _model.TakeDamage(damage);
     }
-    
+
 }

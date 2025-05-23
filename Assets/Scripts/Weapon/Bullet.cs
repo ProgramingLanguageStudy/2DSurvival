@@ -1,18 +1,32 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 적과 충돌하여 데미지를 입히는 역할
+/// </summary>
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // 총알 데미지
+    [SerializeField] float _damage;
+    // 충돌할 레이어 마스크
+    [SerializeField] LayerMask _targetLayerMask;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // 충돌한 상대 게임오브젝트의 레이어가
+        // _targetLayerMask에 포함되면
+        if (_targetLayerMask.Contains(collision.gameObject.layer))
+        {
+            // 충돌한 상대 게임오브젝트의 Enemy 컴포넌트를 가져온다.
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+
+            // Enemy 컴포넌트가 실제로 있으면
+            if (enemy != null)
+            {
+                enemy.TakeHit(_damage);
+            }
+        }
+
     }
 }
