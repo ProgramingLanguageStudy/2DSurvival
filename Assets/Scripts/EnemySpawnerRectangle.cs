@@ -21,7 +21,7 @@ using UnityEngine;
 /// <summary>
 /// 일정 시간 간격으로 적을 타겟(주인공) 주변에 생성하는 역할
 /// </summary>
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawnerRectangle : MonoBehaviour
 {
     [Header("----- 스폰 기준 -----")]
     [SerializeField] Transform _target;
@@ -102,10 +102,18 @@ public class EnemySpawner : MonoBehaviour
         // ----- 사각형 범위 내 위치 설정 ----- //
         Vector3 pos = _target.position;
 
-        // 타겟으로부터 x 방향으로 얼마나 떨어져 있는지
-        float xDist = Random.Range(_minXDistance, _maxXDistance);
-        // 타겟으로부터 y 방향으로 얼마나 떨어져 있는지
-        float yDist = Random.Range(_minYDistance, _maxYDistance);
+        float xDist;
+        float yDist;
+        if (Random.value < 0.5f)
+        {
+            xDist = Random.Range(_minXDistance, _maxXDistance);
+            yDist = Random.Range(0, _maxYDistance);
+        }
+        else
+        {
+            xDist = Random.Range(0, _maxXDistance);
+            yDist = Random.Range(_minYDistance, _maxYDistance);
+        }
 
         // 50% 확률로 곱하기 -1
         if(Random.value < 0.5f)

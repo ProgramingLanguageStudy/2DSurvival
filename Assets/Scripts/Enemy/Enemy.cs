@@ -101,4 +101,11 @@ public class Enemy : MonoBehaviour
         //}
     }
 
+    public void TakeHit(float damage)
+    {
+        if (_model.CurrentHp <= 0) return;
+
+        _model.TakeDamage(damage);
+    }
+
 }

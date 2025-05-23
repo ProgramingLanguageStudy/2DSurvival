@@ -19,7 +19,7 @@ public class Hero : MonoBehaviour
         _model.Initialize();
 
         _mover.OnMoved += OnMoved;
-        _model.OnDeath += OnDeath;
+        
         _model.OnHpChanged += _hud.SetHpBar;
     }
 
@@ -45,10 +45,5 @@ public class Hero : MonoBehaviour
     {
         _model.TakeDamage(damage);
     }
-
-    public void OnDeath()
-    {
-        _animator.SetTrigger(AnimatorParameters.OnDeath);
-        
-    }
+    
 }
