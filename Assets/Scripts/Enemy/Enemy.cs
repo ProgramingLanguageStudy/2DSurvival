@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+AI 구현에서 상태 관리가 필요할 때
+유한 상태 머신(Finite State Machine)
+- 유한한 개수의 상태를 기반으로 동작을 제어하는 디자인 패턴
+
+사앹 패턴(State Pattern)
+1) 인터페이스나 추상 클래스로 동일한 방식으로 작동하는 상태 클래스의 틀 만들기
+2) 각 상태의 구현은 해당 인터페이스나 추상 클래스를 상속받는 개별 상태 클래스에서 작업
+
+*/
+
 /// <summary>
 /// 적 캐릭터 담당 역할
 /// </summary>
@@ -13,6 +24,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Mover _mover;
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _renderer;
+    [SerializeField] Collider2D _collider;
 
     [Header("----- 공격 -----")]
     // 공격 타겟 레이어 마스크
@@ -21,6 +33,9 @@ public class Enemy : MonoBehaviour
     // 임시
     [Header("----- 임시 -----")]
     Transform _target;
+
+    // 현재 상태 인터페이스 변수
+    IEnemyState _currentState;
 
     public void Initialize(Transform target)
     {
@@ -31,11 +46,49 @@ public class Enemy : MonoBehaviour
         _mover.OnMoved += OnMoved;
         _model.OnDeath += OnDeath;
         _model.OnHpChanged += _hud.SetHpBar;
+
+        ChangeState(EnemyState.Idle);
+    }
+
+    void ChangeState(EnemyState state)
+    {
+        if (_currentState != null)
+        {
+            // 현재 상태가 죽은 상태이면 다른 상태로 전환하지 않는다.
+            if (_currentState.State == EnemyState.Death) return;
+
+            // 현재 상태가 바꾸려는 상태와 동일하면 상태 전환하지 않는다.
+            if (_currentState.State == state) return;
+
+            // 현재 상태를 종료한다.
+            _currentState.Exit();
+        }
+
+        // 바꾸려는 상태로 현재 상태를 전환
+        switch (state)
+        {
+            case EnemyState.Stagger:
+                _currentState = new StaggerState(this, 0.3f);
+                break;
+            case EnemyState.Death:
+                _currentState = new DeathState(this, 1.0f);
+                break;
+            default:
+                _currentState = new IdleState(this);
+                break;
+        }
+
+        // 새 현재 상태 시작
+        _currentState.Enter();
     }
 
     private void FixedUpdate()
     {
-        FollowTarget();
+        //FollowTarget();
+
+        if (_currentState == null) return;
+
+        _currentState.Update();
     }
 
     void FollowTarget()
@@ -43,6 +96,11 @@ public class Enemy : MonoBehaviour
         // 적 캐릭터에서 타겟(주인공) 위치로 향하는 방향 벡터 구하기
         Vector3 dir = (_target.position - transform.position).normalized;
         _mover.Move(dir);
+    }
+
+    void Stop()
+    {
+        _mover.Move(Vector3.zero);
     }
 
     void OnMoved(Vector3 moveVec)
@@ -105,15 +163,152 @@ public class Enemy : MonoBehaviour
     {
         if (_model.CurrentHp <= 0) return;
 
+        ChangeState(EnemyState.Stagger);
         _model.TakeDamage(damage);
     }
 
-    public void OnDeath()
+    void OnDeath()
     {
-        _mover.SetSpeed(0);
-        _animator.SetTrigger(AnimatorParameters.OnDeath);
-        Destroy(gameObject, 1.0f);
+        ChangeState(EnemyState.Death);
     }
 
+    void Remove()
+    {
+        Destroy(gameObject);
+    }
 
+    // 적 캐릭터의 상태 종류 enum
+    public enum EnemyState
+    {
+        Idle,       // 기본 상태
+        Stagger,    // 피격 상태(휘청거리다)
+        Death,      // 죽은 상태
+    }
+
+    // 적 캐릭터의 상태 인터페이스
+    public interface IEnemyState
+    {
+        // 인터페이스는 프로퍼티도 멤버로 가질 수 있다.
+        EnemyState State { get; }
+
+        // 이 상태가 시작했을 때 동작하는 함수
+        void Enter();
+
+        // 이 상태가 진행 중일 때 반복적으로 동작하는 함수
+        // (유니티 Update()와는 상관 X)
+        void Update();
+
+        // 이 상태가 끝났을 때 동작하는 함수
+        void Exit();
+    }
+
+    // 적 캐릭터의 기본 상태 클래스
+    public class IdleState : IEnemyState
+    {
+        public EnemyState State => EnemyState.Idle;
+        Enemy _enemy;
+
+        public IdleState(Enemy enemy)
+        {
+            _enemy = enemy;
+        }
+
+        public void Enter()
+        {
+            
+        }
+
+        public void Exit()
+        {
+            _enemy.Stop();
+        }
+
+        // 일반 상태인 동안에는 반복적으로 타겟 추적 실행
+        public void Update()
+        {
+            // IdleState가 Enemy 클래스의 내부 클래스기 때문에
+            // private 함수도 사용 가능
+            _enemy.FollowTarget();
+        }
+    }
+
+    // 적 캐릭터의 기절 상태 클래스
+    public class StaggerState : IEnemyState
+    {
+        public EnemyState State => EnemyState.Stagger;
+        Enemy _enemy;
+        float _duration;        // 피격 상태 지속 시간
+        float _timer;           // 피격 상태 타이머
+
+        public StaggerState(Enemy enemy, float duration)
+        {
+            _enemy = enemy;
+            _duration = duration;
+        }
+
+        public void Enter()
+        {
+            _enemy._animator.SetTrigger(AnimatorParameters.OnHit);
+            _timer = _duration;
+        }
+
+        public void Exit()
+        {
+
+        }
+
+        public void Update()
+        {
+            if (_timer > 0)
+            {
+                _timer -= Time.deltaTime;
+                if (_timer <= 0)
+                {
+                    // 기본 상태로 전환
+                    _enemy.ChangeState(EnemyState.Idle);
+                }
+            }
+        }
+    }
+
+    // 적 캐릭터의 죽은 상태 클래스
+    public class DeathState : IEnemyState
+    {
+        public EnemyState State => EnemyState.Death;
+        Enemy _enemy;
+        float _duration;
+        float _timer;
+
+        public DeathState(Enemy enemy, float duration)
+        {
+            _enemy =enemy;
+            _duration = duration;
+        }
+
+        public void Enter()
+        {
+            _enemy._animator.SetTrigger(AnimatorParameters.OnDeath);
+            // 콜라이더 off
+            // 죽어 있는 동안 주인공 캐릭터나 총알과 충돌하면 안 되니까
+            _enemy._collider.enabled = false;
+            _timer = _duration;
+        }
+
+        public void Exit()
+        {
+
+        }
+
+        public void Update()
+        {
+            if (_timer > 0)
+            {
+                _timer -= Time.deltaTime;
+                if (_timer <= 0)
+                {
+                    Destroy(_enemy.gameObject);
+                }
+            }
+        }
+    }
 }

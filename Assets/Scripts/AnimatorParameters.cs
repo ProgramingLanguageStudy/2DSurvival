@@ -6,4 +6,5 @@ public static class AnimatorParameters
 {
     public const string MoveSpeed = "MoveSpeed";
     public const string OnDeath = "OnDeath";
+    public const string OnHit = "OnHit";
 }
