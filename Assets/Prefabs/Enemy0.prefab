@@ -315,9 +315,12 @@ MonoBehaviour:
   _animator: {fileID: 8094714361410867144}
   _renderer: {fileID: 2689185700750196176}
   _collider: {fileID: 2968878147095609111}
+  _rigid: {fileID: 6756657521050020159}
   _targetLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _attackSpan: 1
+  _attackRange: 1
 --- !u!50 &6756657521050020159
 Rigidbody2D:
   serializedVersion: 4
@@ -427,8 +430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _maxHp: 100
-  _currentHp: 100
+  _maxHp: 200
+  _currentHp: 200
 --- !u!1 &7553370750901628912
 GameObject:
   m_ObjectHideFlags: 0

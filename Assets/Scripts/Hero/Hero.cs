@@ -32,8 +32,8 @@ public class Hero : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3.0f);
             _skill.Activate();
+            yield return new WaitForSeconds(3.0f);
         }
     }
 

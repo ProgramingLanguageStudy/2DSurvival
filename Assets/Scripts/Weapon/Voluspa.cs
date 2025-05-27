@@ -6,7 +6,7 @@ public class VoluspaSkill : MonoBehaviour
 {
     public GameObject swordPrefab;      // 검 프리팹
     public int artifactLevel = 3;       // 발동 시 생성할 검 개수
-    public float spawnX = 10f;          // 화면 가장자리 위치
+    [SerializeField] Transform _hero;
 
     public void Activate()
     {
@@ -14,7 +14,7 @@ public class VoluspaSkill : MonoBehaviour
 
         if (enemies.Length == 0) return;
 
-        List<float> uniqueY = new List<float>();
+        List<float> uniqueY = new List<float>();    // uniqueY는 검을 생성할 Y값
 
         foreach (var enemy in enemies)
         {
@@ -41,12 +41,12 @@ public class VoluspaSkill : MonoBehaviour
 
             if (Random.value < 0.5f)
             {
-                spawnPos = new Vector3(-spawnX, y, 0); // 왼쪽
+                spawnPos = new Vector3((_hero.position.x-10), y, 0); // 왼쪽 여기가 생성X의 위치에 문제
                 moveDir = Vector3.right;
             }
             else
             {
-                spawnPos = new Vector3(spawnX, y, 0); // 오른쪽
+                spawnPos = new Vector3((_hero.position.x + 10), y, 0); // 오른쪽
                 moveDir = Vector3.left;
             }
 

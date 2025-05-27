@@ -22121,8 +22121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab55ab852c978145804a47d74089920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 100
-  _currentHp: 100
+  _maxHp: 200
+  _currentHp: 200
 --- !u!1 &992643382
 GameObject:
   m_ObjectHideFlags: 0
@@ -35086,8 +35086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordPrefab: {fileID: 1216528789784439901, guid: 6003384db33468746ac1792d273f0b43, type: 3}
-  artifactLevel: 3
-  spawnX: 10
+  artifactLevel: 1
+  _hero: {fileID: 955146813}
 --- !u!1 &2048474727
 GameObject:
   m_ObjectHideFlags: 0

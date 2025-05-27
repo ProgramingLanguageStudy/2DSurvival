@@ -19,24 +19,35 @@ AI 구현에서 상태 관리가 필요할 때
 public class Enemy : MonoBehaviour
 {
     [Header("----- 컴포넌트 참조 -----")]
-    [SerializeField] EnemyModel _model;
-    [SerializeField] CharacterHud _hud;
+    [SerializeField] EnemyModel _model; // 적 런타임 데이터 모델
+    [SerializeField] CharacterHud _hud; // HUD UI
     [SerializeField] Mover _mover;
     [SerializeField] Animator _animator;
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] Collider2D _collider;
+    [SerializeField] Rigidbody2D _rigid;
 
     [Header("----- 공격 -----")]
     // 공격 타겟 레이어 마스크
     [SerializeField] LayerMask _targetLayerMask;
+    // 공격 간격(초)
+    [SerializeField] float _attackSpan;
 
     // 임시
     [Header("----- 임시 -----")]
-    Transform _target;
+    Transform _target;  // 추적할 대상의 Transform(Hero)
+    GameObject _hero;
 
-    // 현재 상태 인터페이스 변수
+    // 현재 상태 객체를 가리키는 인터페이스 변수
     IEnemyState _currentState;
 
+    // 공격 코루틴 참조 변수
+    Coroutine _attackRoutine;
+
+    /// <summary>
+    /// 적 캐릭터를 초기화하는 함수
+    /// </summary>
+    /// <param name="target">추적 대상의 Transform</param>
     public void Initialize(Transform target)
     {
         _target = target;
@@ -50,6 +61,11 @@ public class Enemy : MonoBehaviour
         ChangeState(EnemyState.Idle);
     }
 
+    /// <summary>
+    /// 상태를 변경하는 함수. 기존 상태가 사망 상태인 경우나
+    /// 기존 상태와 동일한 상태로 변경하려는 경우에는 무시
+    /// </summary>
+    /// <param name="state"></param>
     void ChangeState(EnemyState state)
     {
         if (_currentState != null)
@@ -86,11 +102,15 @@ public class Enemy : MonoBehaviour
     {
         //FollowTarget();
 
+        // 현재 상태 객체의 업데이트 함수를 호출한다.
         if (_currentState == null) return;
 
         _currentState.Update();
     }
 
+    /// <summary>
+    /// 추적 대상 방향으로 이동하는 함수
+    /// </summary>
     void FollowTarget()
     {
         // 적 캐릭터에서 타겟(주인공) 위치로 향하는 방향 벡터 구하기
@@ -98,11 +118,18 @@ public class Enemy : MonoBehaviour
         _mover.Move(dir);
     }
 
+    /// <summary>
+    /// 이동을 중단하는 함수
+    /// </summary>
     void Stop()
     {
         _mover.Move(Vector3.zero);
     }
 
+    /// <summary>
+    /// Mover가 이동했을 때 자동으로 호출되는 함수
+    /// </summary>
+    /// <param name="moveVec"></param>
     void OnMoved(Vector3 moveVec)
     {
         if (moveVec.x > 0)
@@ -123,11 +150,12 @@ public class Enemy : MonoBehaviour
         // 1) 만들어 놓은 함수로 Layer 체크하는 방법
         if (_targetLayerMask.Contains(collision.gameObject.layer))
         {
+            _hero = collision.gameObject;
             Hero hero = collision.gameObject.GetComponent<Hero>();
             if (hero != null)
             {
                 // 3. 주인공 캐릭터 공격
-                hero.TakeHit(_model.Damage);
+                _attackRoutine = StartCoroutine(AttackRoutine(hero));
             }
         }
         
@@ -159,6 +187,10 @@ public class Enemy : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// 피격을 처리하는 함수
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeHit(float damage)
     {
         if (_model.CurrentHp <= 0) return;
@@ -167,15 +199,80 @@ public class Enemy : MonoBehaviour
         _model.TakeDamage(damage);
     }
 
+    /// <summary>
+    /// 죽었을 때 자동으로 호출되는 함수
+    /// </summary>
     void OnDeath()
     {
         ChangeState(EnemyState.Death);
     }
 
+    /// <summary>
+    /// 이 적 캐릭터 게임오브젝트를 제거하는 함수
+    /// </summary>
     void Remove()
     {
         Destroy(gameObject);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="hero"></param>
+    /// <returns></returns>
+    IEnumerator AttackRoutine(Hero hero)
+    {
+        while (true)
+        {
+            // 적이 주인공 캐릭터를 공격
+            hero.TakeHit(_model.Damage);
+
+            // _attackSpan 초만큼 대기
+            yield return new WaitForSeconds(_attackSpan);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        // 공격 대상인 레이어마스크에 포함되는 레이어의 게임오브젝트와
+        // 충돌이 끝나면
+        if (_targetLayerMask.Contains(collision.gameObject.layer))
+        {
+            Hero hero = collision.gameObject.GetComponent<Hero>();
+            if (hero != null)
+            {
+                // 코루틴 종료
+                if(_attackRoutine != null)
+                StopCoroutine(AttackRoutine(hero));
+            }
+        }
+    }
+
+    //IEnumerator CheckEnemySenseHero()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    while (true)
+    //    {
+    //        EnemySenseHero();
+    //        yield return new WaitForSeconds(1f);
+    //    }
+    //}
+
+    //void EnemySenseHero()
+    //{
+    //    if (_target == null) return;
+
+    //    float dist = Vector3.Distance(transform.position, _target.position);
+    //    if (dist <= _attackRange)
+    //    {
+    //        Hero hero = _target.GetComponent<Hero>();
+    //        if (hero != null)
+    //        {
+    //            hero.TakeHit(_model.Damage);
+    //            Debug.Log("옆에있어서 데미지줌");
+    //        }
+    //    }
+    //}
 
     // 적 캐릭터의 상태 종류 enum
     public enum EnemyState
@@ -202,7 +299,9 @@ public class Enemy : MonoBehaviour
         void Exit();
     }
 
-    // 적 캐릭터의 기본 상태 클래스
+    /// <summary>
+    /// 기본 상태 - 타겟을 지속적으로 추적
+    /// </summary>
     public class IdleState : IEnemyState
     {
         public EnemyState State => EnemyState.Idle;
@@ -232,7 +331,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 적 캐릭터의 기절 상태 클래스
+    /// <summary>
+    /// 피격 상태 - 일정 시간 후 Idle 상태로 복귀
+    /// </summary>
     public class StaggerState : IEnemyState
     {
         public EnemyState State => EnemyState.Stagger;
@@ -271,7 +372,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // 적 캐릭터의 죽은 상태 클래스
+    /// <summary>
+    /// 사망 상태 - 일정 시간 후 적 캐릭터 게임오브젝트 제거
+    /// </summary>
     public class DeathState : IEnemyState
     {
         public EnemyState State => EnemyState.Death;
@@ -291,6 +394,15 @@ public class Enemy : MonoBehaviour
             // 콜라이더 off
             // 죽어 있는 동안 주인공 캐릭터나 총알과 충돌하면 안 되니까
             _enemy._collider.enabled = false;
+            // 리지드바디 off
+            _enemy._rigid.simulated = false;
+
+            // 공격 코루틴 종료
+            if (_enemy._attackRoutine != null)
+            {
+                _enemy.StopCoroutine(_enemy._attackRoutine);
+            }
+
             _timer = _duration;
         }
 
@@ -306,7 +418,7 @@ public class Enemy : MonoBehaviour
                 _timer -= Time.deltaTime;
                 if (_timer <= 0)
                 {
-                    Destroy(_enemy.gameObject);
+                    _enemy.Remove();
                 }
             }
         }

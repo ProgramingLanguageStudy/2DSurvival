@@ -12,6 +12,15 @@ public class Bullet : MonoBehaviour
     // 충돌할 레이어 마스크
     [SerializeField] LayerMask _targetLayerMask;
 
+    /// <summary>
+    /// 데미지를 설정하는 함수
+    /// </summary>
+    /// <param name="damage"></param>
+    public void SetDamage(float damage)
+    {
+        _damage = damage;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 상대 게임오브젝트의 레이어가
