@@ -1,0 +1,55 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// 무기 스탯 종류(타입) 정의
+/// </summary>
+public enum WeaponStatType
+{
+    Damage,     // 데미지
+    BulletSpeed, // 총알 속력(회전 속력, 날아가는 속력)
+    ShootingRange, // 사정거리(회전 반경, 타겟팅 범위)
+    BulletCount, // 총알 수
+}
+
+/// <summary>
+/// 하나의 스탯 종류(타입)에 대해 레벨별 수치를 저장하는 클래스
+/// 예: Damage {10, 20, 30, 40, 50}
+/// </summary>
+[System.Serializable]   // System.Serializable은 객체의 변수들을 인스펙터뷰에서 설정하게 해 주는 기능
+public class WeaponLevelStat
+{
+    // 어떤 스텟에 대한 데이터인지(ex. Damage, BulletSpeed 등)
+    [SerializeField] WeaponStatType _statType;
+
+    // 각 레벨별 수치 배열
+    [SerializeField] float[] _levelValues;
+
+    public WeaponStatType StatType => _statType;
+    
+    /// <summary>
+    /// 특정 레벨에 해당하는 값을 반환하는 함수
+    /// 음수 레벨이면 0, 최대레벨을 초과하는 레벨이면 최대 레벨의 값을 반환한다.
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
+    public float GetValue(int level)
+    {
+        if(level < 0)
+        {
+            // 음수 레벨이면 0 반환
+            return 0f;
+        }
+        // 레벨이 최대 레벨을 초과하면 배열 범위 끝번호로 한정
+        if (level >= _levelValues.Length)
+        {
+            level = _levelValues.Length - 1; // 최대 레벨로 조정
+            // 최대 레벨을 초과하는 레벨이면 최대 레벨의 값을 반환
+            return _levelValues[level];
+        }
+
+        // 해당 레벨의 수치 반환
+        return _levelValues[level];
+    }
+}
