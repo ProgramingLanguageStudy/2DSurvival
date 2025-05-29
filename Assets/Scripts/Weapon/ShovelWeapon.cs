@@ -5,19 +5,8 @@ using UnityEngine;
 /// <summary>
 /// 총알을 원형으로 배치하고 스스로 회전하여 배치된 총알들로 적을 공격하는 무기
 /// </summary>
-public class ShovelWeapon : MonoBehaviour
+public class ShovelWeapon : Weapon
 {
-    // 런타임 데이터
-    [Header("----- 스탯 데이터 -----")]
-    // 무기 설정 데이터
-    [SerializeField] WeaponData _data;
-
-    // 무기 레벨
-    [SerializeField] int _level;
-
-    // 데미지
-    [SerializeField] float _damage;
-
     // 사정거리(총알 위치 반지름)
     [SerializeField] float _shootingRange;
 
@@ -33,7 +22,13 @@ public class ShovelWeapon : MonoBehaviour
     // 생성된 총알 리스트
     List<Bullet> _bullets = new List<Bullet>();
 
+    // 임시로 Start()에서 초기화
     private void Start()
+    {
+        Initialize();
+    }
+
+    public override void Initialize()
     {
         CalculateStats();
         SpawnBullets();
@@ -42,9 +37,9 @@ public class ShovelWeapon : MonoBehaviour
     /// <summary>
     /// 레벨에 따른 무기의 현재 스텟(런타임 데이터)을 계산하는 함수
     /// </summary>
-    void CalculateStats()
+    protected override void CalculateStats()
     {
-        _damage = _data.GetStat(WeaponStatType.Damage, _level);
+        base.CalculateStats();  // _damage = _data.GetStat(WeaponStatType.Damage, _level);
         _bulletSpeed = _data.GetStat(WeaponStatType.BulletSpeed, _level);
         _shootingRange = _data.GetStat(WeaponStatType.ShootingRange, _level);
         float bulletCount = (int)_data.GetStat(WeaponStatType.BulletCount, _level);

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1690459033977517248}
   - component: {fileID: 4729944947881478766}
-  - component: {fileID: 1428240475763009003}
-  - component: {fileID: 2551857157565417705}
+  - component: {fileID: 1027650174119157212}
+  - component: {fileID: 4614719001836287163}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: 1GunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 796771137
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: 1737672109, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  m_Sprite: {fileID: -537537479, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1428240475763009003
+--- !u!61 &1027650174119157212
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,16 +122,16 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3888889, y: 1}
+    oldSize: {x: 0.22222222, y: 0.44444445}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3888889, y: 1}
+  m_Size: {x: 0.22222222, y: 0.44444445}
   m_EdgeRadius: 0
---- !u!114 &2551857157565417705
+--- !u!114 &4614719001836287163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5557428366276004936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a509bdd048829914ab9999d749381492, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a85579bf04aca4a8424788509412e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 50
+  _damage: 0
   _targetLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  _speed: 0
+  _duration: 0
+  _count: 0

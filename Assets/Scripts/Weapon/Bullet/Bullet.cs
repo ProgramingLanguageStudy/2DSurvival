@@ -33,9 +33,17 @@ public class Bullet : MonoBehaviour
             // Enemy 컴포넌트가 실제로 있으면
             if (enemy != null)
             {
-                enemy.TakeHit(_damage);
+                Attack(enemy);
             }
         }
+    }
 
+    /// <summary>
+    /// 적을 공격하는 함수
+    /// </summary>
+    /// <param name="enemy"></param>
+    protected virtual void Attack(Enemy enemy)
+    {
+        enemy.TakeHit(_damage);
     }
 }

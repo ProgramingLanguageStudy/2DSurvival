@@ -7,10 +7,14 @@ using UnityEngine;
 /// </summary>
 public enum WeaponStatType
 {
-    Damage,     // 데미지
-    BulletSpeed, // 총알 속력(회전 속력, 날아가는 속력)
-    ShootingRange, // 사정거리(회전 반경, 타겟팅 범위)
-    BulletCount, // 총알 수
+    Damage,          // 데미지
+    BulletSpeed,     // 총알 속력(회전 속력, 날아가는 속력)
+    ShootingRange,   // 사정거리(회전 반경, 타겟팅 범위)
+    BulletCount,     // 총알 수(발사 시 생성되는 총알의 개수)
+    BulletDuration,  // 총알 지속 시간(계속 남아있으면 안되니까)
+    CoolTime,        // 총알 발사 간격(쿨타임)
+    FireDelay,       // 연발 시 총알 사이 간격 시간
+    AttackCount,     // 한 총알의 공격 횟수(적 관통을 얼마나 할지)
 }
 
 /// <summary>
