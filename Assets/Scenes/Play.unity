@@ -9362,7 +9362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &665906634
 Transform:
   m_ObjectHideFlags: 0
@@ -22302,6 +22302,7 @@ Transform:
   - {fileID: 1767759888}
   - {fileID: 1821362138}
   - {fileID: 665906634}
+  - {fileID: 2041677727}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &955146815
@@ -35987,6 +35988,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939058034}
   m_CullTransparentMesh: 1
+--- !u!1 &2041677726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041677727}
+  - component: {fileID: 2041677728}
+  m_Layer: 6
+  m_Name: TornadoWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2041677727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041677726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 955146813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041677728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041677726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8516b82ff253ec438c7b9e0c6f21fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 088ffea69f3bd9c438540355b2cd56a2, type: 2}
+  _level: 1
+  _damage: 0
+  _bulletSpeed: 0
+  _bulletCount: 0
+  _coolTime: 0
+  _fireDelay: 0
+  _bulletDuration: 0
+  _bulletPrefab: {fileID: -6320708437855116578, guid: d90132ae456c9204c98ca9818009f442, type: 3}
 --- !u!1 &2048474727
 GameObject:
   m_ObjectHideFlags: 0

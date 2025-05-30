@@ -78,7 +78,7 @@ public abstract class FiringWeapon : Weapon
     }
 
     /// <summary>
-    /// 총알을 한 발 생성하는 함수
+    /// 총알을 한 발 or 몇 발 생성하는 함수
     /// </summary>
     protected abstract void SpawnBullet();
 

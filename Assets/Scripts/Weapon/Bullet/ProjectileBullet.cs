@@ -46,7 +46,7 @@ public class ProjectileBullet : Bullet
     {
         _dir = dir;
 
-        // 총알이 날아가는 방향을 바라보도록 회전
+        // 총알이 날아가는 방향을 바라보도록 고개를 돌림
         transform.up = dir;
     }
 

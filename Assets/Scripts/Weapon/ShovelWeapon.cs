@@ -55,6 +55,8 @@ public class ShovelWeapon : Weapon
 
     /// <summary>
     /// FixedUpdate()마다 호출
+    /// 총알이 캐릭터 주위를 일정속력으로 돌기때문에(행성의 공전같은 느낌) 
+    /// 무기의 총알이 계속 존재해야 하므로 필요한 함수이다.
     /// </summary>
     void HandleRotation()
     {
@@ -62,7 +64,8 @@ public class ShovelWeapon : Weapon
     }
 
     /// <summary>
-    /// 원형으로 총알들을 배치하는 함수
+    /// 원형으로 총알들을 배치하는 함수.
+    /// 각도 기준으로 일정간격 총알을 배치하는 역할.
     /// </summary>
     void SpawnBullets()
     {
