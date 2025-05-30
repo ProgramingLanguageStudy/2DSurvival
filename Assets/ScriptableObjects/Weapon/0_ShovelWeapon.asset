@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd20a5fbb1f309345b14934971603f25, type: 3}
-  m_Name: GunWeapon
+  m_Name: 0_ShovelWeapon
   m_EditorClassIdentifier: 
-  _weaponName: "\uCD1D"
+  _weaponName: "\uC0BD"
   _levelStats:
   - _statType: 0
     _levelValues:
@@ -23,30 +23,14 @@ MonoBehaviour:
     - 50
   - _statType: 1
     _levelValues:
-    - 10
+    - 180
   - _statType: 2
     _levelValues:
-    - 10
+    - 1.5
   - _statType: 3
     _levelValues:
     - 1
-    - 1
-    - 2
     - 2
     - 3
-  - _statType: 4
-    _levelValues:
-    - 2
-  - _statType: 5
-    _levelValues:
-    - 1
-  - _statType: 6
-    _levelValues:
-    - 0.2
-  - _statType: 7
-    _levelValues:
-    - 1
-    - 1
-    - 2
-    - 2
-    - 3
+    - 4
+    - 5

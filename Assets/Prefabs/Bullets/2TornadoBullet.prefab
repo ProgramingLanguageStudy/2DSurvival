@@ -104,10 +104,10 @@ MonoBehaviour:
     m_Bits: 128
   _speed: 0
   _duration: 0
-  _rotationSpeed: 100
+  _rotationSpeed: 360
   _growTimer: 0
   _growDuration: 1
-  _maxSize: 10
+  _maxSize: 5
 --- !u!61 &2909819672682340044
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd20a5fbb1f309345b14934971603f25, type: 3}
-  m_Name: ShovelWeapon
+  m_Name: 3_MeteoWeapon
   m_EditorClassIdentifier: 
-  _weaponName: "\uC0BD"
+  _weaponName: 
   _levelStats:
   - _statType: 0
     _levelValues:
-    - 10
-    - 20
-    - 30
-    - 40
-    - 50
+    - 100
   - _statType: 1
     _levelValues:
-    - 180
-  - _statType: 2
-    _levelValues:
-    - 1.5
+    - 2
   - _statType: 3
     _levelValues:
     - 1
+    - 1
+    - 1
+    - 1
     - 2
-    - 3
-    - 4
+  - _statType: 4
+    _levelValues:
     - 5
+  - _statType: 5
+    _levelValues:
+    - 2
+  - _statType: 6
+    _levelValues:
+    - 0

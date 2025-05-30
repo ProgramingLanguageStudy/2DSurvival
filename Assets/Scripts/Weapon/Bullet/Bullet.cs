@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     // 총알 데미지
     [SerializeField] float _damage;
     // 충돌할 레이어 마스크
-    [SerializeField] LayerMask _targetLayerMask;
+    [SerializeField] protected LayerMask _targetLayerMask;
 
     /// <summary>
     /// 데미지를 설정하는 함수
