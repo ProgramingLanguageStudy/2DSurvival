@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /*
@@ -59,7 +60,7 @@ public class MeteoBullet : ProjectileBullet, IGrowable
     // 코루틴 중복 실행 방지용 플래그
     private bool _isAttackCoroutineRunning = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 상대 게임오브젝트의 레이어가
         // _targetLayerMask에 포함되면
@@ -122,6 +123,7 @@ public class MeteoBullet : ProjectileBullet, IGrowable
             Grow();
         }
     }
+    
 
     public void Grow()
     {
@@ -139,6 +141,8 @@ public class MeteoBullet : ProjectileBullet, IGrowable
 
     IEnumerator AttackCoroutine()
     {
+        //yield return AttackCoroutine();   // 코루틴이 끝날 때까지 기다린다.
+
         while (true)
         {
             if(_detectedEnemies.Count == 0)

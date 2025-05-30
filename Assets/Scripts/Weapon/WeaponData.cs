@@ -6,7 +6,7 @@ using UnityEngine;
 /// 무기 하나의 레벨별 스텟 데이터들을 보관하는 ScriptableObject
 /// 각 스텟은 WeaponStatType별로 구분되며, 무기 레벨에 따라 값이 달라진다.
 /// </summary>
-[CreateAssetMenu(menuName = "GameSettings/WeaponDAta", fileName = "WeaponData")]
+[CreateAssetMenu(fileName = "WeaponData", menuName = "GameSettings/WeaponData")]
 public class WeaponData : ScriptableObject
 {
     // 무기 이름

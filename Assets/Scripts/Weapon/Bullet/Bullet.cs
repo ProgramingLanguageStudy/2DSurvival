@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         _damage = damage;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 상대 게임오브젝트의 레이어가
         // _targetLayerMask에 포함되면

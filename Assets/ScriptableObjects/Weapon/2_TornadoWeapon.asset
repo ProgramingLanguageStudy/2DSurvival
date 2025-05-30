@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd20a5fbb1f309345b14934971603f25, type: 3}
   m_Name: 2_TornadoWeapon
   m_EditorClassIdentifier: 
-  _weaponName: 
+  _weaponName: "\uD1A0\uB124\uC774\uB3C4"
   _levelStats:
   - _statType: 0
     _levelValues:

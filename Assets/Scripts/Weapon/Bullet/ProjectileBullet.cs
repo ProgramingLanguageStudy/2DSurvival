@@ -12,13 +12,13 @@ public class ProjectileBullet : Bullet
     [SerializeField] float _speed;
 
     // 총알 지속 시간(총알 게임오브젝트가 일정 시간 뒤에 자동 파괴되게 하기 위함)
-    [SerializeField] float _duration;
+    [SerializeField] protected float _duration;
 
     // 이동 방향
     Vector3 _dir;
 
     // 타이머
-    float _timer;
+    protected float _timer;
 
     /// <summary>
     /// 이동 속력을 설정하는 함수
@@ -50,7 +50,7 @@ public class ProjectileBullet : Bullet
         transform.up = dir;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         transform.Translate(_dir * _speed * Time.fixedDeltaTime, Space.World);
         //transform.Translate(Vector3.up * _speed * Time.fixedDeltaTime, Space.World);

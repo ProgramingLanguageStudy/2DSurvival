@@ -86,36 +86,18 @@ public class VoluspaWeapon : FiringWeapon
     /// 사정거리 내에서 가장 가까운 적 타겟을 찾는 함수
     /// </summary>
     /// <returns>가장 가까운 타겟의 Transform. 없으면 null</returns>
-    Transform GetNearestTarget()
-    {
-        Vector2 _senseSize = new Vector2(_senseDistanceX, _senseDistanceY); // 감지할 영역의 크기
-        if (Physics2D.OverlapBoxNonAlloc(transform.position, _senseSize, 0, _colliders, _targetLayerMask.value) > 0)
-        {
-            // 0번 타겟이 감지된 타겟 중 가장 가까운 타겟이라고 가정
-            Transform target = _colliders[0].transform;
-            // 가장 가까운 거리 계산
-            float minDistance = Vector3.Distance(transform.position, target.position);
-            foreach (var collider in _colliders)
-            {
-                // 일단 collider 앞에서부터 확인하면서 더 없으면 있는놈들만 데리고 continue
-                if (collider == null) continue; // null 체크
-                // 현재 타겟과의 거리 계산
-                float distance = Vector3.Distance(transform.position, collider.transform.position);
-                // 현재 타겟이 더 가까우면 갱신
-                if (distance < minDistance)
-                {
-                    minDistance = distance;
-                    target = collider.transform;
-                }
-            }
-            // 가장 가까운 타겟 반환
-            return target;
-        }
+    //Transform GetRandomTarget()
+    //{
+    //    Vector2 _senseSize = new Vector2(_senseDistanceX, _senseDistanceY); // 감지할 영역의 크기
+    //    if (Physics2D.OverlapBoxNonAlloc(transform.position, _senseSize, 0, _colliders, _targetLayerMask.value) > 0)
+    //    {
 
-        // 만약 사정거리 내에 타겟이 없다면 null 반환
-        else
-        {
-            return null;
-        }
-    }
+    //    }
+
+    //    // 만약 사정거리 내에 타겟이 없다면 null 반환
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
 }

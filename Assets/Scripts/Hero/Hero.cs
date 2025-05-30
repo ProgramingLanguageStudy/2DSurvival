@@ -22,8 +22,8 @@ public class Hero : MonoBehaviour
         _model.Initialize();
 
         _mover.OnMoved += OnMoved;
-
         _model.OnHpChanged += _hud.SetHpBar;
+        _model.OnSpeedChanged += _mover.SetSpeed;
 
         _spawnVoluspa = StartCoroutine(SpawnVoluspa());
     }
