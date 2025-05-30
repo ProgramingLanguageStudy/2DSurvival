@@ -18,15 +18,18 @@ using UnityEngine;
 // 화면의 가로길이 세로길이를 구해서 감지할 예정이다.
 // 생성위치는 x와 y가 다른대
 // x는 뷰포트좌표를 활용해서 화면 끝에서 살짝 벗어나는 범위에서 생성하고
-// y는 감지된 적에서 당첨된 놈들의 y 값을 사용한다.
+// y는 감지된 적들 중에서 random으로 count만큼 뽑아 당첨된 놈들의 y 값을 사용한다.
 
 /// <summary>
 /// 볼루스파 무기를 구현할 클래스
 /// </summary>
 public class VoluspaWeapon : FiringWeapon
 {
-    [SerializeField] float _shootingRange;  // 사정 거리(적 탐지 범위)
-    
+    [SerializeField] float _senseDistanceX = 10f; // 감지할 x축 거리(일단 화면 기준으로 Hero부터 화면끝까지의 거리로 잡음)
+    [SerializeField] float _senseDistanceY = 5f; // 감지할 y축 거리(일단 화면 기준으로 Hero부터 화면끝까지의 거리로 잡음)
+    // 이거 여기서 이렇게하면 안됨
+    //Vector2 _senseSize = new Vector2(_senseDistanceX, _senseDistanceY); // 감지할 영역의 크기(OverlapAreaNonAlloc()에서 사용)
+
     [Header(" ----- 총알 프리펩 ----- ")]
     [SerializeField] VoluspaBullet _bulletPrefab; // 발사할 총알 프리팹
 
@@ -48,9 +51,6 @@ public class VoluspaWeapon : FiringWeapon
     {
         // 일단 부모 클래스의 스텟들은 계산하고
         base.CalculateStats();
-
-        // GunWeapon에 추가로 필요한 스텟들을 계산
-        _shootingRange = _data.GetStat(WeaponStatType.ShootingRange, _level);
     }
 
     // 부모 클래스의 SpawnBullet() 함수가 abstract로 선언되어 있으므로
@@ -88,24 +88,19 @@ public class VoluspaWeapon : FiringWeapon
     /// <returns>가장 가까운 타겟의 Transform. 없으면 null</returns>
     Transform GetNearestTarget()
     {
-        //if (Physics2D.OverlapAreaNonAlloc()
-
-        if (Physics2D.OverlapCircleNonAlloc(transform.position, _shootingRange, _colliders, _targetLayerMask.value) > 0)
+        Vector2 _senseSize = new Vector2(_senseDistanceX, _senseDistanceY); // 감지할 영역의 크기
+        if (Physics2D.OverlapBoxNonAlloc(transform.position, _senseSize, 0, _colliders, _targetLayerMask.value) > 0)
         {
             // 0번 타겟이 감지된 타겟 중 가장 가까운 타겟이라고 가정
             Transform target = _colliders[0].transform;
-
             // 가장 가까운 거리 계산
             float minDistance = Vector3.Distance(transform.position, target.position);
-
             foreach (var collider in _colliders)
             {
                 // 일단 collider 앞에서부터 확인하면서 더 없으면 있는놈들만 데리고 continue
                 if (collider == null) continue; // null 체크
-
                 // 현재 타겟과의 거리 계산
                 float distance = Vector3.Distance(transform.position, collider.transform.position);
-
                 // 현재 타겟이 더 가까우면 갱신
                 if (distance < minDistance)
                 {
