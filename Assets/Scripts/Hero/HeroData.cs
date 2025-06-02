@@ -10,9 +10,9 @@ public class HeroData : ScriptableObject
 {
     [SerializeField] float _maxHp;      // 기본 최대 체력
     [SerializeField] float _speed;      // 기본 이동 속력
-    [SerializeField] float _exp;        // 경험치통
+    [SerializeField] float _maxExp;        // 경험치통
 
     public float MaxHp => _maxHp;
     public float Speed => _speed;
-    public float Exp => _exp;
+    public float MaxExp => _maxExp;
 }

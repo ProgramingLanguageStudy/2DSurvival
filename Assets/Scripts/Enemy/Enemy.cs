@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         _model.Initialize();
 
         _mover.OnMoved += OnMoved;
-        _model.OnDeath += OnDeath;
+        EnemyModel.OnDeath += OnDeath;
         _model.OnHpChanged += _hud.SetHpBar;
 
         ChangeState(EnemyState.Idle);
@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 죽었을 때 자동으로 호출되는 함수
     /// </summary>
-    void OnDeath()
+    void OnDeath(float amount)
     {
         ChangeState(EnemyState.Death);
     }

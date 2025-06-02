@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,10 +19,14 @@ public class EnemyModel : MonoBehaviour
     // 현재 체력
     [SerializeField] float _currentHp;
 
+    // 임시
+    // 경험치 뿌려요
+    [SerializeField] float _exp = 50;
+
     // 체력 변경 이벤트
     public event UnityAction<float, float> OnHpChanged;
     // 사망 이벤트
-    public event UnityAction OnDeath;
+    public static event Action<float> OnDeath;
 
     public float Damage => _damage;
     public float MaxHp => _maxHp;
@@ -44,7 +49,7 @@ public class EnemyModel : MonoBehaviour
         if (_currentHp <= 0)
         {
             // 사망 이벤트 발행
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(_exp);
         }
     }
 }

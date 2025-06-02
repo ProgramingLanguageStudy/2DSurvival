@@ -18,6 +18,7 @@ public class PlayScene : MonoBehaviour
 
         // 이동 입력 이벤트 구독
         _inputHandler.OnMoveInput += OnMoveInput;
+        
     } 
 
     /// <summary>
