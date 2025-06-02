@@ -25,8 +25,8 @@ using UnityEngine;
 /// </summary>
 public class VoluspaWeapon : FiringWeapon
 {
-    [SerializeField] float _senseDistanceX = 10f; // 감지할 x축 거리(일단 화면 기준으로 Hero부터 화면끝까지의 거리로 잡음)
-    [SerializeField] float _senseDistanceY = 5f; // 감지할 y축 거리(일단 화면 기준으로 Hero부터 화면끝까지의 거리로 잡음)
+    //[SerializeField] float _senseDistanceX = 10f; // 감지할 x축 거리(일단 화면 기준으로 Hero부터 화면끝까지의 거리로 잡음)
+    //[SerializeField] float _senseDistanceY = 5f; // 감지할 y축 거리(일단 화면 기준으로 Hero부터 화면끝까지의 거리로 잡음)
     // 이거 여기서 이렇게하면 안됨
     //Vector2 _senseSize = new Vector2(_senseDistanceX, _senseDistanceY); // 감지할 영역의 크기(OverlapAreaNonAlloc()에서 사용)
 

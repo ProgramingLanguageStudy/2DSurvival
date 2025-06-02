@@ -1,47 +1,47 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÀÏÁ¤ ½Ã°£¸¶´Ù °¡±î¿î Àû Ä³¸¯ÅÍ¸¦ ÇâÇØ GunBulletÀ» ¹ß»çÇÏ´Â ¹«±â Å¬·¡½º
+/// ì¼ì • ì‹œê°„ë§ˆë‹¤ ê°€ê¹Œìš´ ì  ìºë¦­í„°ë¥¼ í–¥í•´ GunBulletì„ ë°œì‚¬í•˜ëŠ” ë¬´ê¸° í´ë˜ìŠ¤
 /// </summary>
 public class GunWeapon : FiringWeapon
 {
-    [SerializeField] float _shootingRange;  // »çÁ¤ °Å¸®(Àû Å½Áö ¹üÀ§)
-    [SerializeField] int _attackCount;      // ÃÑ¾Ë °ø°İ È½¼ö(Àû °üÅë ¾ó¸¶³ª ÇÒÁö)
+    [SerializeField] float _shootingRange;  // ì‚¬ì • ê±°ë¦¬(ì  íƒì§€ ë²”ìœ„)
+    [SerializeField] int _attackCount;      // ì´ì•Œ ê³µê²© íšŸìˆ˜(ì  ê´€í†µ ì–¼ë§ˆë‚˜ í• ì§€)
 
-    [Header(" ----- ÃÑ¾Ë ÇÁ¸®Æé ----- ")]
-    [SerializeField] GunBullet _bulletPrefab; // ¹ß»çÇÒ ÃÑ¾Ë ÇÁ¸®ÆÕ
+    [Header(" ----- ì´ì•Œ í”„ë¦¬í© ----- ")]
+    [SerializeField] GunBullet _bulletPrefab; // ë°œì‚¬í•  ì´ì•Œ í”„ë¦¬íŒ¹
 
-    [Header(" ----- Å¸°Ù °¨Áö ----- ")]
-    [SerializeField] LayerMask _targetLayerMask; // °¨ÁöÇÒ Å¸°Ù ¼³Á¤
+    [Header(" ----- íƒ€ê²Ÿ ê°ì§€ ----- ")]
+    [SerializeField] LayerMask _targetLayerMask; // ê°ì§€í•  íƒ€ê²Ÿ ì„¤ì •
 
     /// <summary>
-    /// °¨ÁöµÈ Å¸°Ù Á¤º¸¸¦ ÀúÀåÇÒ ¹è¿­
+    /// ê°ì§€ëœ íƒ€ê²Ÿ ì •ë³´ë¥¼ ì €ì¥í•  ë°°ì—´
     /// </summary>
     Collider2D[] _colliders = new Collider2D[10];
 
     protected override void CalculateStats()
     {
-        // ÀÏ´Ü ºÎ¸ğ Å¬·¡½ºÀÇ ½ºÅİµéÀº °è»êÇÏ°í
+        // ì¼ë‹¨ ë¶€ëª¨ í´ë˜ìŠ¤ì˜ ìŠ¤í…Ÿë“¤ì€ ê³„ì‚°í•˜ê³ 
         base.CalculateStats();
 
-        // GunWeapon¿¡ Ãß°¡·Î ÇÊ¿äÇÑ ½ºÅİµéÀ» °è»ê
+        // GunWeaponì— ì¶”ê°€ë¡œ í•„ìš”í•œ ìŠ¤í…Ÿë“¤ì„ ê³„ì‚°
         _shootingRange = _data.GetStat(WeaponStatType.ShootingRange, _level);
         _attackCount = Mathf.RoundToInt(_data.GetStat(WeaponStatType.AttackCount, _level));
     }
 
-    // ºÎ¸ğ Å¬·¡½ºÀÇ SpawnBullet() ÇÔ¼ö°¡ abstract·Î ¼±¾ğµÇ¾î ÀÖÀ¸¹Ç·Î
-    // GunWeapon Å¬·¡½º¿¡¼­ ¹İµå½Ã ±¸ÇöÇØ¾ß ÇÑ´Ù.
+    // ë¶€ëª¨ í´ë˜ìŠ¤ì˜ SpawnBullet() í•¨ìˆ˜ê°€ abstractë¡œ ì„ ì–¸ë˜ì–´ ìˆìœ¼ë¯€ë¡œ
+    // GunWeapon í´ë˜ìŠ¤ì—ì„œ ë°˜ë“œì‹œ êµ¬í˜„í•´ì•¼ í•œë‹¤.
     protected override void SpawnBullet()
     {
-        // ÀÏ´Ü ÃÑ¾ËÀ» »ı¼ºÇÏ°í
+        // ì¼ë‹¨ ì´ì•Œì„ ìƒì„±í•˜ê³ 
         GunBullet bullet = Instantiate(_bulletPrefab);
 
-        // bulletÀÇ À§Ä¡¸¦ ÀÌ °ÔÀÓ¿ÀºêÁ§Æ® À§Ä¡·Î ¼³Á¤
+        // bulletì˜ ìœ„ì¹˜ë¥¼ ì´ ê²Œì„ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ë¡œ ì„¤ì •
         bullet.transform.position = transform.position;
 
-        // ÃÑ¾ËÀÌ »ı¼ºµÉ ¶§ ÃÑ¾ËÀÇ ½ºÅİµéÀ» ¼³Á¤
+        // ì´ì•Œì´ ìƒì„±ë  ë•Œ ì´ì•Œì˜ ìŠ¤í…Ÿë“¤ì„ ì„¤ì •
         bullet.SetCount(_attackCount);
         bullet.SetDamage(_damage);
         bullet.SetDirection(GetBulletDirection());
@@ -50,66 +50,66 @@ public class GunWeapon : FiringWeapon
     }
 
     /// <summary>
-    /// °¡Àå °¡±î¿î Àû ¹æÇâÀ¸·Î ÃÑ¾Ë ¹æÇâÀ» °è»ê
+    /// ê°€ì¥ ê°€ê¹Œìš´ ì  ë°©í–¥ìœ¼ë¡œ ì´ì•Œ ë°©í–¥ì„ ê³„ì‚°
     /// </summary>
     /// <returns></returns>
     protected override Vector3 GetBulletDirection()
     {
-        // °¨ÁöµÈ °¡Àå °¡±î¿î ³à¼®À» target¿¡ ÀúÀå
+        // ê°ì§€ëœ ê°€ì¥ ê°€ê¹Œìš´ ë…€ì„ì„ targetì— ì €ì¥
         Transform target = GetNearestTarget();
 
-        // ¸¸¾à °¨ÁöµÈ Å¸°ÙÀÌ null, Áï ¾ø´Ù¸é
+        // ë§Œì•½ ê°ì§€ëœ íƒ€ê²Ÿì´ null, ì¦‰ ì—†ë‹¤ë©´
         if (target == null)
         {
-            // Å¸°ÙÀÌ ¾ø´Ù¸é ±âÁ¸ ¹æÇâÀ¸·Î ¹ß»ç
+            // íƒ€ê²Ÿì´ ì—†ë‹¤ë©´ ê¸°ì¡´ ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
             return base.GetBulletDirection();
         }
         else
         {
-            // Å¸°ÙÀÌ ÀÖ´Ù¸é Å¸°Ù ¹æÇâÀ¸·Î ÃÑ¾ËÀ» ¹ß»ç
+            // íƒ€ê²Ÿì´ ìˆë‹¤ë©´ íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ì´ì•Œì„ ë°œì‚¬
             return (target.position - transform.position).normalized;
         }
     }
 
     /// <summary>
-    /// »çÁ¤°Å¸® ³»¿¡¼­ °¡Àå °¡±î¿î Àû Å¸°ÙÀ» Ã£´Â ÇÔ¼ö
+    /// ì‚¬ì •ê±°ë¦¬ ë‚´ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ì  íƒ€ê²Ÿì„ ì°¾ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <returns>°¡Àå °¡±î¿î Å¸°ÙÀÇ Transform. ¾øÀ¸¸é null</returns>
+    /// <returns>ê°€ì¥ ê°€ê¹Œìš´ íƒ€ê²Ÿì˜ Transform. ì—†ìœ¼ë©´ null</returns>
     Transform GetNearestTarget()
     {
         // OverlapCircleNonAlloc(Vector2 center, float radius, Collider2D[] results, int layerMask)
-        // ¾î¶² ÁßÁ¡(transform.position)À» ±âÁØÀ¸·Î
-        // »çÁ¤°Å¸®(_shootingRange) ³»¿¡ ÀÖ´Â
-        // (_targetLayerMask)¿¡ ÇØ´çÇÏ´Â Å¸°ÙµéÀ» °¨ÁöÇÑ´Ù.
-        // °¨ÁöµÈ Å¸°ÙµéÀº (_colliders) ¹è¿­¿¡ ÀúÀåµÈ´Ù.
+        // ì–´ë–¤ ì¤‘ì (transform.position)ì„ ê¸°ì¤€ìœ¼ë¡œ
+        // ì‚¬ì •ê±°ë¦¬(_shootingRange) ë‚´ì— ìˆëŠ”
+        // (_targetLayerMask)ì— í•´ë‹¹í•˜ëŠ” íƒ€ê²Ÿë“¤ì„ ê°ì§€í•œë‹¤.
+        // ê°ì§€ëœ íƒ€ê²Ÿë“¤ì€ (_colliders) ë°°ì—´ì— ì €ì¥ëœë‹¤.
         if (Physics2D.OverlapCircleNonAlloc(transform.position, _shootingRange, _colliders, _targetLayerMask.value) > 0)
         {
-            // 0¹ø Å¸°ÙÀÌ °¨ÁöµÈ Å¸°Ù Áß °¡Àå °¡±î¿î Å¸°ÙÀÌ¶ó°í °¡Á¤
+            // 0ë²ˆ íƒ€ê²Ÿì´ ê°ì§€ëœ íƒ€ê²Ÿ ì¤‘ ê°€ì¥ ê°€ê¹Œìš´ íƒ€ê²Ÿì´ë¼ê³  ê°€ì •
             Transform target = _colliders[0].transform;
 
-            // °¡Àå °¡±î¿î °Å¸® °è»ê
+            // ê°€ì¥ ê°€ê¹Œìš´ ê±°ë¦¬ ê³„ì‚°
             float minDistance = Vector3.Distance(transform.position, target.position);
 
             foreach(var collider in _colliders)
             {
-                // ÀÏ´Ü collider ¾Õ¿¡¼­ºÎÅÍ È®ÀÎÇÏ¸é¼­ ´õ ¾øÀ¸¸é ÀÖ´Â³ğµé¸¸ µ¥¸®°í continue
-                if (collider == null) continue; // null Ã¼Å©
+                // ì¼ë‹¨ collider ì•ì—ì„œë¶€í„° í™•ì¸í•˜ë©´ì„œ ë” ì—†ìœ¼ë©´ ìˆëŠ”ë†ˆë“¤ë§Œ ë°ë¦¬ê³  continue
+                if (collider == null) continue; // null ì²´í¬
 
-                // ÇöÀç Å¸°Ù°úÀÇ °Å¸® °è»ê
+                // í˜„ì¬ íƒ€ê²Ÿê³¼ì˜ ê±°ë¦¬ ê³„ì‚°
                 float distance = Vector3.Distance(transform.position, collider.transform.position);
 
-                // ÇöÀç Å¸°ÙÀÌ ´õ °¡±î¿ì¸é °»½Å
+                // í˜„ì¬ íƒ€ê²Ÿì´ ë” ê°€ê¹Œìš°ë©´ ê°±ì‹ 
                 if (distance < minDistance)
                 {
                     minDistance = distance;
                     target = collider.transform;
                 }
             }
-            // °¡Àå °¡±î¿î Å¸°Ù ¹İÈ¯
+            // ê°€ì¥ ê°€ê¹Œìš´ íƒ€ê²Ÿ ë°˜í™˜
             return target;
         }
 
-        // ¸¸¾à »çÁ¤°Å¸® ³»¿¡ Å¸°ÙÀÌ ¾ø´Ù¸é null ¹İÈ¯
+        // ë§Œì•½ ì‚¬ì •ê±°ë¦¬ ë‚´ì— íƒ€ê²Ÿì´ ì—†ë‹¤ë©´ null ë°˜í™˜
         else
         {
             return null;

@@ -22,18 +22,6 @@ public class ShovelWeapon : Weapon
     // 생성된 총알 리스트
     List<Bullet> _bullets = new List<Bullet>();
 
-    // 임시로 Start()에서 초기화
-    private void Start()
-    {
-        Initialize();
-    }
-
-    public override void Initialize()
-    {
-        CalculateStats();
-        SpawnBullets();
-    }
-
     /// <summary>
     /// 레벨에 따른 무기의 현재 스텟(런타임 데이터)을 계산하는 함수
     /// </summary>
@@ -78,11 +66,10 @@ public class ShovelWeapon : Weapon
         // bulletCount만큼 총알 생성
         for (int i = 0; i < _bulletCount; i++)
         {
-            // ShovelWeapon 컴포넌트가 붙어 있는 게임오브젝트의
-            // 자식 게임오브젝트로 _bulletPrefab의 복제본을
+            // _bulletPrefab의 복제본을
             // 씬에 생성하고 bullet 변수로 그 복제본 게임오브젝트의
-            // Bulelt 컴포넌트를 가리킨다.
-            Bullet bullet = Instantiate(_bulletPrefab, transform);
+            // Bullet 컴포넌트를 가리킨다.
+            Bullet bullet = Instantiate(_bulletPrefab);
 
             // 각 Bullet 게임오브젝트가 배치될 방향
             // Mathf.Cos(): 코사인(각도) -> x좌표
@@ -100,6 +87,10 @@ public class ShovelWeapon : Weapon
 
             // 생성한 bullet의 데미지를 설정
             bullet.SetDamage(_damage);
+
+            // 생성한 bullet 게임오브젝트의 부모 게임오브젝트를
+            // ShovelWeapon 컴포넌트가 붙어 있는 게임오브젝트로 설정
+            bullet.transform.SetParent(transform, false);
 
             // 생성된 bullet 게임오브젝트를 리스트에 저장
             _bullets.Add(bullet);
@@ -119,5 +110,11 @@ public class ShovelWeapon : Weapon
 
         // 리스트 비우기
         _bullets.Clear();
+    }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
+        SpawnBullets(); // 레벨업 시 총알 재배치
     }
 }

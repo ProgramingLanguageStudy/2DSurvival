@@ -15,9 +15,4 @@ public class CharacterHud : MonoBehaviour
     {
         _hpBar.fillAmount = currentHp / maxHp;
     }
-
-    public void SetExpBar(float currentExp, float maxExp)
-    {
-        _expBar.fillAmount = currentExp / maxExp;
-    }
 }

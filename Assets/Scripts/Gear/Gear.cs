@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 장비 공통 기능을 담을 추상 클래스
 /// </summary>
-public abstract class Gear : MonoBehaviour
+public abstract class Gear : MonoBehaviour, IUpgradable
 {
     [Header("----- 대상 모델 -----")]
     [SerializeField] protected HeroModel _heroModel;

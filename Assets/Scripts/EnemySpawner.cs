@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
 게임오브젝트 동적 생성(프리펩을 복제해서 신에 게임오브젝트 생성) 지침
@@ -36,6 +37,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("----- 스폰 간격 -----")]
     [SerializeField] float _spawnSpan = 3.0f;
 
+    public event UnityAction<int> OnKillCountChanged;    // 킬 수 변화 이벤트
+    public event UnityAction<float> OnExpGained;         // 경험치 변화 이벤트
+
+    int _killCount = 0;     // 킬 수
+
     //float _spawnTimer;
 
     // 나중에 쓰려고 만들어놓기
@@ -44,6 +50,7 @@ public class EnemySpawner : MonoBehaviour
     public void Initialize()
     {
         //_spawntimer = _spawnspan;
+        OnKillCountChanged?.Invoke(_killCount); // 킬 수 변화 이벤트 초기화
 
         _spawnEnemyRoutine = StartCoroutine(SpawnEnemyRoutine());
     }
@@ -107,6 +114,25 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.position = pos;
         // ----- 원형 범위 내 위치 설정 ----- //
 
+        // 적 사망 이벤트 구독
+        enemy.OnDeathEvent += OnEnemyDeath;
+
         enemy.Initialize(_target);
+    }
+
+    /// <summary>
+    /// 적 캐릭터가 죽었을 때 자동으로 호출되는 함수
+    /// </summary>
+    /// <param name="expReward">보상 경험치</param>
+    void OnEnemyDeath(float expReward)
+    {
+        // 적 한명 죽었으므로 킬 수 증가
+        _killCount++;
+
+        // 킬 수 변화 이벤트 발행
+        OnKillCountChanged?.Invoke(_killCount);
+
+        // 경험치 변화 이벤트 발행
+        OnExpGained?.Invoke(expReward);
     }
 }

@@ -1,38 +1,21 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÀÏÁ¤ ½Ã°£¸¶´Ù ÃÑ¾ËÀ» ¹ß»çÇÏ´Â ¹«±â Ãß»ó Å¬·¡½º
-/// ´Üµ¶À¸·Î FiringWeapon Å¬·¡½º·Î´Â °´Ã¼¸¦ »ı¼ºÇÏÁö ¾Ê°Ú´Ù.
+/// ì¼ì • ì‹œê°„ë§ˆë‹¤ ì´ì•Œì„ ë°œì‚¬í•˜ëŠ” ë¬´ê¸° ì¶”ìƒ í´ë˜ìŠ¤
+/// ë‹¨ë…ìœ¼ë¡œ FiringWeapon í´ë˜ìŠ¤ë¡œëŠ” ê°ì²´ë¥¼ ìƒì„±í•˜ì§€ ì•Šê² ë‹¤.
 /// </summary>
 public abstract class FiringWeapon : Weapon
 {
-    [SerializeField] protected float _bulletSpeed;  // ÃÑ¾Ë ¼Ó·Â
-    [SerializeField] protected int _bulletCount;    // ÇÑ ¹ø¿¡ ¹ß»çÇÏ´Â ÃÑ¾Ë ¼ö
-    [SerializeField] protected float _coolTime;     // ÃÑ¾Ë ¹ß»ç °£°İ(ÄğÅ¸ÀÓ)
-    [SerializeField] protected float _fireDelay;    // ¿¬¹ß ½Ã ÃÑ¾Ë »çÀÌ °£°İ ½Ã°£
-    [SerializeField] protected float _bulletDuration; // ÃÑ¾Ë Áö¼Ó ½Ã°£
+    [SerializeField] protected float _bulletSpeed;  // ì´ì•Œ ì†ë ¥
+    [SerializeField] protected int _bulletCount;    // í•œ ë²ˆì— ë°œì‚¬í•˜ëŠ” ì´ì•Œ ìˆ˜
+    [SerializeField] protected float _coolTime;     // ì´ì•Œ ë°œì‚¬ ê°„ê²©(ì¿¨íƒ€ì„)
+    [SerializeField] protected float _fireDelay;    // ì—°ë°œ ì‹œ ì´ì•Œ ì‚¬ì´ ê°„ê²© ì‹œê°„
+    [SerializeField] protected float _bulletDuration; // ì´ì•Œ ì§€ì† ì‹œê°„
 
-    // ÃÑ¾ËÀ» ÁÖ±âÀûÀ¸·Î ¹ß»çÇÏ±â À§ÇÑ ÄÚ·çÆ¾ º¯¼ö
+    // ì´ì•Œì„ ì£¼ê¸°ì ìœ¼ë¡œ ë°œì‚¬í•˜ê¸° ìœ„í•œ ì½”ë£¨í‹´ ë³€ìˆ˜
     Coroutine _attackRoutine;
-
-    private void Start()
-    {
-        Initialize();
-    }
-
-    /// <summary>
-    /// ¹«±â ÃÊ±âÈ­ ¹× °ø°İ ·çÆ¾ ½ÃÀÛ
-    /// </summary>
-    public override void Initialize()
-    {
-        // ¹«±â ÃÊ±âÈ­ ÇÑ¹ø ÇØÁÖ±â
-        CalculateStats();
-
-        // °ø°İ ·çÆ¾ ½ÃÀÛ
-        _attackRoutine = StartCoroutine(AttackRoutine());
-    }
 
     protected override void CalculateStats()
     {
@@ -45,50 +28,61 @@ public abstract class FiringWeapon : Weapon
     }
 
     /// <summary>
-    /// ÀÏÁ¤ ÁÖ±â·Î ¹ß»ç ·çÆ¾À» È£ÃâÇÏ´Â ÄÚ·çÆ¾
+    /// ì¼ì • ì£¼ê¸°ë¡œ ë°œì‚¬ ë£¨í‹´ì„ í˜¸ì¶œí•˜ëŠ” ì½”ë£¨í‹´
     /// </summary>
     /// <returns></returns>
     IEnumerator AttackRoutine()
     {
         while (true)
         {
-            // ÄğÅ¸ÀÓ ´ë±â
+            // ì¿¨íƒ€ì„ ëŒ€ê¸°
             yield return new WaitForSeconds(_coolTime);
 
-            // ¹ß»ç ·çÆ¾ ½ÇÇà
+            // ë°œì‚¬ ë£¨í‹´ ì‹¤í–‰
             StartCoroutine(FireRoutine());
         }
     }
 
     /// <summary>
-    /// ¼³Á¤µÈ ¼ö¸¸Å­ ÃÑ¾ËÀ» ¿¬¹ß·Î ¹ß»çÇÏ´Â ÄÚ·çÆ¾
-    /// ÃÑ¾ËÀÌ ³¯¾Æ°£´Ù´Â °ÍÀº Bullet¿¡¼­ ÀÌ¹Ì ±¸ÇöµÇ¾îÀÖÀ½
+    /// ì„¤ì •ëœ ìˆ˜ë§Œí¼ ì´ì•Œì„ ì—°ë°œë¡œ ë°œì‚¬í•˜ëŠ” ì½”ë£¨í‹´
+    /// ì´ì•Œì´ ë‚ ì•„ê°„ë‹¤ëŠ” ê²ƒì€ Bulletì—ì„œ ì´ë¯¸ êµ¬í˜„ë˜ì–´ìˆìŒ
     /// </summary>
     /// <returns></returns>
     IEnumerator FireRoutine()
     {
         for (int i = 0; i < _bulletCount; i++)
         {
-            // ÃÑ¾Ë ÇÏ³ª »ı¼º
+            // ì´ì•Œ í•˜ë‚˜ ìƒì„±
             SpawnBullet();
 
-            // ¿¬¹ß »çÀÌ ½Ã°£ °£°İ¸¸Å­ ´ë±â
+            // ì—°ë°œ ì‚¬ì´ ì‹œê°„ ê°„ê²©ë§Œí¼ ëŒ€ê¸°
             yield return new WaitForSeconds(_fireDelay);
         }
     }
 
     /// <summary>
-    /// ÃÑ¾ËÀ» ÇÑ ¹ß or ¸î ¹ß »ı¼ºÇÏ´Â ÇÔ¼ö
+    /// ì´ì•Œì„ í•œ ë°œ or ëª‡ ë°œ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     protected abstract void SpawnBullet();
 
     /// <summary>
-    /// ÃÑ¾ËÀÌ ³¯¾Æ°¥ ¹æÇâÀ» °è»êÇÏ´Â ÇÔ¼ö
+    /// ì´ì•Œì´ ë‚ ì•„ê°ˆ ë°©í–¥ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns></returns>
     protected virtual Vector3 GetBulletDirection()
     {
-        // 2Â÷¿ø¿¡¼­ ·£´ı¹æÇâÀ¸·Î ¹ß»ç
+        // 2ì°¨ì›ì—ì„œ ëœë¤ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
         return Random.insideUnitCircle.normalized;
+    }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
+
+        // AttackRoutine() ì½”ë£¨í‹´ì´ ì‹¤í–‰ ì¤‘ì´ ì•„ë‹ˆë©´
+        if (_attackRoutine == null)
+        {
+            _attackRoutine = StartCoroutine(AttackRoutine());
+        }
     }
 }

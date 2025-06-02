@@ -7,18 +7,22 @@ using UnityEngine;
 /// </summary>
 public class PlayScene : MonoBehaviour
 {
+    [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] InputHandler _inputHandler;
     [SerializeField] Hero _hero;
     [SerializeField] EnemySpawner _enemySpawner;
+    [SerializeField] StatusView _statusView;
 
     void Start()
     {
-        _hero.Initialize();
-        _enemySpawner.Initialize();
-
         // 이동 입력 이벤트 구독
         _inputHandler.OnMoveInput += OnMoveInput;
-        
+
+        // 킬 수 변화 이벤트 구독
+        _enemySpawner.OnKillCountChanged += _statusView.SetKillCountText;
+
+        _hero.Initialize();
+        _enemySpawner.Initialize();
     } 
 
     /// <summary>

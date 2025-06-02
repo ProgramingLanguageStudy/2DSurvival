@@ -27,7 +27,7 @@ public class HeroModel : MonoBehaviour
     // 이동 속력 변경 이벤트
     public event UnityAction<float> OnSpeedChanged;
     // 경험치 변경 이벤트
-    public event UnityAction<float> OnExpChanged;
+    public event UnityAction<float, float> OnExpChanged;
     // 레벨업 이벤트
     public event UnityAction OnLevelUp;
     // 사망 이벤트
@@ -53,7 +53,7 @@ public class HeroModel : MonoBehaviour
         // 초기 체력과 이동 속력 변경 이벤트 발행
         OnSpeedChanged?.Invoke(_speed);
         OnHpChanged?.Invoke(_currentHp, _maxHp);
-        OnExpChanged?.Invoke(_currentExp);
+        OnExpChanged?.Invoke(_currentExp, _maxHp);
     }
 
     public void TakeDamage(float amount)
@@ -103,7 +103,7 @@ public class HeroModel : MonoBehaviour
     public void SetMaxExp(float amount)
     {
         _maxExp += amount;
-        OnExpChanged?.Invoke(MaxExp);
+        OnExpChanged?.Invoke(_currentExp, _maxExp);
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ public class HeroModel : MonoBehaviour
         {
             LevelUp();
         }
-        OnExpChanged?.Invoke(_currentExp);
+        OnExpChanged?.Invoke(_currentExp, _maxExp);
     }
 
     /// <summary>
@@ -140,7 +140,7 @@ public class HeroModel : MonoBehaviour
         // SetMaxExp(_maxExp * 0.1f); // 레벨업시 최대 경험치량을 10% 증가
         _level++;
 
-        OnExpChanged?.Invoke(_currentExp);
+        OnExpChanged?.Invoke(_currentExp, _maxExp);
         OnLevelUp?.Invoke();
     }
 }

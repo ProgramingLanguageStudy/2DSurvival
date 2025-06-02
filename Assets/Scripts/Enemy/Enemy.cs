@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
 AI 구현에서 상태 관리가 필요할 때
@@ -36,7 +37,8 @@ public class Enemy : MonoBehaviour
     // 임시
     [Header("----- 임시 -----")]
     Transform _target;  // 추적할 대상의 Transform(Hero)
-    GameObject _hero;
+
+    public event UnityAction<float> OnDeathEvent;   // 적 캐릭터 사망 이벤트
 
     // 현재 상태 객체를 가리키는 인터페이스 변수
     IEnemyState _currentState;
@@ -55,7 +57,7 @@ public class Enemy : MonoBehaviour
         _model.Initialize();
 
         _mover.OnMoved += OnMoved;
-        EnemyModel.OnDeath += OnDeath;
+        _model.OnDeath += OnDeath;
         _model.OnHpChanged += _hud.SetHpBar;
 
         ChangeState(EnemyState.Idle);
@@ -150,7 +152,6 @@ public class Enemy : MonoBehaviour
         // 1) 만들어 놓은 함수로 Layer 체크하는 방법
         if (_targetLayerMask.Contains(collision.gameObject.layer))
         {
-            _hero = collision.gameObject;
             Hero hero = collision.gameObject.GetComponent<Hero>();
             if (hero != null)
             {
@@ -202,8 +203,12 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// 죽었을 때 자동으로 호출되는 함수
     /// </summary>
-    void OnDeath(float amount)
+    void OnDeath()
     {
+        // 적 캐릭터 사망 이벤트 발행
+        OnDeathEvent?.Invoke(_model.ExpReward);
+
+        // 사망 처리(사망 상태로 변경)
         ChangeState(EnemyState.Death);
     }
 

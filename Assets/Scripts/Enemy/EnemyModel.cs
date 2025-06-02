@@ -12,6 +12,9 @@ public class EnemyModel : MonoBehaviour
     // 공격력
     [SerializeField] float _damage;
 
+    // 보상 경험치
+    [SerializeField] float _expReward;
+
     // 최대 체력
     [SerializeField] float _maxHp;
 
@@ -19,18 +22,15 @@ public class EnemyModel : MonoBehaviour
     // 현재 체력
     [SerializeField] float _currentHp;
 
-    // 임시
-    // 경험치 뿌려요
-    [SerializeField] float _exp = 50;
-
     // 체력 변경 이벤트
     public event UnityAction<float, float> OnHpChanged;
     // 사망 이벤트
-    public static event Action<float> OnDeath;
+    public event Action OnDeath;
 
     public float Damage => _damage;
     public float MaxHp => _maxHp;
     public float CurrentHp => _currentHp;
+    public float ExpReward => _expReward;
 
     public void Initialize()
     {
@@ -49,7 +49,7 @@ public class EnemyModel : MonoBehaviour
         if (_currentHp <= 0)
         {
             // 사망 이벤트 발행
-            OnDeath?.Invoke(_exp);
+            OnDeath?.Invoke();
         }
     }
 }

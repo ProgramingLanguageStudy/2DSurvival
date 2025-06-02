@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b38c0d48370ba14d9016026db383dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hpbar: {fileID: 2178475457176420648}
+  _hpBar: {fileID: 2178475457176420648}
+  _expBar: {fileID: 0}
 --- !u!1 &5284448878358174455
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +321,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _attackSpan: 1
-  _attackRange: 1
 --- !u!50 &6756657521050020159
 Rigidbody2D:
   serializedVersion: 4
@@ -432,6 +432,7 @@ MonoBehaviour:
   _damage: 10
   _maxHp: 200
   _currentHp: 200
+  _exp: 50
 --- !u!1 &7553370750901628912
 GameObject:
   m_ObjectHideFlags: 0
