@@ -1,59 +1,59 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// ÁÖÀÎ°ø Ä³¸¯ÅÍÀÇ µ¥ÀÌÅÍ ·ÎÁ÷À» ´ã´çÇÏ´Â ¿ªÇÒ
+/// ì£¼ì¸ê³µ ìºë¦­í„°ì˜ ë°ì´í„° ë¡œì§ì„ ë‹´ë‹¹í•˜ëŠ” ì—­í• 
 /// </summary>
 public class HeroModel : MonoBehaviour
 {
-    [Header("----- ¼³Á¤ µ¥ÀÌÅÍ -----")]
-    [SerializeField] HeroData _data;    // HeroData ¿¬°á
+    [Header("----- ì„¤ì • ë°ì´í„° -----")]
+    [SerializeField] HeroData _data;    // HeroData ì—°ê²°
 
-    [Header("----- ½ºÅÈ(ÀÎ½ºÆåÅÍ ºä¿¡¼­ º¸±âÀ§ÇØ¸¸µë) -----")]
-    [SerializeField] float _maxHp;      // ÃÖ´ë Ã¼·Â
-    [SerializeField] float _speed;      // ÀÌµ¿ ¼Ó·Â
-    [SerializeField] float _maxExp;     // °æÇèÄ¡ Åë
-    [SerializeField] float _currentHp;  // ÇöÀç Ã¼·Â
-    [SerializeField] float _currentExp; // ÇöÀç °æÇèÄ¡·®
+    [Header("----- ìŠ¤íƒ¯(ì¸ìŠ¤í™í„° ë·°ì—ì„œ ë³´ê¸°ìœ„í•´ë§Œë“¬) -----")]
+    [SerializeField] float _maxHp;      // ìµœëŒ€ ì²´ë ¥
+    [SerializeField] float _speed;      // ì´ë™ ì†ë ¥
+    [SerializeField] float _currentHp;  // í˜„ì¬ ì²´ë ¥
+    [SerializeField] float _currentExp; // í˜„ì¬ ê²½í—˜ì¹˜
+    [SerializeField] float _maxExp;     // ìµœëŒ€ ê²½í—˜ì¹˜(í•„ìš” ê²½í—˜ì¹˜)
+    [SerializeField] int _level;        // í˜„ì¬ ë ˆë²¨
 
-    [Header("----- ·¹º§ -----")]
-    [SerializeField] float _level = 1;        // ÇöÀç ·¹º§
-    [SerializeField] float _maxLevel = 100;   // ÃÖ´ë ·¹º§
-
-    // Ã¼·Â º¯°æ ÀÌº¥Æ®
+    // ì²´ë ¥ ë³€ê²½ ì´ë²¤íŠ¸
     public event UnityAction<float, float> OnHpChanged;
-    // ÀÌµ¿ ¼Ó·Â º¯°æ ÀÌº¥Æ®
+    // ì´ë™ ì†ë ¥ ë³€ê²½ ì´ë²¤íŠ¸
     public event UnityAction<float> OnSpeedChanged;
-    // °æÇèÄ¡ º¯°æ ÀÌº¥Æ®
-    public event UnityAction<float, float> OnExpChanged;
-    // ·¹º§¾÷ ÀÌº¥Æ®
-    public event UnityAction OnLevelUp;
-    // »ç¸Á ÀÌº¥Æ®
+    // ì‚¬ë§ ì´ë²¤íŠ¸
     public event UnityAction OnDeath;
+    // ê²½í—˜ì¹˜ ë³€í™” ì´ë²¤íŠ¸
+    public event UnityAction<float, float> OnExpChanged;
+    // ë ˆë²¨ ë³€í™” ì´ë²¤íŠ¸
+    public event UnityAction<int, int> OnLevelChanged;
 
-    // ÇÁ·ÎÆÛÆ¼ (ÀĞ±â Àü¿ë)
+    // í”„ë¡œí¼í‹° (ì½ê¸° ì „ìš©)
     public float MaxHp => _maxHp;
     public float CurrentHp => _currentHp;
     public float Speed => _speed;
     public float MaxExp => _maxExp;
     public float CurrentExp => _currentExp;
+    public int Level => _level;
 
-    // ÃÊ±âÈ­
+    // ì´ˆê¸°í™”
     public void Initialize()
     {
         _maxHp = _data.MaxHp;
         _speed = _data.Speed;
-        _maxExp = _data.MaxExp;
+        _maxExp = _data.GetExp(_level);
 
         _currentHp = _maxHp;
-        _currentExp = 0;
 
-        // ÃÊ±â Ã¼·Â°ú ÀÌµ¿ ¼Ó·Â º¯°æ ÀÌº¥Æ® ¹ßÇà
+        // ì´ˆê¸° ì²´ë ¥ê³¼ ì´ë™ ì†ë ¥ ë³€ê²½ ì´ë²¤íŠ¸ ë°œí–‰
         OnSpeedChanged?.Invoke(_speed);
         OnHpChanged?.Invoke(_currentHp, _maxHp);
+
+        // ê²½í—˜ì¹˜ ë³€ê²½ê³¼ ë ˆë²¨ ë³€ê²½ ì´ë²¤íŠ¸ ë°œí–‰
         OnExpChanged?.Invoke(_currentExp, _maxHp);
+        OnLevelChanged?.Invoke(_level, _level);
     }
 
     public void TakeDamage(float amount)
@@ -62,18 +62,18 @@ public class HeroModel : MonoBehaviour
 
         _currentHp = Mathf.Min(_currentHp - amount, _maxHp);
 
-        // Ã¼·Â º¯°æ ÀÌº¥Æ® ¹ßÇà
+        // ì²´ë ¥ ë³€ê²½ ì´ë²¤íŠ¸ ë°œí–‰
         OnHpChanged?.Invoke(_currentHp, _maxHp);
 
         if (_currentHp <= 0)
         {
-            // »ç¸Á ÀÌº¥Æ® ¹ßÇà
+            // ì‚¬ë§ ì´ë²¤íŠ¸ ë°œí–‰
             OnDeath?.Invoke();
         }
     }
 
     /// <summary>
-    /// Ãß°¡ Ã¼·ÂÀ» Àû¿ëÇÏ´Â ÇÔ¼ö
+    /// ì¶”ê°€ ì²´ë ¥ì„ ì ìš©í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="bounusHp"></param>
     public void SetBonusMaxHp(float bounusHp)
@@ -86,7 +86,7 @@ public class HeroModel : MonoBehaviour
     }
 
     /// <summary>
-    /// Ãß°¡ ¼Ó·Â Áõ°¡À²À» Àû¿ëÇÏ´Â ÇÔ¼ö
+    /// ì¶”ê°€ ì†ë ¥ ì¦ê°€ìœ¨ì„ ì ìš©í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="speedRatio"></param>
     public void SetBonusSpeedRation(float speedRatio)
@@ -95,52 +95,58 @@ public class HeroModel : MonoBehaviour
         OnSpeedChanged?.Invoke(_speed);
     }
 
-    // ÀÓ½Ã
     /// <summary>
-    /// ·¹º§¾÷½Ã ÇÊ¿ä °æÇèÄ¡·®À» ´Ã¸®´Â ÇÔ¼ö
+    /// ê²½í—˜ì¹˜ë¥¼ íšë“í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="amount"></param>
-    public void SetMaxExp(float amount)
+    /// <param name="amount">íšë“í•œ ê²½í—˜ì¹˜ ì–‘</param>
+    public void AddExp(float amount)
     {
-        _maxExp += amount;
-        OnExpChanged?.Invoke(_currentExp, _maxExp);
-    }
+        // ë ˆë²¨ ì—… ì „ ì´ì „ ë ˆë²¨ ë³€ìˆ˜
+        int preLevel = _level;
 
-    /// <summary>
-    /// °æÇèÄ¡ È¹µæ ÇÔ¼ö
-    /// </summary>
-    /// <param name="amount"></param>
-    public void AddCurrentExp(float amount)     //¸Å°³º¯¼ö·Î float amount ¹Ş¾Æ¾ßÇÏ´Âµ¥ ÀÏ´Ü ÀÓ½Ã·Î
-    {
+        // í˜„ì¬ ê²½í—˜ì¹˜ë¥¼ ì´ë²ˆì— íšë“í•œ ê²½í—˜ì¹˜ë§Œí¼ ì¦ê°€
         _currentExp += amount;
-        if (CurrentExp >= _maxExp)
+
+        // í˜„ì¬ ê²½í—˜ì¹˜ê°€ ìµœëŒ€ ê²½í—˜ì¹˜ë³´ë‹¤ í° ë™ì•ˆ
+        while(_currentExp >= _maxExp)
         {
-            LevelUp();
+            // í˜„ì¬ ê²½í—˜ì¹˜ë¥¼ ì´ë²ˆ ë ˆë²¨ ì—… í•„ìš”ì¹˜ë§Œí¼ ê°ì†Œ
+            _currentExp -= _maxExp;
+
+            // ë ˆë²¨ 1 ì¦ê°€
+            _level++;
+
+            // ìµœëŒ€ ê²½í—˜ì¹˜ë¥¼ ë³€í™”ëœ ë ˆë²¨ì— ë”°ë¼ ê°±ì‹ 
+            _maxExp = _data.GetExp(_level);
+
+            // ë ˆë²¨ì—…ì„ ì—¬ëŸ¬ë²ˆí•˜ë©´ countë¡œ ì„¸ì„œ í•˜ë©´ì•ˆë˜ë‚˜??
         }
+
+        // ê²½í—˜ì¹˜ ë³€í™” ì´ë²¤íŠ¸ ë°œí–‰
         OnExpChanged?.Invoke(_currentExp, _maxExp);
+
+        if(preLevel != _level)
+        {
+            // ë ˆë²¨ ë³€í™” ì´ë²¤íŠ¸ ë°œí–‰
+            OnLevelChanged?.Invoke(preLevel, _level);
+        }
     }
 
     /// <summary>
-    /// ÇöÀç°æÇèÄ¡·®ÀÌ ÃÖ´ë °æÇèÄ¡·®º¸´Ù Å©°Å³ª °°À» ¶§ ·¹º§¾÷À» ÇÏ´Â ÇÔ¼ö
+    /// í˜„ì¬ê²½í—˜ì¹˜ëŸ‰ì´ ìµœëŒ€ ê²½í—˜ì¹˜ëŸ‰ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì„ ë•Œ ë ˆë²¨ì—…ì„ í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void LevelUp()
     {
-        // ÇöÀç °æÇèÄ¡·®ÀÌ ÃÖ´ë °æÇèÄ¡·®º¸´Ù ÀÛÀ¸¸é ·¹º§¾÷ÇÏÁö ¾ÊÀ½
+        // í˜„ì¬ ê²½í—˜ì¹˜ëŸ‰ì´ ìµœëŒ€ ê²½í—˜ì¹˜ëŸ‰ë³´ë‹¤ ì‘ìœ¼ë©´ ë ˆë²¨ì—…í•˜ì§€ ì•ŠìŒ
         if (_currentExp < _maxExp) return;
 
-        // ·¹º§ÀÌ ÃÖ´ë ·¹º§º¸´Ù Å©°Å³ª °°À¸¸é ·¹º§¾÷ÇÏÁö ¾ÊÀ½
-        if (_level >= _maxLevel)
-        {
-            _currentExp = _maxExp; // ÃÖ´ë ·¹º§¿¡ µµ´ŞÇÏ¸é °æÇèÄ¡ ÃÊ±âÈ­
-            return;
-        }
+        // ë ˆë²¨ì´ ìµœëŒ€ ë ˆë²¨ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ìœ¼ë©´ ë ˆë²¨ì—…í•˜ì§€ ì•ŠìŒ
 
         _currentExp -= _maxExp;
-        // °æÇèÄ¡Åë ´Ã¸®´Â ÇÔ¼ö
-        // SetMaxExp(_maxExp * 0.1f); // ·¹º§¾÷½Ã ÃÖ´ë °æÇèÄ¡·®À» 10% Áõ°¡
+        // ê²½í—˜ì¹˜í†µ ëŠ˜ë¦¬ëŠ” í•¨ìˆ˜
+        // SetMaxExp(_maxExp * 0.1f); // ë ˆë²¨ì—…ì‹œ ìµœëŒ€ ê²½í—˜ì¹˜ëŸ‰ì„ 10% ì¦ê°€
         _level++;
 
         OnExpChanged?.Invoke(_currentExp, _maxExp);
-        OnLevelUp?.Invoke();
     }
 }
