@@ -44,6 +44,7 @@ public class HeroModel : MonoBehaviour
         _maxHp = _data.MaxHp;
         _speed = _data.Speed;
         _maxExp = _data.GetExp(_level);
+        _level = 0;
 
         _currentHp = _maxHp;
 

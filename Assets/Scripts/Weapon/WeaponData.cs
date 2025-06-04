@@ -15,11 +15,18 @@ public class WeaponData : ScriptableObject
     //스텟 종류별로 레벨별 값을 설정한 배열
     [SerializeField] WeaponLevelStat[] _levelStats;
 
+    [TextArea(3,5)][SerializeField] string _description; // 무기 설명
+    [SerializeField] Sprite _iconSprite;  // 무기 아이콘 스프라이트
+
     // 스텟 종류별로 빠르게 조회할 수 있도록 만든 딕셔너리
     Dictionary<WeaponStatType, WeaponLevelStat> _levelStatMap = new Dictionary<WeaponStatType, WeaponLevelStat>();
     // = new();
+    int _maxLevel; // 최대 레벨
 
     public string WeaponName => _weaponName;
+    public string Description => _description;
+    public Sprite IconSprite => _iconSprite;
+    public int MaxLevel => _maxLevel; // 최대 레벨은 _levelStats 배열 중 최대 레벨을 갖는 WeaponLevelStat의 MaxLevel
 
     /// <summary>
     /// 주어진 스탯 타입과 레벨에 대한 값을 반환해 주는 함수
@@ -48,10 +55,18 @@ public class WeaponData : ScriptableObject
     private void OnValidate()
     {
         _levelStatMap.Clear();
+        _maxLevel = 0;
         // _levelStats 배열에 있는 모든 WeaponLevelStat을 순회하면서
         foreach(var levelStat in _levelStats)
         {
             _levelStatMap[levelStat.StatType] = levelStat;
+
+            // 무기의 최대 레벨을 WeaponLevelStat 중 최대 레벨이 가장 높은 것의
+            // 최대 레벨로 설정
+            if(_maxLevel < levelStat.MaxLevel)
+            {
+                _maxLevel = levelStat.MaxLevel; // 최대 레벨 갱신
+            }
         }
     }
 }

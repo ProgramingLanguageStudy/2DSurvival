@@ -40,3 +40,6 @@ MonoBehaviour:
   - _statType: 4
     _levelValues:
     - 2
+  _description: "\uC810\uC810 \uCEE4\uC9C0\uB294 \uD1A0\uB124\uC774\uB3C4\uB97C \uBC1C\uC0AC\uD558\uC5EC
+    \uC801\uC744 \uAD00\uD1B5\uD558\uBA70 \uACF5\uACA9\uD558\uB294 \uBB34\uAE30\uC785\uB2C8\uB2E4."
+  _iconSprite: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

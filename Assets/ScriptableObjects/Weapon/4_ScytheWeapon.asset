@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd20a5fbb1f309345b14934971603f25, type: 3}
   m_Name: 4_ScytheWeapon
   m_EditorClassIdentifier: 
-  _weaponName: 
+  _weaponName: "\uB0AB"
   _levelStats:
   - _statType: 0
     _levelValues:
@@ -49,3 +49,6 @@ MonoBehaviour:
   - _statType: 10
     _levelValues:
     - 0.3
+  _description: "\uD68C\uC804\uD558\uB294 \uB0AB\uC744 \uC8FC\uBCC0\uC73C\uB85C \uBC1C\uC0AC\uD574
+    \uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548 \uC801\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  _iconSprite: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

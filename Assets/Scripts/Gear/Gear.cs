@@ -17,6 +17,12 @@ public abstract class Gear : MonoBehaviour, IUpgradable
     [SerializeField] protected int _level;        // 기어 레벨
     [SerializeField] protected float _bonusValue; // 레벨에 따른 보너스 수치
 
+    public string UpgradeName => _data.GearName;
+    public string Description => _data.Description;
+    public Sprite IconSprite => _data.IconSprite;
+    public int level => _level;
+    public bool IsMaxLevel => _level >= _data.MaxLevel;
+
     /// <summary>
     /// 현재 레벨에 따른 스탯 갱신
     /// </summary>

@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     // 임시
     [Header("----- 임시 -----")]
     Transform _target;  // 추적할 대상의 Transform(Hero)
+    float _repositionDistance = 5.0f; // 재배치 거리
 
     public event UnityAction<float> OnDeathEvent;   // 적 캐릭터 사망 이벤트
 
@@ -45,6 +46,8 @@ public class Enemy : MonoBehaviour
 
     // 공격 코루틴 참조 변수
     Coroutine _attackRoutine;
+
+    
 
     /// <summary>
     /// 적 캐릭터를 초기화하는 함수
@@ -118,6 +121,14 @@ public class Enemy : MonoBehaviour
         // 적 캐릭터에서 타겟(주인공) 위치로 향하는 방향 벡터 구하기
         Vector3 dir = (_target.position - transform.position).normalized;
         _mover.Move(dir);
+        
+        // 적과 주인공 사이의 거리 구하기
+        float dist = Vector2.Distance(transform.position, _target.position);
+        if (dist > _repositionDistance)
+        {
+            Vector2 newPos = (Vector2)_target.position + Random.insideUnitCircle * _repositionDistance;
+            transform.position = newPos;
+        }
     }
 
     /// <summary>

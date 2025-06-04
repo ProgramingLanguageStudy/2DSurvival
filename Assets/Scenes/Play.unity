@@ -13931,7 +13931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5630027548547974823, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
       propertyPath: m_Name
-      value: SelectView (2)
+      value: SelectionView (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13943,6 +13943,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1579552379609165836, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
   m_PrefabInstance: {fileID: 771995985}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &771995992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5354142460628145709, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
+  m_PrefabInstance: {fileID: 771995985}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7ea857727658b4587a085b84d253d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &806181619
 GameObject:
   m_ObjectHideFlags: 3
@@ -22693,6 +22704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25644683a80cf4541bf714051df44a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upgradePanel: {fileID: 1532780644}
+  _selectionViews:
+  - {fileID: 3605597805404274272}
+  - {fileID: 1892575969}
+  - {fileID: 771995992}
 --- !u!1 &963642765
 GameObject:
   m_ObjectHideFlags: 0
@@ -35950,7 +35966,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1532780648
 RectTransform:
@@ -35965,7 +35981,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1635341527}
-  - {fileID: 1534970849}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -36054,14 +36069,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534970848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1776746464}
   - {fileID: 224822884}
-  m_Father: {fileID: 1532780648}
+  m_Father: {fileID: 1635341527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36342,6 +36357,7 @@ MonoBehaviour:
   _hero: {fileID: 955146815}
   _enemySpawner: {fileID: 702440422}
   _statusView: {fileID: 312547747}
+  _upgrader: {fileID: 955146821}
 --- !u!4 &1584957295
 Transform:
   m_ObjectHideFlags: 0
@@ -36386,7 +36402,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1534970849}
   m_Father: {fileID: 1532780648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -36759,7 +36776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5630027548547974823, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
       propertyPath: m_Name
-      value: SelectView (1)
+      value: SelectionView (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36771,6 +36788,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1579552379609165836, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
   m_PrefabInstance: {fileID: 1892575962}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1892575969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5354142460628145709, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
+  m_PrefabInstance: {fileID: 1892575962}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7ea857727658b4587a085b84d253d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1930526107
 GameObject:
   m_ObjectHideFlags: 0
@@ -41436,13 +41464,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5630027548547974823, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
       propertyPath: m_Name
-      value: SelectView
+      value: SelectionView
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
+--- !u!114 &3605597805404274272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5354142460628145709, guid: 42f9aabe464052e4caa22731a9d41fdb, type: 3}
+  m_PrefabInstance: {fileID: 3605597805404274266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7ea857727658b4587a085b84d253d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

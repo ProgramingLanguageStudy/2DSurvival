@@ -34,7 +34,8 @@ public class WeaponLevelStat
     [SerializeField] float[] _levelValues;
 
     public WeaponStatType StatType => _statType;
-    
+    public int MaxLevel => _levelValues.Length - 1; // 최대 레벨은 배열 길이 - 1
+
     /// <summary>
     /// 특정 레벨에 해당하는 값을 반환하는 함수
     /// 음수 레벨이면 0, 최대레벨을 초과하는 레벨이면 최대 레벨의 값을 반환한다.

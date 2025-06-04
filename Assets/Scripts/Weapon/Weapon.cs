@@ -26,6 +26,12 @@ public abstract class Weapon : MonoBehaviour, IUpgradable
     // 데미지
     [SerializeField] protected float _damage;
 
+    public string UpgradeName => _data.WeaponName;
+    public string Description => _data.Description;
+    public Sprite IconSprite => _data.IconSprite;
+    public int level => _level;
+    public bool IsMaxLevel => _level >= _data.MaxLevel;
+
     ///// <summary>
     ///// 초기화 함수
     ///// </summary>

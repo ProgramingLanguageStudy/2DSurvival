@@ -12,6 +12,7 @@ public class PlayScene : MonoBehaviour
     [SerializeField] Hero _hero;
     [SerializeField] EnemySpawner _enemySpawner;
     [SerializeField] StatusView _statusView;
+    [SerializeField] Upgrader _upgrader;
 
     void Start()
     {
@@ -54,6 +55,6 @@ public class PlayScene : MonoBehaviour
         _statusView.SetLevelText(level);
 
         // 레벨 업에 따른 업그레이드 UI 제공
-        // TODO
+        _upgrader.OnLevelUp(level - preLevel);
     }
 }

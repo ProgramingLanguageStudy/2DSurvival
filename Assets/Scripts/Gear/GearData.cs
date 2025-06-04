@@ -8,11 +8,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GearData", menuName = "GameSettings/GearData")]
 public class GearData : ScriptableObject
 {
-    [SerializeField] string _gearName;      // 장비 이름
+    [SerializeField] string _gearName;      // 기어 이름
     [SerializeField] float[] _levelValues;  // 레벨별 능력치 값들
+    [TextArea(3, 5)][SerializeField] string _description;   // 기어 설명
+    [SerializeField] Sprite _iconSprite;    // 기어 아이콘 스프라이트
 
     public string GearName => _gearName;
-    
+    public string Description => _description;
+    public Sprite IconSprite => _iconSprite;
+    public int MaxLevel => _levelValues.Length - 1; // 최대 레벨은 배열 길이 - 1
+
+
     /// <summary>
     /// 레벨에 따른 보너스 수치를 반환하는 함수
     /// </summary>
