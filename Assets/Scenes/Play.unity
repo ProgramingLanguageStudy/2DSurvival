@@ -4654,7 +4654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &211719983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9590,8 +9590,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8641afa133c5e4743831800b9af4598a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stageData: {fileID: 0}
   _target: {fileID: 955146813}
-  _enemyPrefab: {fileID: 3216362209686348932, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+  _enemyPrefabs:
+  - {fileID: 3216362209686348932, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+  - {fileID: 5242120276638984937, guid: cbf457481551f0544b05c11a7b2d7928, type: 3}
+  - {fileID: 5242120276638984937, guid: 7336d6cc1ef823046b80d6dac3abf560, type: 3}
+  - {fileID: 5242120276638984937, guid: f12fc5908635ae6458e5b5f3a6dc9e2d, type: 3}
+  - {fileID: 3648501327959546968, guid: 47106522ffdaf0e4fa9cbf1f77ee403d, type: 3}
   _minRadius: 15
   _maxRadius: 20
   _spawnSpan: 2
@@ -22527,12 +22533,12 @@ GameObject:
   m_Component:
   - component: {fileID: 955146813}
   - component: {fileID: 955146815}
+  - component: {fileID: 955146820}
+  - component: {fileID: 955146821}
   - component: {fileID: 955146818}
   - component: {fileID: 955146817}
   - component: {fileID: 955146816}
   - component: {fileID: 955146819}
-  - component: {fileID: 955146820}
-  - component: {fileID: 955146821}
   m_Layer: 6
   m_Name: Hero
   m_TagString: Untagged
@@ -36353,6 +36359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f05e6dda890104e869e59e0a81b62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stageData: {fileID: 11400000, guid: f87b3e9d86126b3458c4db700554857e, type: 2}
   _inputHandler: {fileID: 1563762072}
   _hero: {fileID: 955146815}
   _enemySpawner: {fileID: 702440422}

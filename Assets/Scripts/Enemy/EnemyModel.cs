@@ -9,12 +9,16 @@ using UnityEngine.Events;
 /// </summary>
 public class EnemyModel : MonoBehaviour
 {
+    [Header("----- 기본 스탯 -----")]
+    [SerializeField] float _baseDamage;
+    [SerializeField] float _baseHp;
+    [SerializeField] float _baseExpReward;
+
+    [Header("----- 실제 스탯 -----")]
     // 공격력
     [SerializeField] float _damage;
-
     // 보상 경험치
     [SerializeField] float _expReward;
-
     // 최대 체력
     [SerializeField] float _maxHp;
 
@@ -32,10 +36,24 @@ public class EnemyModel : MonoBehaviour
     public float CurrentHp => _currentHp;
     public float ExpReward => _expReward;
 
-    public void Initialize()
+    //public void Initialize(WaveData waveData)
+    //{
+    //    _damage = _baseDamage * waveData.DamageRate;
+    //    _maxHp = _baseHp * waveData.HpRate;
+    //    _expReward = _baseExpReward * waveData.ExpRate;
+
+    //    _currentHp = _maxHp;
+    //}
+
+    public void Initialize(WaveData waveData)
     {
+        _damage = _baseDamage * waveData.DamageRate;
+        _maxHp = _baseHp * waveData.HpRate;
+        _expReward = _baseExpReward * waveData.ExpRate;
+
         _currentHp = _maxHp;
     }
+
 
     public void TakeDamage(float amount)
     {

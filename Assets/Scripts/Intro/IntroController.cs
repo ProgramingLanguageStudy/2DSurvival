@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class IntroController : MonoBehaviour
@@ -23,5 +24,10 @@ public class IntroController : MonoBehaviour
         _title.Play("Title");
         yield return new WaitForSeconds(2f);
         _Buttons.Play("Buttons");
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Play");
     }
 }

@@ -53,11 +53,11 @@ public class Enemy : MonoBehaviour
     /// 적 캐릭터를 초기화하는 함수
     /// </summary>
     /// <param name="target">추적 대상의 Transform</param>
-    public void Initialize(Transform target)
+    public void Initialize(Transform target, WaveData waveData)
     {
         _target = target;
 
-        _model.Initialize();
+        _model.Initialize(waveData);
 
         _mover.OnMoved += OnMoved;
         _model.OnDeath += OnDeath;
@@ -259,7 +259,7 @@ public class Enemy : MonoBehaviour
             {
                 // 코루틴 종료
                 if(_attackRoutine != null)
-                StopCoroutine(AttackRoutine(hero));
+                StopCoroutine(_attackRoutine);
             }
         }
     }

@@ -48,22 +48,32 @@ public class WeaponData : ScriptableObject
         return 0;
     }
 
+    private void OnValidate()
+    {
+        Initialize();
+    }
+
+    private void OnEnable()
+    {
+        Initialize();    
+    }
+
     /// <summary>
     /// 에디터(인스펙터뷰)에서 변수(스텟 배열, 이름 등)가 변경될 때
     /// 자동으로 _levelStatMap 딕셔너리를 갱신한다.
     /// </summary>
-    private void OnValidate()
+    void Initialize()
     {
         _levelStatMap.Clear();
         _maxLevel = 0;
         // _levelStats 배열에 있는 모든 WeaponLevelStat을 순회하면서
-        foreach(var levelStat in _levelStats)
+        foreach (var levelStat in _levelStats)
         {
             _levelStatMap[levelStat.StatType] = levelStat;
 
             // 무기의 최대 레벨을 WeaponLevelStat 중 최대 레벨이 가장 높은 것의
             // 최대 레벨로 설정
-            if(_maxLevel < levelStat.MaxLevel)
+            if (_maxLevel < levelStat.MaxLevel)
             {
                 _maxLevel = levelStat.MaxLevel; // 최대 레벨 갱신
             }

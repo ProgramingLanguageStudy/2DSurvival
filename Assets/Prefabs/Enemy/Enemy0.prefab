@@ -429,6 +429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea8796a599bb4940b4c4211490786e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseDamage: 10
+  _baseHp: 50
+  _baseExpReward: 10
   _damage: 10
   _expReward: 150
   _maxHp: 200

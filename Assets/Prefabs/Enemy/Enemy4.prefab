@@ -92,6 +92,18 @@ PrefabInstance:
       propertyPath: m_Library.Array.data[2].m_CategoryList.Array.data[0].m_Sprite
       value: 
       objectReference: {fileID: -966563848, guid: c4d2ccab0c2ad7e47853b6e31a7ac7c2, type: 3}
+    - target: {fileID: 5785424450683635943, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _baseHp
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785424450683635943, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _baseDamage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785424450683635943, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _baseExpReward
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6002982831892971695, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5

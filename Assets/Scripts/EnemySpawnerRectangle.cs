@@ -132,6 +132,6 @@ public class EnemySpawnerRectangle : MonoBehaviour
         enemy.transform.position = pos;
         // ----- 사각형 범위 내 위치 설정 ----- //
 
-        enemy.Initialize(_target);
+        //enemy.Initialize(_target);
     }
 }

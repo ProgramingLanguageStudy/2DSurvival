@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc97ce63916f3f041aba679be30b8d6b, type: 3}
+  m_Name: StageData
+  m_EditorClassIdentifier: 
+  _waveDatas:
+  - _initialTime: 0
+    _spawnSpan: 2
+    _spawnRates:
+    - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    _damageRate: 1
+    _hpRate: 1
+    _expRate: 1
+  - _initialTime: 60
+    _spawnSpan: 2
+    _spawnRates:
+    - 1
+    - 1
+    - 0
+    - 0
+    - 0
+    _damageRate: 1.5
+    _hpRate: 1.5
+    _expRate: 1.5
+  - _initialTime: 120
+    _spawnSpan: 2
+    _spawnRates:
+    - 1
+    - 1
+    - 1
+    - 0
+    - 0
+    _damageRate: 2
+    _hpRate: 2
+    _expRate: 2
+  - _initialTime: 180
+    _spawnSpan: 1.5
+    _spawnRates:
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    _damageRate: 2.5
+    _hpRate: 2.5
+    _expRate: 2.5
+  - _initialTime: 240
+    _spawnSpan: 1
+    _spawnRates:
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    _damageRate: 3
+    _hpRate: 3
+    _expRate: 3
+  _playTime: 300

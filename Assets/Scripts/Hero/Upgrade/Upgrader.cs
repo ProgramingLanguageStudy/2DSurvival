@@ -19,12 +19,18 @@ public class Upgrader : MonoBehaviour
     // 자동으로 호출해 주는 함수
     // 호출 시점: Start() 이전, 이 객체가 갓 로드되었을 때
     // Start()보다 빠른 시점에 작동하는 함수
-    // 인스펙터뷰 연결결 대신, 컴포넌트 참조를 코드로 처리할 때 유용
+    // 인스펙터뷰 연결 대신, 컴포넌트 참조를 코드로 처리할 때 유용
     private void Awake()
     {
         // 자식 게임오브젝트들로부터 모든 IUpgradable을
         // 자식게임오브젝트 순서대로 가져온다.
         _upgradables = GetComponentsInChildren<IUpgradable>();
+    }
+
+    private void Start()
+    {
+        // 시작 시 무기 하나 지급
+        _upgradables[2].Upgrade();
     }
 
     private void Update()

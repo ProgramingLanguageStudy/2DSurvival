@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class PlayScene : MonoBehaviour
 {
+    [Header("----- 스테이지 데이터 -----")]
+    [SerializeField] StageData _stageData;
+
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] InputHandler _inputHandler;
     [SerializeField] Hero _hero;
@@ -25,6 +28,9 @@ public class PlayScene : MonoBehaviour
         // 경험치 획득 이벤트 구독
         _enemySpawner.OnExpGained += _hero.AddExp;
 
+        // 남은 시간 변화 이벤트 구독
+        _enemySpawner.OnRemainingTimeChnaged += _statusView.SetRemainingTimeText;
+
         // 주인공 경험치 변화 이벤트 구독
         _hero.OnExpChanged += _statusView.SetExpBar;
 
@@ -32,7 +38,7 @@ public class PlayScene : MonoBehaviour
         _hero.OnLevelChanged += OnHeroLevelChanged;
 
         _hero.Initialize();
-        _enemySpawner.Initialize();
+        _enemySpawner.Initialize(_stageData);
     } 
 
     /// <summary>

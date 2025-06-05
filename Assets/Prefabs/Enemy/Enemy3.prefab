@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1546537326967489921, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2689185700750196176, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -104,6 +108,18 @@ PrefabInstance:
       propertyPath: m_Library.Array.data[2].m_CategoryList.Array.data[0].m_Sprite
       value: 
       objectReference: {fileID: -1523209149, guid: d33598d781682e049a53a0a13104ef29, type: 3}
+    - target: {fileID: 5785424450683635943, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _baseHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785424450683635943, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _baseDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785424450683635943, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
+      propertyPath: _baseExpReward
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7333701281407782549, guid: e30b09e33831a7b43b4d1ee45ef23ad3, type: 3}
       propertyPath: m_Name
       value: Enemy3
