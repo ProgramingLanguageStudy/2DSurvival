@@ -122,13 +122,13 @@ public class Enemy : MonoBehaviour
         Vector3 dir = (_target.position - transform.position).normalized;
         _mover.Move(dir);
         
-        // 적과 주인공 사이의 거리 구하기
-        float dist = Vector2.Distance(transform.position, _target.position);
-        if (dist > _repositionDistance)
-        {
-            Vector2 newPos = (Vector2)_target.position + Random.insideUnitCircle * _repositionDistance;
-            transform.position = newPos;
-        }
+        // 주인공으로부터 멀어지면 주인공 주위에 생성
+        //float dist = Vector2.Distance(transform.position, _target.position);
+        //if (dist > _repositionDistance)
+        //{
+        //    Vector2 newPos = (Vector2)_target.position + Random.insideUnitCircle * _repositionDistance;
+        //    transform.position = newPos;
+        //}
     }
 
     /// <summary>

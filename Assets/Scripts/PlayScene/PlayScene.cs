@@ -16,6 +16,7 @@ public class PlayScene : MonoBehaviour
     [SerializeField] EnemySpawner _enemySpawner;
     [SerializeField] StatusView _statusView;
     [SerializeField] Upgrader _upgrader;
+    [SerializeField] TimeChecker _timeChecker;
 
     void Start()
     {
@@ -29,7 +30,8 @@ public class PlayScene : MonoBehaviour
         _enemySpawner.OnExpGained += _hero.AddExp;
 
         // 남은 시간 변화 이벤트 구독
-        _enemySpawner.OnRemainingTimeChnaged += _statusView.SetRemainingTimeText;
+        _enemySpawner.OnRemainingTimeChanged += _statusView.SetRemainingTimeText;
+        _enemySpawner.OnRemainingTimeChanged += _timeChecker.CheckRemainingTime;
 
         // 주인공 경험치 변화 이벤트 구독
         _hero.OnExpChanged += _statusView.SetExpBar;

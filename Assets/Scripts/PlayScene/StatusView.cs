@@ -54,6 +54,6 @@ public class StatusView : MonoBehaviour
         // 남은 시간을 분:초 형식으로 변환하여 텍스트로 설정
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
-        _remainingTimeText.text = string.Format("{0:D2}:{1:D2}", minutes, seconds);
+        _remainingTimeText.text = string.Format("{0:D2} : {1:D2}", minutes, seconds);
     }
 }

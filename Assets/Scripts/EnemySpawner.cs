@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     public event UnityAction<int> OnKillCountChanged;    // 킬 수 변화 이벤트
     public event UnityAction<float> OnExpGained;         // 경험치 변화 이벤트
-    public event UnityAction<float> OnRemainingTimeChnaged; // 남은 시간 변화 이벤트
+    public event UnityAction<float> OnRemainingTimeChanged; // 남은 시간 변화 이벤트
 
     int _killCount = 0;     // 킬 수
 
@@ -91,7 +91,7 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             // 남은 시간 변화 이벤트 발행
-            OnRemainingTimeChnaged?.Invoke(remainingTime);
+            OnRemainingTimeChanged?.Invoke(remainingTime);
         }
     }
 
