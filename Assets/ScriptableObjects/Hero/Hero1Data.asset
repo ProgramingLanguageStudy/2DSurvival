@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8f43c75a2ab3840871cf0373c98250, type: 3}
+  m_Name: Hero1Data
+  m_EditorClassIdentifier: 
+  _maxHp: 400
+  _speed: 5
+  _baseExp: 100
+  _expIncrementRate: 2
+  _heroIcon: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
+  _nameText: "\uAE40\uAC11\uC218"
+  _descText: "\uB370\uBBF8\uC9C0 20% \uC99D\uAC00"
+  _skillNameText: "\uD654\uBB34\uC2ED\uC77C\uD64D"
+  _skillIcon: {fileID: 21300000, guid: 2a5c892bdd014164da633b8c6fd0f246, type: 3}
+  _skillDescription: "\uAE40\uAC11\uC218\uAC00 \uD654\uB825\uC9C0\uC6D0\uC744 \uC694\uCCAD\uD569\uB2C8\uB2E4.
+    \uC2A4\uD0AC \uC0AC\uC6A9\uC2DC \uD654\uBA74\uC744 \uAC00\uB85C\uC9C0\uB974\uBA70
+    \uC801\uC744 \uACF5\uACA9\uD558\uB294 10\uAC1C\uC758 \uCE7C\uB4E4\uC744 \uC18C\uD658\uD569\uB2C8\uB2E4.
+    \uCE7C\uC5D0 \uB9DE\uC740 \uC801\uC740 \uCD5C\uB300 HP\uC758 10%\uC5D0 \uD574\uB2F9\uD558\uB294
+    \uB370\uBBF8\uC9C0\uB97C \uC785\uC2B5\uB2C8\uB2E4."
