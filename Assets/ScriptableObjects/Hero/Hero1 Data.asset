@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8f43c75a2ab3840871cf0373c98250, type: 3}
-  m_Name: Hero2Data
+  m_Name: Hero1 Data
   m_EditorClassIdentifier: 
   _maxHp: 400
   _speed: 5
@@ -21,6 +21,7 @@ MonoBehaviour:
   _descText: "\uCD5C\uB300 HP 50% \uC99D\uAC00"
   _skillNameText: "\uC5B4\uBA38\uB2C8\uC758\uB9DB"
   _skillIcon: {fileID: 21300000, guid: bb67b03c2969d104caba950c446f8c8d, type: 3}
-  _skillDescription: "\uBC15\uBCF5\uC790\uAC00 \uC5B4\uBA38\uB2C8\uAC00 \uC815\uC131\uC2A4\uB7FD\uAC8C
-    \uC900\uBE44\uD574\uC8FC\uC2E0 \uB3C4\uC2DC\uB77D\uC744 \uAEBC\uB0B4 \uBA39\uC2B5\uB2C8\uB2E4.
-    \uC2A4\uD0AC \uC0AC\uC6A9\uC2DC \uCD5C\uB300 HP\uC758 30%\uAC00 \uD68C\uBCF5\uB429\uB2C8\uB2E4."
+  _skillDescription: "\uBC15\uBCF5\uC790\uAC00 \uC5B4\uBA38\uB2C8\uAF10\uAF10\uC11C
+    \uC815\uC131\uC2A4\uB7FD\uAC8C \uC900\uBE44\uD574\uC8FC\uC2E0 \uB3C4\uC2DC\uB77D\uC744
+    \uAEBC\uB0B4 \uBA39\uC2B5\uB2C8\uB2E4. \uC2A4\uD0AC \uC0AC\uC6A9\uC2DC \uCD5C\uB300
+    HP\uC758 30%\uAC00 \uD68C\uBCF5\uB429\uB2C8\uB2E4."
