@@ -17,11 +17,12 @@ MonoBehaviour:
   _baseExp: 100
   _expIncrementRate: 2
   _heroIcon: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
-  _nameText: "\uBC15\uBCF5\uC790"
-  _descText: "\uCD5C\uB300 HP 50% \uC99D\uAC00"
-  _skillNameText: "\uC5B4\uBA38\uB2C8\uC758\uB9DB"
+  _name: "\uBC15\uBCF5\uC790"
+  _passiveDesc: "\uCD5C\uB300 HP 50% \uC99D\uAC00"
+  _skillName: "\uC5B4\uBA38\uB2C8\uC758\uB9DB"
   _skillIcon: {fileID: 21300000, guid: bb67b03c2969d104caba950c446f8c8d, type: 3}
-  _skillDescription: "\uBC15\uBCF5\uC790\uAC00 \uC5B4\uBA38\uB2C8\uAF10\uAF10\uC11C
-    \uC815\uC131\uC2A4\uB7FD\uAC8C \uC900\uBE44\uD574\uC8FC\uC2E0 \uB3C4\uC2DC\uB77D\uC744
-    \uAEBC\uB0B4 \uBA39\uC2B5\uB2C8\uB2E4. \uC2A4\uD0AC \uC0AC\uC6A9\uC2DC \uCD5C\uB300
-    HP\uC758 30%\uAC00 \uD68C\uBCF5\uB429\uB2C8\uB2E4."
+  _skillDescription: "\uBC15\uBCF5\uC790\uAC00 \uC5B4\uBA38\uB2C8\uC640 \uD568\uAED8
+    \uC694\uB9AC\uD588\uB358 \uCD94\uC5B5\uC744 \uB5A0\uC62C\uB9AC\uBA70 \uB3C4\uC2DC\uB77D\uC744
+    \uBA39\uC2B5\uB2C8\uB2E4. \uC2A4\uD0AC \uC0AC\uC6A9\uC2DC \uCD5C\uB300 HP\uC758
+    30%\uAC00 \uD68C\uBCF5\uB429\uB2C8\uB2E4."
+  _skillMessage: "\uC5B4\uBA38\uB2C8\uB294 \uC798 \uC9C0\uB0B4\uC2DC\uACE0 \uACC4\uC2E4\uAE4C\u2026"

@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("----- 스폰 기준 -----")]
     [SerializeField] Transform _target;
+
     //[SerializeField] GameObject _enemyPrefab;
     // 게임오브젝트 자료형 대신 아예 필요한 컴포넌트 자료형으로 프리펩 변수 선언
     [SerializeField] Enemy[] _enemyPrefabs;
@@ -53,8 +54,11 @@ public class EnemySpawner : MonoBehaviour
     WaveData _currentWaveData;          // 현재 웨이브 데이터
     float _playTime;                    // 스테이지 실제 플레이 시간
 
-    public void Initialize(StageData stageData)
+    public void Initialize(StageData stageData, Transform heroTransform)
     {
+        _target = heroTransform;
+        Debug.Log("Target연결됨");
+
         _stageData = stageData;
         //_spawntimer = _spawnspan;
         OnKillCountChanged?.Invoke(_killCount); // 킬 수 변화 이벤트 초기화
@@ -68,6 +72,9 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     private void OnDrawGizmosSelected()
     {
+        if (_target == null)
+            return;
+
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(_target.position, _minRadius);

@@ -17,15 +17,22 @@ public class HeroData : ScriptableObject
 
     [Header("----- UI용 -----")]
     [SerializeField] Sprite _heroIcon;               // 영웅 아이콘
-    [SerializeField] string _nameText;          // 영웅 이름 텍스트
-    [SerializeField] string _descText;          // 영웅 능력치 텍스트
-    [SerializeField] string _skillNameText;     // 영웅 스킬이름 텍스트
+    [SerializeField] string _name;          // 영웅 이름 텍스트
+    [SerializeField] string _passiveDesc;          // 영웅 능력치 텍스트
+    [SerializeField] string _skillName;     // 영웅 스킬이름 텍스트
     [SerializeField] Sprite _skillIcon;         // 영웅 스킬 아이콘
     [TextArea(3, 5)] [SerializeField] string _skillDescription;  // 영웅 스킬 설명
     [SerializeField] string _skillMessage;      // 영웅 스킬 사용 시 출력대사
 
     public float MaxHp => _maxHp;
     public float Speed => _speed;
+    public Sprite HeroIcon => _heroIcon;
+    public string Name => _name;
+    public string PassiveDesc => _passiveDesc;
+    public string SkillName => _skillName;
+    public Sprite SkillIcon => _skillIcon;
+    public string SkillDescription => _skillDescription;
+    public string SKillMesaage => _skillMessage;
     
     /// <summary>
     /// 레벨에 따른 필요 경험치를 반환해 주는 함수

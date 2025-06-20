@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 /// <summary>
 /// Play 씬을 총괄하는 역할
 /// </summary>
 public class PlayScene : MonoBehaviour
 {
+    [Header("Hero 프리팹들 (0~3)")]
+    [SerializeField] GameObject[] _heroPrefabs;
+
     [Header("----- 스테이지 데이터 -----")]
     [SerializeField] StageData _stageData;
 
@@ -17,6 +21,23 @@ public class PlayScene : MonoBehaviour
     [SerializeField] StatusView _statusView;
     [SerializeField] Upgrader _upgrader;
     [SerializeField] TimeChecker _timeChecker;
+    [SerializeField] CinemachineVirtualCamera _virtualCamera;
+
+    private void Awake()
+    {
+        int selectedId = SelectedHeroID.SelectedHeroId;
+
+        if (selectedId < 0 || selectedId >= _heroPrefabs.Length)
+        {
+            Debug.LogError("잘못된 Hero ID! 기본 캐릭터 생성");
+            selectedId = 0;
+        }
+
+        GameObject heroObj = Instantiate(_heroPrefabs[selectedId], Vector3.zero, Quaternion.identity);
+        _hero = heroObj.GetComponent<Hero>();
+        _upgrader = heroObj.GetComponent<Upgrader>();
+        _virtualCamera.Follow = _hero.transform;
+    }
 
     void Start()
     {
@@ -40,7 +61,8 @@ public class PlayScene : MonoBehaviour
         _hero.OnLevelChanged += OnHeroLevelChanged;
 
         _hero.Initialize();
-        _enemySpawner.Initialize(_stageData);
+
+        _enemySpawner.Initialize(_stageData, _hero.transform);
     } 
 
     /// <summary>

@@ -26,8 +26,9 @@ public class IntroController : MonoBehaviour
         _Buttons.Play("Buttons");
     }
 
-    public void StartGame()
+    public void OnClickSelectHero(int id)
     {
-        SceneManager.LoadScene("Play");
+        SelectedHeroID.SelectedHeroId = id;
+        SceneManager.LoadScene(1);
     }
 }
