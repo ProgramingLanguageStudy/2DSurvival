@@ -57,7 +57,6 @@ public class EnemySpawner : MonoBehaviour
     public void Initialize(StageData stageData, Transform heroTransform)
     {
         _target = heroTransform;
-        Debug.Log("Target연결됨");
 
         _stageData = stageData;
         //_spawntimer = _spawnspan;
