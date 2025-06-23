@@ -25,15 +25,24 @@ public class PlayScene : MonoBehaviour
 
     private void Awake()
     {
-        int selectedId = SelectedHeroID.SelectedHeroId;
+        int selectedId;
 
-        if (selectedId < 0 || selectedId >= _heroPrefabs.Length)
+        // null 체크 후 기본영웅(첫번째)의 ID로 설정
+        if (GameManager.Instance.SelectedHero == null)
         {
-            Debug.LogError("잘못된 Hero ID! 기본 캐릭터 생성");
+            Debug.LogError("선택된 HeroData가 없습니다. 기본 캐릭터로 대체합니다.");
             selectedId = 0;
         }
+        else
+        {
+            // Intro씬에서 GameManager에 저장된 SelectedHero에서 HeroId를 저장
+            selectedId = GameManager.Instance.SelectedHero.HeroId;
+        }
 
+        // 정해진 ID를 이용하여 HeroPrefabs 배열에 저장된 프리펩들 중 해당 Hero 프리펩 생성 후 heroObj에 저장
         GameObject heroObj = Instantiate(_heroPrefabs[selectedId], Vector3.zero, Quaternion.identity);
+
+        // GetComponent로 컴포넌트 가져오기
         _hero = heroObj.GetComponent<Hero>();
         _upgrader = heroObj.GetComponent<Upgrader>();
         _virtualCamera.Follow = _hero.transform;

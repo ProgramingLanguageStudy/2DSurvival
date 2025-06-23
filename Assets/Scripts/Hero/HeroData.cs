@@ -15,6 +15,16 @@ public class HeroData : ScriptableObject
     [SerializeField] float _baseExp;    // 기본 경험치
     [SerializeField] float _expIncrementRate; // 경험치 배수
 
+    [Header("----- 해금 정보 -----")]
+    [SerializeField] int _heroId;
+    [SerializeField] int _unlockCost;
+    public bool IsUnlocked;
+
+    public int HeroId => _heroId;
+    public int UnlockCost => _unlockCost;
+
+    // 저장값은 ScriptableObject에 직접 포함하지 않고 PlayerPrefs 등으로 관리
+
     [Header("----- UI용 -----")]
     [SerializeField] Sprite _heroIcon;               // 영웅 아이콘
     [SerializeField] string _name;          // 영웅 이름 텍스트
@@ -32,7 +42,7 @@ public class HeroData : ScriptableObject
     public string SkillName => _skillName;
     public Sprite SkillIcon => _skillIcon;
     public string SkillDescription => _skillDescription;
-    public string SKillMesaage => _skillMessage;
+    public string SKillMessage => _skillMessage;
     
     /// <summary>
     /// 레벨에 따른 필요 경험치를 반환해 주는 함수

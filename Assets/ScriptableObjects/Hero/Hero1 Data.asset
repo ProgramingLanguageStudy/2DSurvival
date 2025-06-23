@@ -16,6 +16,9 @@ MonoBehaviour:
   _speed: 5
   _baseExp: 100
   _expIncrementRate: 2
+  _heroId: 1
+  _unlockCost: 0
+  IsUnlocked: 1
   _heroIcon: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
   _name: "\uBC15\uBCF5\uC790"
   _passiveDesc: "\uCD5C\uB300 HP 50% \uC99D\uAC00"

@@ -8921,7 +8921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -8929,15 +8929,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8969,11 +8969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 800
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8991,37 +8991,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroSelectionView (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Name
-      value: SkillIDescBackground
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7893904483389476629, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1169673009}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickSelectHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: IntroController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
+    - target: {fileID: 7735354209477329935, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
+      propertyPath: m_text
+      value: "2000\uACE8\uB4DC\n\uAD6C\uB9E4\uD558\uAE30"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9094,7 +9066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -9102,15 +9074,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9142,11 +9114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9164,37 +9136,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroSelectionView (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Name
-      value: SkillIDescBackground
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7893904483389476629, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Sprite
+    - target: {fileID: 7735354209477329935, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
+      propertyPath: m_text
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1169673009}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickSelectHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: IntroController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13393,6 +13337,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &542355243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542355245}
+  - component: {fileID: 542355244}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &542355244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542355243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5f3cc3300ace14ebd38d45db7181db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heroSelectionView: {fileID: 0}
+--- !u!4 &542355245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542355243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 594782978}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &575536967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1020599917550808792, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
+  m_PrefabInstance: {fileID: 1849390143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &594782977
 GameObject:
   m_ObjectHideFlags: 0
@@ -13426,7 +13421,7 @@ Transform:
   - {fileID: 1297766745}
   - {fileID: 619237077}
   - {fileID: 1380807249}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 542355245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &601574541 stripped
 MonoBehaviour:
@@ -13483,13 +13478,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08785068db31cdf4680166a21be2c877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroData: {fileID: 11400000, guid: 2f6a972a5c160314787dfa459b07051c, type: 2}
   _heroIcon: {fileID: 1269969720}
   _nameText: {fileID: 1162003573}
   _passiveDescText: {fileID: 2071936742}
   _skillNameText: {fileID: 45716782}
   _skillIcon: {fileID: 24244735}
   _skillDescriptionText: {fileID: 601574541}
+  _tryBuying: {fileID: 0}
+  _successBuying: {fileID: 0}
 --- !u!1 &716088095
 GameObject:
   m_ObjectHideFlags: 0
@@ -17700,7 +17696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &837764627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26436,7 +26432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -26444,15 +26440,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26484,11 +26480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26505,38 +26501,6 @@ PrefabInstance:
     - target: {fileID: 3047548569133008845, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_Name
       value: HeroSelectionView (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Name
-      value: SkillIDescBackground
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7893904483389476629, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1169673009}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickSelectHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: IntroController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26789,13 +26753,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08785068db31cdf4680166a21be2c877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroData: {fileID: 11400000, guid: 05e81b0d68dc08c449c03bbdc2e74399, type: 2}
   _heroIcon: {fileID: 1460588730}
   _nameText: {fileID: 78221648}
   _passiveDescText: {fileID: 270203082}
   _skillNameText: {fileID: 293755706}
   _skillIcon: {fileID: 1347474948}
   _skillDescriptionText: {fileID: 1448798314}
+  _tryBuying: {fileID: 575536967}
+  _successBuying: {fileID: 1446491983}
 --- !u!1 &1297766744
 GameObject:
   m_ObjectHideFlags: 0
@@ -26840,13 +26805,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08785068db31cdf4680166a21be2c877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroData: {fileID: 11400000, guid: d9b4914ae80d95f4c83480a5c998cb22, type: 2}
   _heroIcon: {fileID: 259844146}
   _nameText: {fileID: 793263935}
   _passiveDescText: {fileID: 1489718327}
   _skillNameText: {fileID: 1842790506}
   _skillIcon: {fileID: 245749285}
   _skillDescriptionText: {fileID: 124148176}
+  _tryBuying: {fileID: 0}
+  _successBuying: {fileID: 0}
 --- !u!1 &1334655486
 GameObject:
   m_ObjectHideFlags: 0
@@ -35242,17 +35208,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08785068db31cdf4680166a21be2c877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroData: {fileID: 11400000, guid: 8e5a5135327a1e04f860b20b2149bcf2, type: 2}
   _heroIcon: {fileID: 461212430}
   _nameText: {fileID: 1904162952}
   _passiveDescText: {fileID: 1589107675}
   _skillNameText: {fileID: 383523759}
   _skillIcon: {fileID: 218340805}
   _skillDescriptionText: {fileID: 720713666}
+  _tryBuying: {fileID: 0}
+  _successBuying: {fileID: 0}
 --- !u!224 &1416805432 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
   m_PrefabInstance: {fileID: 322363369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1446491983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5828185215248296227, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
+  m_PrefabInstance: {fileID: 1849390143}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1448798314 stripped
 MonoBehaviour:
@@ -39727,7 +39699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -39735,15 +39707,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39775,11 +39747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -700
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2392363331591075198, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -39797,21 +39769,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroSelectionView
       objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Name
-      value: SkillIDescBackground
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964412392075387919, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7893904483389476629, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_Sprite
+    - target: {fileID: 7735354209477329935, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
+      propertyPath: m_text
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -39820,10 +39780,6 @@ PrefabInstance:
     - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClickSelectHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380504213299585924, guid: 5cd3bf194edbeba46bf75fecd06ba6d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: IntroController, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40056,4 +40012,4 @@ SceneRoots:
   - {fileID: 1959001292}
   - {fileID: 1169673008}
   - {fileID: 837764630}
-  - {fileID: 594782978}
+  - {fileID: 542355245}
