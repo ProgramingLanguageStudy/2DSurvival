@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,24 +8,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    // Ä³¸¯ÅÍ º¸À¯ °ñµå
-    // ³ªÁß¿¡ µ¥ÀÌÅÍ·Î ÀúÀåÇÒ ¼öµµ ÀÖÀ½
+    // ìºë¦­í„° ë³´ìœ  ê³¨ë“œ
+    // ë‚˜ì¤‘ì— ë°ì´í„°ë¡œ ì €ì¥í•  ìˆ˜ë„ ìˆìŒ
     [SerializeField] int _gold;
     
     HeroData _selectedHero;
 
-    // °ñµå ÇÁ·ÎÆÛÆ¼ ÇÔ¼ö
+    // ê³¨ë“œ í”„ë¡œí¼í‹° í•¨ìˆ˜
     public int Gold => _gold;
 
     public HeroData SelectedHero => _selectedHero;
 
-    // °ñµå º¯È­ ÀÌº¥Æ®
+    // ê³¨ë“œ ë³€í™” ì´ë²¤íŠ¸
     public event Action<int> OnGoldChanged;
 
-    // ±¸¸Å ¼º°ø ÀÌº¥Æ®
+    // êµ¬ë§¤ ì„±ê³µ ì´ë²¤íŠ¸
     public event Action BuySuccessed;
 
-    // ±¸¸Å ½ÇÆĞ ÀÌº¥Æ®
+    // êµ¬ë§¤ ì‹¤íŒ¨ ì´ë²¤íŠ¸
     public event Action BuyFailed;
 
     private void Awake()
@@ -43,27 +43,27 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // ÀÏ´Ü ÃÊ±âÈ­¸¦ 0À¸·Î ÇÏÁö¸¸ µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Í¾ßÇÔ.
+        // ì¼ë‹¨ ì´ˆê¸°í™”ë¥¼ 0ìœ¼ë¡œ í•˜ì§€ë§Œ ë°ì´í„°ê°€ ìˆìœ¼ë©´ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™€ì•¼í•¨.
         _gold = 0;
     }
 
     /// <summary>
-    /// °¢°¢ÀÇ Hero ¼±ÅÃÃ¢¿¡ ´Ş·ÁÀÖ´Â ¼±ÅÃ¹öÆ°¿¡ ¿¬°áµÉ ÇÔ¼ö
-    /// ¼±ÅÃÃ¢¿¡¼­ Hero ¼±ÅÃ¿¡ ¼º°øÇßÀ» ¶§ ÇØ´ç HeroÀÇ HeroData¸¦ SelectedHero¿¡ ÀúÀåÇÑ´Ù.
+    /// ê°ê°ì˜ Hero ì„ íƒì°½ì— ë‹¬ë ¤ìˆëŠ” ì„ íƒë²„íŠ¼ì— ì—°ê²°ë  í•¨ìˆ˜
+    /// ì„ íƒì°½ì—ì„œ Hero ì„ íƒì— ì„±ê³µí–ˆì„ ë•Œ í•´ë‹¹ Heroì˜ HeroDataë¥¼ SelectedHeroì— ì €ì¥í•œë‹¤.
     /// </summary>
-    /// <param name="heroData">¼±ÅÃÃ¢¿¡¼­ ¼±ÅÃµÈ HeroÀÇ HeroData</param>
+    /// <param name="heroData">ì„ íƒì°½ì—ì„œ ì„ íƒëœ Heroì˜ HeroData</param>
     public void SelectHero(HeroData heroData)
     {
         _selectedHero = heroData;
-        Debug.Log($"{heroData.Name} ¼±ÅÃ ¿Ï·á");
+        Debug.Log($"{heroData.Name} ì„ íƒ ì™„ë£Œ");
         
         SceneManager.LoadScene(1);
     }
 
     /// <summary>
-    /// º¸À¯ÁßÀÎ °ñµå¿¡ °ªÀ» ´õÇØÁÖ´Â ÇÔ¼ö
+    /// ë³´ìœ ì¤‘ì¸ ê³¨ë“œì— ê°’ì„ ë”í•´ì£¼ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="amount">Áõ°¡ÇÒ °ñµå·®</param>
+    /// <param name="amount">ì¦ê°€í•  ê³¨ë“œëŸ‰</param>
     public void AddGold(int amount)
     {
         _gold += amount;
@@ -71,9 +71,9 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ±¸¸ÅÇÏ·Á°í ÇÏ´Â ÇÔ¼ö
+    /// êµ¬ë§¤í•˜ë ¤ê³  í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="amount">±¸¸Å°¡°İ</param>
+    /// <param name="amount">êµ¬ë§¤ê°€ê²©</param>
     public void TryBuy(int price)
     {
         if (_gold < price)
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÓ½Ã·Î ¾µ °ñµå Ä¡Æ® ÇÔ¼ö
+    /// ì„ì‹œë¡œ ì“¸ ê³¨ë“œ ì¹˜íŠ¸ í•¨ìˆ˜
     /// </summary>
     public void CheatGold()
     {
