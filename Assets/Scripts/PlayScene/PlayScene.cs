@@ -8,8 +8,14 @@ using Cinemachine;
 /// </summary>
 public class PlayScene : MonoBehaviour
 {
-    [Header("Hero 프리팹들 (0~3)")]
-    [SerializeField] GameObject[] _heroPrefabs;
+    [Header("----- PlayScene테스트용 -----")]
+    [SerializeField] int _testHeroId = 0;  // Inspector에서 지정 가능
+
+    [Header("----- HeroDatabase -----")]
+    [SerializeField] HeroDatabase _heroDatabase;
+
+    [Header("----- EnemyDatabase -----")]
+    [SerializeField] EnemyDatabase _enemyDatabase;
 
     [Header("----- 스테이지 데이터 -----")]
     [SerializeField] StageData _stageData;
@@ -23,28 +29,27 @@ public class PlayScene : MonoBehaviour
     [SerializeField] TimeChecker _timeChecker;
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
+    int _heroId;
+
     private void Awake()
     {
-        int selectedId;
-
-        // null 체크 후 기본영웅(첫번째)의 ID로 설정
-        if (GameManager.Instance.SelectedHero == null)
+        // 테스트용으로 플레이씬에서 바로 시작할 시
+        if (GameManager.Instance == null)
         {
-            Debug.LogError("선택된 HeroData가 없습니다. 기본 캐릭터로 대체합니다.");
-            selectedId = 0;
+            _heroId = _testHeroId;
         }
+        // 인트로씬에서 넘어올 시 선택한 HeroId를 받음
         else
         {
-            // Intro씬에서 GameManager에 저장된 SelectedHero에서 HeroId를 저장
-            selectedId = GameManager.Instance.SelectedHero.HeroId;
+            _heroId = GameManager.Instance.HeroId;
         }
 
         // 정해진 ID를 이용하여 HeroPrefabs 배열에 저장된 프리펩들 중 해당 Hero 프리펩 생성 후 heroObj에 저장
-        GameObject heroObj = Instantiate(_heroPrefabs[selectedId], Vector3.zero, Quaternion.identity);
+        GameObject heroObj = Instantiate(_heroDatabase.heroDataBundleList[_heroId].HeroPrefab, Vector3.zero, Quaternion.identity);
 
+        _upgrader.SetHero(heroObj);
         // GetComponent로 컴포넌트 가져오기
         _hero = heroObj.GetComponent<Hero>();
-        _upgrader = heroObj.GetComponent<Upgrader>();
         _virtualCamera.Follow = _hero.transform;
     }
 
@@ -69,10 +74,12 @@ public class PlayScene : MonoBehaviour
         // 주인공 레벨 변화 이벤트 구독
         _hero.OnLevelChanged += OnHeroLevelChanged;
 
-        _hero.Initialize();
+        _hero.Initialize(_heroDatabase.heroDataBundleList[_heroId].HeroStatData);
 
-        _enemySpawner.Initialize(_stageData, _hero.transform);
-    } 
+        //_enemySpawner.Initialize(_stageData, _hero.transform, _enemyDatabase.enemyDataBundleList.EnemyStatData);
+
+        _statusView.Initialize(_heroDatabase.heroDataBundleList[_heroId].HeroDisplayData);
+    }
 
     /// <summary>
     /// 이동 입력이 들어왔을 때 실행하는 함수

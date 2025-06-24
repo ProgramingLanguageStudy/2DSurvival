@@ -37,9 +37,9 @@ public class Hero : MonoBehaviour
         remove => _model.OnLevelChanged -= value;
     }
 
-    public void Initialize()
+    public void Initialize(HeroStatData heroStatData)
     {
-        _model.Initialize();
+        _model.Initialize(heroStatData);
 
         _mover.OnMoved += OnMoved;
         _model.OnHpChanged += _hud.SetHpBar;

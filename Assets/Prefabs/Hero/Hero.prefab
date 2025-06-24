@@ -519,7 +519,6 @@ GameObject:
   - component: {fileID: 8512738118619881147}
   - component: {fileID: 3122072090719089329}
   - component: {fileID: 443225386183296858}
-  - component: {fileID: 5125675700101218763}
   - component: {fileID: 6471158209250999983}
   - component: {fileID: 6647387944066935431}
   - component: {fileID: 744400304635237505}
@@ -580,30 +579,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab55ab852c978145804a47d74089920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 05e81b0d68dc08c449c03bbdc2e74399, type: 2}
   _maxHp: 200
   _speed: 0
   _currentHp: 200
   _currentExp: 0
   _maxExp: 0
   _level: 1
---- !u!114 &5125675700101218763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5161351826278381828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25644683a80cf4541bf714051df44a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _upgradePanel: {fileID: 0}
-  _selectionViews:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &6471158209250999983
 Animator:
   serializedVersion: 5

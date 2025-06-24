@@ -4,29 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 게임 진행중 항상 유지될 필요가 있는 정보들이 담겨 있는 클래스
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    // 캐릭터 보유 골드
+    
+    // 캐릭터 보유 골드(확인용)
     // 나중에 데이터로 저장할 수도 있음
     [SerializeField] int _gold;
-    
-    HeroData _selectedHero;
+    int _heroId;
 
-    // 골드 프로퍼티 함수
+    [SerializeField] HeroDatabase _heroDatabase;
+    HeroDataBundle _heroDataBundle;
+
+    public HeroDataBundle HeroDataBundle => _heroDataBundle;
+
     public int Gold => _gold;
 
-    public HeroData SelectedHero => _selectedHero;
+    public int HeroId => _heroId;
 
     // 골드 변화 이벤트
     public event Action<int> OnGoldChanged;
 
     // 구매 성공 이벤트
-    public event Action BuySuccessed;
+    public event Action HeroBuySuccessed;
 
     // 구매 실패 이벤트
-    public event Action BuyFailed;
+    public event Action HeroBuyFailed;
+
+    // 영웅 선택 성공 이벤트
+    public event Action<int> HeroSelectSuccessed;
+
+    // 영웅 선택 실패 이벤트
+    public event Action HeroSelectFailed;
 
     private void Awake()
     {
@@ -48,19 +60,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 각각의 Hero 선택창에 달려있는 선택버튼에 연결될 함수
-    /// 선택창에서 Hero 선택에 성공했을 때 해당 Hero의 HeroData를 SelectedHero에 저장한다.
-    /// </summary>
-    /// <param name="heroData">선택창에서 선택된 Hero의 HeroData</param>
-    public void SelectHero(HeroData heroData)
-    {
-        _selectedHero = heroData;
-        Debug.Log($"{heroData.Name} 선택 완료");
-        
-        SceneManager.LoadScene(1);
-    }
-
-    /// <summary>
     /// 보유중인 골드에 값을 더해주는 함수
     /// </summary>
     /// <param name="amount">증가할 골드량</param>
@@ -74,17 +73,48 @@ public class GameManager : MonoBehaviour
     /// 구매하려고 하는 함수
     /// </summary>
     /// <param name="amount">구매가격</param>
-    public void TryBuy(int price)
+    public void TryBuy(HeroDataBundle heroDataBundle, int price)
     {
+        if (heroDataBundle == null)
+        {
+            Debug.LogWarning($"heroDataBundle이 없습니다.");
+            return;
+        }
+
+        _heroId = heroDataBundle.HeroId;
+
         if (_gold < price)
         {
-            BuyFailed?.Invoke();
+            HeroBuyFailed?.Invoke();
             return;
         }
      
         _gold -= price;
-        BuySuccessed?.Invoke();
+        HeroUnlockManager.Instance.Unlock(_heroId);
+        HeroBuySuccessed?.Invoke();
         OnGoldChanged?.Invoke(_gold);
+    }
+
+    /// <summary>
+    /// 캐릭터 선택 시 발생하는 이벤트를 처리하는 함수.
+    /// 선택된 영웅 정보를 이벤트로 알리고,
+    /// 잠겨있는 경우에는 안내 메시지를 출력함.
+    /// </summary>
+    /// <param name="heroId">입력받은 영웅의 heroId</param>
+    public void OnHeroSelected(int heroId)
+    {
+        _heroId = heroId;
+        // 열려 있는 캐릭터면
+        if (HeroUnlockManager.Instance.IsUnlocked(_heroId))
+        {
+            HeroSelectSuccessed?.Invoke(_heroId);
+            SceneManager.LoadScene(1);
+        }
+        // 잠겨 있는 캐릭터면
+        else
+        {
+            HeroSelectFailed?.Invoke();
+        }
     }
 
     /// <summary>

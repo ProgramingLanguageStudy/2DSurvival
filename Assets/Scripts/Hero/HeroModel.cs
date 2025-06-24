@@ -8,9 +8,6 @@ using UnityEngine.Events;
 /// </summary>
 public class HeroModel : MonoBehaviour
 {
-    [Header("----- 설정 데이터 -----")]
-    [SerializeField] HeroData _data;    // HeroData 연결
-
     [Header("----- 스탯(인스펙터 뷰에서 보기위해만듬) -----")]
     [SerializeField] float _maxHp;      // 최대 체력
     [SerializeField] float _speed;      // 이동 속력
@@ -18,6 +15,8 @@ public class HeroModel : MonoBehaviour
     [SerializeField] float _currentExp; // 현재 경험치
     [SerializeField] float _maxExp;     // 최대 경험치(필요 경험치)
     [SerializeField] int _level;        // 현재 레벨
+
+    HeroStatData _heroStatData;
 
     // 체력 변경 이벤트
     public event UnityAction<float, float> OnHpChanged;
@@ -39,11 +38,13 @@ public class HeroModel : MonoBehaviour
     public int Level => _level;
 
     // 초기화
-    public void Initialize()
+    public void Initialize(HeroStatData heroStatData)
     {
-        _maxHp = _data.MaxHp;
-        _speed = _data.Speed;
-        _maxExp = _data.GetExp(_level);
+        _heroStatData = heroStatData;
+
+        _maxHp = _heroStatData.MaxHp;
+        _speed = _heroStatData.Speed;
+        _maxExp = _heroStatData.GetExp(_level);
         _level = 0;
 
         _currentHp = _maxHp;
@@ -80,7 +81,7 @@ public class HeroModel : MonoBehaviour
     public void SetBonusMaxHp(float bounusHp)
     {
         float ratio = _currentHp / _maxHp;
-        _maxHp = _data.MaxHp + bounusHp;
+        _maxHp = _heroStatData.MaxHp + bounusHp;
         _currentHp = _maxHp * ratio;
 
         OnHpChanged?.Invoke(_currentHp, _maxHp);
@@ -92,7 +93,7 @@ public class HeroModel : MonoBehaviour
     /// <param name="speedRatio"></param>
     public void SetBonusSpeedRation(float speedRatio)
     {
-        _speed = (1 + speedRatio) * _data.Speed;
+        _speed = (1 + speedRatio) * _heroStatData.Speed;
         OnSpeedChanged?.Invoke(_speed);
     }
 
@@ -118,7 +119,7 @@ public class HeroModel : MonoBehaviour
             _level++;
 
             // 최대 경험치를 변화된 레벨에 따라 갱신
-            _maxExp = _data.GetExp(_level);
+            _maxExp = _heroStatData.GetExp(_level);
 
             // 레벨업을 여러번하면 count로 세서 하면안되나??
         }

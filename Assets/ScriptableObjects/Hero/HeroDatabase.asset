@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b8d3116d4a06c48a122a87e77bb12f, type: 3}
   m_Name: HeroDatabase
   m_EditorClassIdentifier: 
-  heroDataList:
-  - {fileID: 11400000, guid: 05e81b0d68dc08c449c03bbdc2e74399, type: 2}
-  - {fileID: 11400000, guid: d9b4914ae80d95f4c83480a5c998cb22, type: 2}
-  - {fileID: 11400000, guid: 2f6a972a5c160314787dfa459b07051c, type: 2}
-  - {fileID: 11400000, guid: 8e5a5135327a1e04f860b20b2149bcf2, type: 2}
+  heroDataBundleList:
+  - {fileID: 11400000, guid: 4f194e92face6924e8f02cfb1fddc674, type: 2}
+  - {fileID: 11400000, guid: 9d3e33691723a6b4698fc6aa89541ae7, type: 2}
+  - {fileID: 11400000, guid: e15e737289db22c4e9140b8b46ce26fe, type: 2}
+  - {fileID: 11400000, guid: 0778087865ed76e459aaf9217b2f79e4, type: 2}

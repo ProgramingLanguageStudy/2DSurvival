@@ -269,11 +269,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7721119010710255752}
   - component: {fileID: 3216362209686348932}
+  - component: {fileID: 5785424450683635943}
   - component: {fileID: 6756657521050020159}
   - component: {fileID: 2968878147095609111}
   - component: {fileID: 1546537326967489921}
   - component: {fileID: 8094714361410867144}
-  - component: {fileID: 5785424450683635943}
   m_Layer: 7
   m_Name: Enemy0
   m_TagString: Untagged
@@ -321,6 +321,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _attackSpan: 1
+--- !u!114 &5785424450683635943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7333701281407782549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea8796a599bb4940b4c4211490786e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _expReward: 150
+  _maxHp: 200
+  _currentHp: 200
 --- !u!50 &6756657521050020159
 Rigidbody2D:
   serializedVersion: 4
@@ -417,25 +433,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5785424450683635943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7333701281407782549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ea8796a599bb4940b4c4211490786e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseDamage: 10
-  _baseHp: 50
-  _baseExpReward: 10
-  _damage: 10
-  _expReward: 150
-  _maxHp: 200
-  _currentHp: 200
 --- !u!1 &7553370750901628912
 GameObject:
   m_ObjectHideFlags: 0

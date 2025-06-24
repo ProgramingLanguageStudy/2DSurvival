@@ -10,10 +10,19 @@ using UnityEngine.UI;
 public class StatusView : MonoBehaviour
 {
     [Header("----- 컴포넌트 참조 -----")]
+    [SerializeField] Image _heroIcon;
     [SerializeField] Image _expBar;                     // 경험치 바 이미지
     [SerializeField] TextMeshProUGUI _levelText;        // 레벨 텍스트
     [SerializeField] TextMeshProUGUI _killCountText;    // 킬 수 텍스트
     [SerializeField] TextMeshProUGUI _remainingTimeText;// 남은 시간 텍스트
+
+    HeroDisplayData _heroDisplayData;
+
+    public void Initialize(HeroDisplayData heroDisplayData)
+    {
+        _heroDisplayData = heroDisplayData;
+        _heroIcon.sprite = _heroDisplayData.HeroIcon;
+    }
 
     /// <summary>
     /// 경험치 바 UI를 설정하는 함수

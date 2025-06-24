@@ -46,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
     public event UnityAction<float> OnRemainingTimeChanged; // 남은 시간 변화 이벤트
 
     int _killCount = 0;     // 킬 수
+    EnemyStatData _enemyStatData;
 
     //float _spawnTimer;
 
@@ -54,8 +55,9 @@ public class EnemySpawner : MonoBehaviour
     WaveData _currentWaveData;          // 현재 웨이브 데이터
     float _playTime;                    // 스테이지 실제 플레이 시간
 
-    public void Initialize(StageData stageData, Transform heroTransform)
+    public void Initialize(StageData stageData, Transform heroTransform, EnemyStatData enemyStatData)
     {
+        _enemyStatData = enemyStatData;
         _target = heroTransform;
 
         _stageData = stageData;
@@ -144,7 +146,7 @@ public class EnemySpawner : MonoBehaviour
         // 적 사망 이벤트 구독
         enemy.OnDeathEvent += OnEnemyDeath;
 
-        enemy.Initialize(_target, _currentWaveData);
+        enemy.Initialize(_target, _currentWaveData, _enemyStatData);
     }
 
     /// <summary>

@@ -28,14 +28,15 @@ public class HeroSelectionView : MonoBehaviour
     [SerializeField] TextMeshProUGUI _tryBuyingText;    // 영웅 구매 전에 보여질 텍스트
     [SerializeField] TextMeshProUGUI _afterBuyingText;  // 영웅 구매 후에 보여질 텍스트
 
-    HeroData _heroData;
+    HeroDataBundle _heroDataBundle;
     UIText _uiText;
 
-    public event Action<HeroData> OnClickSelected;
+    // 영웅 선택 버튼을 눌렀을 때 발생시킬 이벤트
+    public event Action<int> OnClickSelected;
     
-    public void Initialize(HeroData heroData, UIText uiText)
+    public void Initialize(HeroDataBundle heroDataBundle, UIText uiText)
     {
-        _heroData = heroData;
+        _heroDataBundle = heroDataBundle;
         _uiText = uiText;
 
         // 버튼 초기화 후 선택 시 호출될 함수 연결
@@ -46,39 +47,24 @@ public class HeroSelectionView : MonoBehaviour
         _tryBuying.GetComponent<Button>().onClick.RemoveAllListeners();
         _tryBuying.GetComponent<Button>().onClick.AddListener(() =>
         {
-            GameManager.Instance.TryBuy(_heroData.UnlockCost);
+            GameManager.Instance.TryBuy(_heroDataBundle, _heroDataBundle.HeroStatData.UnlockCost);
         });
 
         // 각종 UI들 연결
-        _heroIcon.sprite = _heroData.HeroIcon;
-        _nameText.text = _heroData.Name;
-        _passiveDescText.text = _heroData.PassiveDesc;
-        _skillNameText.text = _heroData.SkillName;
+        _heroIcon.sprite = _heroDataBundle.HeroDisplayData.HeroIcon;
+        _nameText.text = _heroDataBundle.HeroDisplayData.Name;
+        _passiveDescText.text = _heroDataBundle.HeroSkillData.PassiveSkillDesc;
+        _skillNameText.text = _heroDataBundle.HeroSkillData.SkillName;
         
-        _skillIcon.sprite = _heroData.SkillIcon;
-        _skillDescriptionText.text = _heroData.SkillDescription;
+        _skillIcon.sprite = _heroDataBundle.HeroSkillData.SkillIcon;
+        _skillDescriptionText.text = _heroDataBundle.HeroSkillData.SkillDescription;
 
         // UIText에 적어놓은 문장들 가져오기
-        _tryBuyingText.text = string.Format(_uiText.buyingText, _heroData.UnlockCost);
-        _afterBuyingText.text = _uiText.afterBuyingText;
+        _tryBuyingText.text = string.Format(_uiText.BuyingText, _heroDataBundle.HeroStatData.UnlockCost);
+        _afterBuyingText.text = _uiText.AfterBuyingText;
 
-        // 영웅 구매 전과 후에 보여질 텍스트 관리
-        bool isUnlocked = _heroData.IsUnlocked;
-
-        // 영웅을 구매한 상태라면
-        if (isUnlocked == true)
-        {
-            // 구매 전 텍스트는 끄고
-            _tryBuying.SetActive(false);
-
-            // 구매 후 텍스트는 켠다.
-            _afterBuying.SetActive(true);
-        }
-        else
-        {
-            _tryBuying.SetActive(true);
-            _afterBuying.SetActive(false);
-        }
+        HeroUnlockManager.Instance.OnHeroUnlocked += HandleHeroBuyingUI;
+        OnClickSelected += GameManager.Instance.OnHeroSelected;
     }
 
     /// <summary>
@@ -86,11 +72,24 @@ public class HeroSelectionView : MonoBehaviour
     /// </summary>
     void OnClickSelect()
     {
-        OnClickSelected?.Invoke(_heroData);
+        OnClickSelected?.Invoke(_heroDataBundle.HeroId);
     }
 
     void OnClickBuy()
     {
 
+    }
+
+    /// <summary>
+    /// 영웅의 잠금여부에 따라 보여질 영웅 구매 버튼 관리
+    /// </summary>
+    /// <param name="heroId"></param>
+    private void HandleHeroBuyingUI(int heroId)
+    {
+        if (heroId == _heroDataBundle.HeroId)
+        {
+            _tryBuying.SetActive(false);
+            _afterBuying.SetActive(true);
+        }
     }
 }

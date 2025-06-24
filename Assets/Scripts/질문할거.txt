@@ -1,0 +1,18 @@
+﻿- 의존성 주입을 2중으로 해도되는지?
+	EnemyModel이 StatData를 필요로 하는데 PlayScene이 그걸 갖고 있어서
+	PlayScene이 ENemy에게 StatData를 전달해주고, 그 전달받은 StatData를
+	Enemy가 EnemyModel에게 전달해주는 방식
+	
+- Scene이 전환될 때 이벤트 알림을 받는 방법?
+	GameManager가 Intro씬에서 캐릭터를 선택할 때 이벤트 발행을 하고 씬 전환을 하는데
+	전환된 씬인 Play씬에서 awake로 이 캐릭터 선택할 때 발행한 이벤트에서
+	HeroId를 받아와 그 정보를 토대로 HeroPrefab중에
+	HeroId와 일치하는 HeroPrefab을 생성하려고 했으나 실패
+	혹시 다음 씬의 오브젝트가 미리 GameManager을 구독 할 수 있는 방법이 없는지?
+
+- 싱글톤을 사용했을 때 중간 씬에서 시작하면 싱글톤을 사용할 수 없음
+	씬에서 항상 유지되어야 하는 각종 Manager들이 있는데
+	IntroScene에서 생성되고 그 후로 DontDestroyOnLoad 함수로 유지하는 방식
+	하지만 이렇게 하면 PlayScene에서 테스트할 시에 싱글톤을 생성하지 않음
+	그러면 싱글톤의 정보가 필요한 부분마다 테스트용 변수를 따로 추가해야 하는지ㅈ
+	

@@ -53,15 +53,16 @@ public class Enemy : MonoBehaviour
     /// 적 캐릭터를 초기화하는 함수
     /// </summary>
     /// <param name="target">추적 대상의 Transform</param>
-    public void Initialize(Transform target, WaveData waveData)
+    public void Initialize(Transform target, WaveData waveData, EnemyStatData enemyStatData)
     {
         _target = target;
 
-        _model.Initialize(waveData);
+        _model.Initialize(waveData, enemyStatData);
 
         _mover.OnMoved += OnMoved;
         _model.OnDeath += OnDeath;
         _model.OnHpChanged += _hud.SetHpBar;
+        _model.OnSpeedChanged += _mover.SetSpeed;
 
         ChangeState(EnemyState.Idle);
     }

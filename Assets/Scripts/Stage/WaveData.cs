@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 특정 웨이브(시간 구간)의 적 스폰 및 능려깇 배율 설정 데이터
+/// 특정 웨이브(시간 구간)의 적 스폰 및 능력치 배율 설정 데이터
 /// </summary>
 [System.Serializable]
 public class WaveData
