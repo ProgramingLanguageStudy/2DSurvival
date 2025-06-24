@@ -41,7 +41,9 @@ public class PlayScene : MonoBehaviour
         // 인트로씬에서 넘어올 시 선택한 HeroId를 받음
         else
         {
-            _heroId = GameManager.Instance.HeroId;
+            GameManager.Instance.HeroSelectSuccessed += GetHeroId;
+            Debug.Log(_heroId);
+            //_heroId = GameManager.Instance.HeroId;
         }
 
         // 정해진 ID를 이용하여 HeroPrefabs 배열에 저장된 프리펩들 중 해당 Hero 프리펩 생성 후 heroObj에 저장
@@ -102,5 +104,10 @@ public class PlayScene : MonoBehaviour
 
         // 레벨 업에 따른 업그레이드 UI 제공
         _upgrader.OnLevelUp(level - preLevel);
+    }
+
+    void GetHeroId(int heroId)
+    {
+        _heroId= heroId;
     }
 }

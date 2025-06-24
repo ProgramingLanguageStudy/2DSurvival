@@ -107,8 +107,8 @@ public class GameManager : MonoBehaviour
         // 열려 있는 캐릭터면
         if (HeroUnlockManager.Instance.IsUnlocked(_heroId))
         {
-            HeroSelectSuccessed?.Invoke(_heroId);
             SceneManager.LoadScene(1);
+            HeroSelectSuccessed?.Invoke(_heroId);
         }
         // 잠겨 있는 캐릭터면
         else
