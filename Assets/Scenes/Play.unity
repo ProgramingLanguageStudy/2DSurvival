@@ -35295,7 +35295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 141536b66533d6b498e7d96bf624398b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -35359,6 +35359,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 456acb7b-c7d4-463f-bc70-a5e5f1ce4f2c
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 082d5fab-c7d1-43dc-86b5-1fa4eabe222d
+    m_ActionName: Player/UseSkill1[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
