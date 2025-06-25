@@ -21,24 +21,28 @@
 	그러면 싱글톤의 정보가 필요한 부분마다 테스트용 변수를 따로 추가해야 하는지
 -> 싱글톤 생성 방식을 바꾸면됨. 자세한건 찾아보기
 
-	----- 미해결 -----
-- 용어
-	플래그, 패턴, 
-
 - ScriptableObject에서 함수를 구현할 수 있는데 이게 무슨 의미가 있는지?
 	어차피 SO의 역할은 인스펙터뷰에서 수정하거나 데이터수치 조절인데
 	함수를 넣어놓는게 무슨 의미?
+	[GPT]
+	ScriptableObject는 단순한 데이터 저장소가 아니라, _데이터 기반의 로직 객체_로도 사용할 수 있기 때문이야.
+-> 지금 패시브스킬에 넣어놓은 기능구현 함수는 그럴 이유가없음. 차라리 Monobehaviour로...
+
+- 무기 데미지를 올리는 방법을 IAttackable이라는 인터페이스로 하고있는데
+  개별적으로 무기 데미지를 올리고 싶을때 좋은방법이 있는지?
+	현재는 Weapon Class를 IAttackable 인터페이스를 적용시키고 있고
+	무기들이 이 인터페이스를 상속받기때문에 GetComponentsInChildren으로 접근하면
+	Heirarchy의 컴포넌트 순으로 접근할수있는데 이를 명시적으로 원하는대로 할수있는 방법
+-> enum을 이용해서 Interface에서 무기타입별로 정의해놓고
+   인터페이스에서 프로퍼티로 자기를 반환하도록 강제해놓기
+
+	----- 미해결 -----
+- 용어
+	플래그, 패턴, 플러그인
 
 - 원초적인 질문인데 스크립트의 역할을 명확히 정의하면서 만드는 방법?
 	정말 단순하게 한두개 or 소수의 기능만 갖는 스크립트를 여러개 만드는게 나은가?
-	Hero를 예시로 들면 Hero가 Skill중에 ActiveSkill을 적용하게 하는 ApplyActiveSkill
-	PassiveSKill을 적용하게 하는 ApplyPassiveSkill 등을 갖도록 추가했는데
-	애초에 Hero에 추가하는건가?
+	(ex : HeroSkillController, HeroSpawner, HeroInitiater)
 
-- 무기 데미지를 올리는 방법을 IAttackable이라는 인터페이스로 하고있는데
-  개별적으로 무기 데미지를 올리고 싶을때 어떤방법이 있는지?
-	현재는 Weapon Class를 IAttackable 인터페이스를 적용시키고 있고
-	무기들이 이 인터페이스를 상속받기때문에 GetComponentsInChildren으로 접근하면
-	컴포넌트 순으로 접근할수있는데 이를 명시적으로 원하는대로 할수있는 방법
 	
 	
