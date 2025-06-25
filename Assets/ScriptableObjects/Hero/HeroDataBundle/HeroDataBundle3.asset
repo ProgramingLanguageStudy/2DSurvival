@@ -16,4 +16,5 @@ MonoBehaviour:
   _heroStatData: {fileID: 11400000, guid: 1663a2ca9dc5af84ba9a9ec484046ccb, type: 2}
   _heroUIData: {fileID: 11400000, guid: 2f4a903c2f7a3564fab0340fff94d7e6, type: 2}
   _heroSkillData: {fileID: 11400000, guid: 584870861e27c294299a21eb543e136e, type: 2}
+  _heroPassiveSkillData: {fileID: 11400000, guid: 2f0afb92a3562814ab2386100a89890d, type: 2}
   heroPrefab: {fileID: 8577786640563023979, guid: cdf7c7cf97cca784a8ad8e1340ff63be, type: 3}
