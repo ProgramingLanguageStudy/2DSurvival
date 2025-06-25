@@ -17,4 +17,5 @@ public class EnemyDataBundle : ScriptableObject
 
     public int EnemyId => _enemyId;
     public EnemyStatData EnemyStatData => _enemyStatData;
+    public GameObject EnemyPrefab => _enemyPrefab;
 }

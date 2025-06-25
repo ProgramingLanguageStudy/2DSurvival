@@ -1,19 +1,19 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÁÖÀÎ°ø ±âº» ´É·ÂÄ¡¸¦ Æ÷ÇÔÇÏ´Â ¼³Á¤ µ¥ÀÌÅÍ Å¬·¡½º
+/// ì£¼ì¸ê³µ ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ë¥¼ í¬í•¨í•˜ëŠ” ì„¤ì • ë°ì´í„° í´ë˜ìŠ¤
 /// </summary>
 [CreateAssetMenu(fileName = "HeroStatData", menuName = "GameSettings/HeroStatData")]
 public class HeroStatData : ScriptableObject
 {
-    [SerializeField] float _maxHp;      // ±âº» ÃÖ´ë Ã¼·Â
-    [SerializeField] float _speed;      // ±âº» ÀÌµ¿ ¼Ó·Â
-    [SerializeField] float _baseExp;    // ±âº» °æÇèÄ¡
-    [SerializeField] float _expIncrementRate; // °æÇèÄ¡ ¹è¼ö
+    [SerializeField] float _maxHp;      // ê¸°ë³¸ ìµœëŒ€ ì²´ë ¥
+    [SerializeField] float _speed;      // ê¸°ë³¸ ì´ë™ ì†ë ¥
+    [SerializeField] float _baseExp;    // ê¸°ë³¸ ê²½í—˜ì¹˜
+    [SerializeField] float _expIncrementRate; // ê²½í—˜ì¹˜ ë°°ìˆ˜
 
-    [Header("----- ÇØ±İ Á¤º¸ -----")]
+    [Header("----- í•´ê¸ˆ ì •ë³´ -----")]
     [SerializeField] int _unlockCost;
 
     public int UnlockCost => _unlockCost;
@@ -22,9 +22,9 @@ public class HeroStatData : ScriptableObject
     public float Speed => _speed;
 
     /// <summary>
-    /// ·¹º§¿¡ µû¸¥ ÇÊ¿ä °æÇèÄ¡¸¦ ¹İÈ¯ÇØ ÁÖ´Â ÇÔ¼ö
+    /// ë ˆë²¨ì— ë”°ë¥¸ í•„ìš” ê²½í—˜ì¹˜ë¥¼ ë°˜í™˜í•´ ì£¼ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="level">·¹º§</param>
+    /// <param name="level">ë ˆë²¨</param>
     /// <returns></returns>
     public float GetExp(int level)
     {

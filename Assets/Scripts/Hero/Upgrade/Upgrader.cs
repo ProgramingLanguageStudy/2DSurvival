@@ -16,51 +16,13 @@ public class Upgrader : MonoBehaviour
     int _upgradeCount = 0; // 남은 업그레이드 선택 횟수
     GameObject _hero;
 
-    private void Start()
+    public void Initialize()
     {
         // 자식 게임오브젝트들로부터 모든 IUpgradable을
         // 자식게임오브젝트 순서대로 가져온다.
-        _upgradables = _hero.GetComponentsInChildren<IUpgradable>();
+        _upgradables = _hero.gameObject.GetComponentsInChildren<IUpgradable>();
         // 시작 시 무기 하나 지급
         _upgradables[2].Upgrade();
-    }
-
-    private void Update()
-    {
-        // 숫자 1키 누르면 장갑 업그레이드
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            _upgradables[0].Upgrade();
-        }
-
-        // 숫자 2키 누르면 부츠 업그레이드
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            _upgradables[1].Upgrade();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            _upgradables[2].Upgrade();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            _upgradables[3].Upgrade();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            _upgradables[4].Upgrade();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            _upgradables[5].Upgrade();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            _upgradables[6].Upgrade();
-        }
     }
 
     /// <summary>

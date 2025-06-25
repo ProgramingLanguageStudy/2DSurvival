@@ -5,8 +5,8 @@ using UnityEngine;
 /// <summary>
 /// 영웅의 정보들 중에 UI에 보여질 때 필요한 데이터
 /// </summary>
-[CreateAssetMenu(fileName = "HeroDisplayData", menuName = "GameSettings/HeroDisplayData")]
-public class HeroDisplayData : ScriptableObject
+[CreateAssetMenu(fileName = "HeroUIData", menuName = "GameSettings/HeroUIData")]
+public class HeroUIData : ScriptableObject
 {
     [Header("----- UI용 -----")]
     [SerializeField] Sprite _heroIcon;                         // 영웅 아이콘

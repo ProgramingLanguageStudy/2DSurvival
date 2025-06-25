@@ -16,12 +16,12 @@ public class StatusView : MonoBehaviour
     [SerializeField] TextMeshProUGUI _killCountText;    // 킬 수 텍스트
     [SerializeField] TextMeshProUGUI _remainingTimeText;// 남은 시간 텍스트
 
-    HeroDisplayData _heroDisplayData;
+    HeroUIData _heroUIData;
 
-    public void Initialize(HeroDisplayData heroDisplayData)
+    public void Initialize(HeroUIData heroUIData)
     {
-        _heroDisplayData = heroDisplayData;
-        _heroIcon.sprite = _heroDisplayData.HeroIcon;
+        _heroUIData = heroUIData;
+        _heroIcon.sprite = _heroUIData.HeroIcon;
     }
 
     /// <summary>

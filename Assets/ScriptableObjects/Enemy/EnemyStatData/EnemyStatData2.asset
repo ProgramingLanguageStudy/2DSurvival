@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseDamage: 20
   _baseMoveSpeed: 2
-  _baseHp: 400
+  _baseHp: 40
   _baseExpReward: 20
+  _baseGoldReward: 3

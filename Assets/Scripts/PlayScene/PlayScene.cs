@@ -30,6 +30,7 @@ public class PlayScene : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
 
     int _heroId;
+    GameObject _heroObj;
 
     private void Awake()
     {
@@ -41,13 +42,15 @@ public class PlayScene : MonoBehaviour
         // 인트로씬에서 넘어올 시 선택한 HeroId를 받음
         else
         {
-            GameManager.Instance.HeroSelectSuccessed += GetHeroId;
-            Debug.Log(_heroId);
-            //_heroId = GameManager.Instance.HeroId;
+            // 이벤트 방식으로 안됨...
+            //GameManager.Instance.HeroSelectSuccessed += GetHeroId;
+            //Debug.Log(_heroId);
+            _heroId = GameManager.Instance.HeroId;
         }
 
         // 정해진 ID를 이용하여 HeroPrefabs 배열에 저장된 프리펩들 중 해당 Hero 프리펩 생성 후 heroObj에 저장
         GameObject heroObj = Instantiate(_heroDatabase.heroDataBundleList[_heroId].HeroPrefab, Vector3.zero, Quaternion.identity);
+        _heroObj = heroObj;
 
         _upgrader.SetHero(heroObj);
         // GetComponent로 컴포넌트 가져오기
@@ -78,9 +81,14 @@ public class PlayScene : MonoBehaviour
 
         _hero.Initialize(_heroDatabase.heroDataBundleList[_heroId].HeroStatData);
 
-        //_enemySpawner.Initialize(_stageData, _hero.transform, _enemyDatabase.enemyDataBundleList.EnemyStatData);
+        _enemySpawner.Initialize(_stageData, _hero.transform, _enemyDatabase);
 
-        _statusView.Initialize(_heroDatabase.heroDataBundleList[_heroId].HeroDisplayData);
+        _statusView.Initialize(_heroDatabase.heroDataBundleList[_heroId].HeroUIData);
+
+        _upgrader.Initialize();
+
+        // 패시브 스킬 적용
+        _hero.ApplyPassiveSkill(_heroDatabase.heroDataBundleList[_heroId].HeroPassiveSkillData);
     }
 
     /// <summary>

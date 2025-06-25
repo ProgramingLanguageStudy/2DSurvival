@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da41c23579cb26f45b314dffa90d31c6, type: 3}
-  m_Name: HeroDisplayData1
+  m_Script: {fileID: 11500000, guid: 311babab3f8e9044ca60d7bf63a2f00b, type: 3}
+  m_Name: HeroUIData2
   m_EditorClassIdentifier: 
-  _heroIcon: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
-  _name: "\uBC15\uBCF5\uC790"
+  _heroIcon: {fileID: -1442216141, guid: 8f7a60065e3984c489b9c4d41bc3dc4e, type: 3}
+  _name: "\uCD5C\uBCD1\uD638"

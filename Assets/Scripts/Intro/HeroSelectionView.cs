@@ -51,8 +51,8 @@ public class HeroSelectionView : MonoBehaviour
         });
 
         // 각종 UI들 연결
-        _heroIcon.sprite = _heroDataBundle.HeroDisplayData.HeroIcon;
-        _nameText.text = _heroDataBundle.HeroDisplayData.Name;
+        _heroIcon.sprite = _heroDataBundle.HeroUIData.HeroIcon;
+        _nameText.text = _heroDataBundle.HeroUIData.Name;
         _passiveDescText.text = _heroDataBundle.HeroSkillData.PassiveSkillDesc;
         _skillNameText.text = _heroDataBundle.HeroSkillData.SkillName;
         

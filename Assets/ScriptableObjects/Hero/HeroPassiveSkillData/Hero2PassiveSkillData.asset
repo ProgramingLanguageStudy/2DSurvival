@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a92682b484bdae449a1701cc48178ac, type: 3}
-  m_Name: EnemyStatData0
+  m_Script: {fileID: 11500000, guid: c187e9367fa34f9419b48b6152e5a0b0, type: 3}
+  m_Name: Hero2PassiveSkillData
   m_EditorClassIdentifier: 
-  _baseDamage: 10
-  _baseMoveSpeed: 1
-  _baseHp: 20
-  _baseExpReward: 10
-  _baseGoldReward: 1

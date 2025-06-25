@@ -14,58 +14,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveDatas:
   - _initialTime: 0
-    _spawnSpan: 2
-    _spawnRates:
-    - 1
-    - 0
-    - 0
-    - 0
-    - 0
+    _spawnSpan: 1
     _damageRate: 1
     _hpRate: 1
     _expRate: 1
-  - _initialTime: 60
-    _spawnSpan: 2
     _spawnRates:
-    - 1
-    - 1
-    - 0
-    - 0
-    - 0
+    - EnemyId: 0
+      Rate: 1
+    - EnemyId: 0
+      Rate: 0
+    - EnemyId: 0
+      Rate: 0
+    - EnemyId: 0
+      Rate: 0
+    - EnemyId: 0
+      Rate: 0
+  - _initialTime: 10
+    _spawnSpan: 0.8
     _damageRate: 1.5
     _hpRate: 1.5
     _expRate: 1.5
-  - _initialTime: 120
-    _spawnSpan: 2
     _spawnRates:
-    - 1
-    - 1
-    - 1
-    - 0
-    - 0
+    - EnemyId: 0
+      Rate: 2
+    - EnemyId: 1
+      Rate: 1
+    - EnemyId: 0
+      Rate: 0
+    - EnemyId: 0
+      Rate: 0
+    - EnemyId: 0
+      Rate: 0
+  - _initialTime: 20
+    _spawnSpan: 0.6
     _damageRate: 2
     _hpRate: 2
     _expRate: 2
-  - _initialTime: 180
-    _spawnSpan: 1.5
     _spawnRates:
-    - 1
-    - 1
-    - 1
-    - 1
-    - 0
+    - EnemyId: 0
+      Rate: 3
+    - EnemyId: 1
+      Rate: 2
+    - EnemyId: 2
+      Rate: 1
+    - EnemyId: 0
+      Rate: 0
+    - EnemyId: 0
+      Rate: 0
+  - _initialTime: 30
+    _spawnSpan: 0.4
     _damageRate: 2.5
     _hpRate: 2.5
     _expRate: 2.5
-  - _initialTime: 240
-    _spawnSpan: 1
     _spawnRates:
-    - 1
-    - 1
-    - 1
-    - 1
-    - 1
+    - EnemyId: 0
+      Rate: 4
+    - EnemyId: 1
+      Rate: 3
+    - EnemyId: 2
+      Rate: 2
+    - EnemyId: 3
+      Rate: 1
+    - EnemyId: 0
+      Rate: 0
+  - _initialTime: 40
+    _spawnSpan: 0.2
     _damageRate: 3
     _hpRate: 3
     _expRate: 3
+    _spawnRates:
+    - EnemyId: 0
+      Rate: 5
+    - EnemyId: 1
+      Rate: 4
+    - EnemyId: 2
+      Rate: 3
+    - EnemyId: 3
+      Rate: 2
+    - EnemyId: 4
+      Rate: 1
   _playTime: 300

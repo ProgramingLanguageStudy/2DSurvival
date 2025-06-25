@@ -5,10 +5,12 @@ using UnityEngine.Events;
 
 /// <summary>
 /// 주인공 캐릭터 담당 역할
+/// 주인공 캐릭터 그 자체임.
+/// 부품을 다 낀 상태의 로봇같은
 /// </summary>
 public class Hero : MonoBehaviour
 {
-    [Header("----- 컴포넌트 -----")]
+    [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] HeroModel _model;
     [SerializeField] CharacterHud _hud;
     [SerializeField] Mover _mover;
@@ -87,5 +89,14 @@ public class Hero : MonoBehaviour
     public void AddExp(float amount)
     {
         _model.AddExp(amount);
+    }
+
+    /// <summary>
+    /// 패시브 스킬을 적용하는 함수
+    /// </summary>
+    /// <param name="heroPassiveSkillData">패시브스킬의 데이터</param>
+    public void ApplyPassiveSkill(HeroPassiveSkillData heroPassiveSkillData)
+    {
+        heroPassiveSkillData.ApplyPassiveSkill(gameObject);
     }
 }

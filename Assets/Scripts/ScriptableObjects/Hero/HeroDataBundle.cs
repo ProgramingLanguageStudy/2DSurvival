@@ -14,14 +14,16 @@ public class HeroDataBundle : ScriptableObject
     [SerializeField] int _heroId;
 
     [SerializeField] HeroStatData _heroStatData;
-    [SerializeField] HeroDisplayData _heroDisplayData;
+    [SerializeField] HeroUIData _heroUIData;
     [SerializeField] HeroSkillData _heroSkillData;
+    [SerializeField] HeroPassiveSkillData _heroPassiveSkillData;
 
     [SerializeField] GameObject heroPrefab;
 
     public int HeroId => _heroId;
     public HeroStatData HeroStatData => _heroStatData;
-    public HeroDisplayData HeroDisplayData => _heroDisplayData;
+    public HeroUIData HeroUIData => _heroUIData;
     public HeroSkillData HeroSkillData => _heroSkillData;
+    public HeroPassiveSkillData HeroPassiveSkillData => _heroPassiveSkillData;
     public GameObject HeroPrefab => heroPrefab;
 }

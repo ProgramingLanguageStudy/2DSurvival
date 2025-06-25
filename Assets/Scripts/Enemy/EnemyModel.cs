@@ -16,10 +16,10 @@ public class EnemyModel : MonoBehaviour
     [SerializeField] float _moveSpeed;
     // 보상 경험치
     [SerializeField] float _expReward;
+    // 보상 골드
+    [SerializeField] int _goldReward;
     // 최대 체력
     [SerializeField] float _maxHp;
-
-    // 임시
     // 현재 체력
     [SerializeField] float _currentHp;
 
@@ -29,6 +29,8 @@ public class EnemyModel : MonoBehaviour
     public event Action<float> OnSpeedChanged;
     // 체력 변경 이벤트
     public event UnityAction<float, float> OnHpChanged;
+    // 골드 변경 이벤트
+    public event Action<int> OnGoldChanged;
     // 사망 이벤트
     public event Action OnDeath;
 
@@ -37,6 +39,7 @@ public class EnemyModel : MonoBehaviour
     public float MaxHp => _maxHp;
     public float CurrentHp => _currentHp;
     public float ExpReward => _expReward;
+    public float GoldReward => _goldReward;
 
     public void Initialize(WaveData waveData, EnemyStatData enemyStatData)
     {
@@ -44,9 +47,10 @@ public class EnemyModel : MonoBehaviour
 
         _damage = _enemyStatData.BaseDamage * waveData.DamageRate;
         _moveSpeed = _enemyStatData.BaseMoveSpeed;  // 추후 waveData에서 Enemy 이동속도 관련 로직 추가가능
-        OnSpeedChanged?.Invoke(_moveSpeed);         // 시작할때 이동속도 전달
+        OnSpeedChanged?.Invoke(_moveSpeed);         // 시작할때 이동속도 전달. 필요한가?
         _maxHp = _enemyStatData.BaseHp * waveData.HpRate;
         _expReward = _enemyStatData.BaseExpReward * waveData.ExpRate;
+        _goldReward = _enemyStatData.BaseGoldReward;    // 추후 WaveData에서 Enemy 보상골드 관련 로직 추가가능
 
         _currentHp = _maxHp;
     }
@@ -62,8 +66,11 @@ public class EnemyModel : MonoBehaviour
 
         if (_currentHp <= 0)
         {
+            GameManager.Instance.AddGold(_goldReward);
+            OnGoldChanged?.Invoke(_goldReward);
             // 사망 이벤트 발행
             OnDeath?.Invoke();
+            
         }
     }
 }

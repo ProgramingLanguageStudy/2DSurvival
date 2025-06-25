@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heroId: 2
   _heroStatData: {fileID: 11400000, guid: 1ed2d0565196fa643a564fbeac1b3d78, type: 2}
-  _heroDisplayData: {fileID: 11400000, guid: e5d232583608061409c4801bdbe66a11, type: 2}
+  _heroUIData: {fileID: 11400000, guid: 5248e033dcf635d4590d16cd85c75820, type: 2}
   _heroSkillData: {fileID: 11400000, guid: 51afae143ccfa074b9918c688c570634, type: 2}
   heroPrefab: {fileID: 8577786640563023979, guid: 43f352ccd617e5149870158b113ccd7c, type: 3}

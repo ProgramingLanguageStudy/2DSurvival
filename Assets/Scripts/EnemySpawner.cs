@@ -30,10 +30,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("----- 스폰 기준 -----")]
     [SerializeField] Transform _target;
 
-    //[SerializeField] GameObject _enemyPrefab;
-    // 게임오브젝트 자료형 대신 아예 필요한 컴포넌트 자료형으로 프리펩 변수 선언
-    [SerializeField] Enemy[] _enemyPrefabs;
-
     [Header("----- 원형 스폰 범위 -----")]
     [SerializeField] float _minRadius;
     [SerializeField] float _maxRadius;
@@ -46,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
     public event UnityAction<float> OnRemainingTimeChanged; // 남은 시간 변화 이벤트
 
     int _killCount = 0;     // 킬 수
-    EnemyStatData _enemyStatData;
+    EnemyDatabase _enemyDatabase;
 
     //float _spawnTimer;
 
@@ -55,9 +51,9 @@ public class EnemySpawner : MonoBehaviour
     WaveData _currentWaveData;          // 현재 웨이브 데이터
     float _playTime;                    // 스테이지 실제 플레이 시간
 
-    public void Initialize(StageData stageData, Transform heroTransform, EnemyStatData enemyStatData)
+    public void Initialize(StageData stageData, Transform heroTransform, EnemyDatabase enemyDatabase)
     {
-        _enemyStatData = enemyStatData;
+        _enemyDatabase = enemyDatabase;
         _target = heroTransform;
 
         _stageData = stageData;
@@ -121,11 +117,14 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         // 확률에 따라 생성된 적의 순번을 가지는 변수
-        int enemyIndex = _currentWaveData.GetRandomEnemyIndex();
+        int enemyId = _currentWaveData.GetRandomEnemyId();
+        EnemyDataBundle bundle = _enemyDatabase.enemyDataBundleList.Find(b => b.EnemyId == enemyId);
 
         // 적 프리펩 복제하여 생성
         // 복제본 게임오브젝트의 Enemy 컴포넌트를 enemy 변수로 받은 것
-        Enemy enemy = Instantiate(_enemyPrefabs[enemyIndex], transform);
+        GameObject go = Instantiate(bundle.EnemyPrefab, transform.position, Quaternion.identity);
+        Enemy enemy = go.GetComponent<Enemy>();
+        enemy.Initialize(_target, _currentWaveData, bundle.EnemyStatData);
 
         // ----- 원형 범위 내 위치 설정 ----- //
         Vector3 pos = _target.position;
@@ -145,8 +144,6 @@ public class EnemySpawner : MonoBehaviour
 
         // 적 사망 이벤트 구독
         enemy.OnDeathEvent += OnEnemyDeath;
-
-        enemy.Initialize(_target, _currentWaveData, _enemyStatData);
     }
 
     /// <summary>

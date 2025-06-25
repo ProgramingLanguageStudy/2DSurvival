@@ -10,9 +10,11 @@ public class EnemyStatData : ScriptableObject
     [SerializeField] float _baseMoveSpeed;
     [SerializeField] float _baseHp;
     [SerializeField] float _baseExpReward;
+    [SerializeField] int _baseGoldReward;
 
     public float BaseDamage => _baseDamage;
     public float BaseMoveSpeed => _baseMoveSpeed;
     public float BaseHp => _baseHp;
     public float BaseExpReward => _baseExpReward;
+    public int BaseGoldReward => _baseGoldReward;
 }

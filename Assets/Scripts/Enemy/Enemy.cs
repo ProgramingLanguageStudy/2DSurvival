@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     // 임시
     [Header("----- 임시 -----")]
     Transform _target;  // 추적할 대상의 Transform(Hero)
-    float _repositionDistance = 5.0f; // 재배치 거리
+    //float _repositionDistance = 5.0f; // 재배치 거리
 
     public event UnityAction<float> OnDeathEvent;   // 적 캐릭터 사망 이벤트
 

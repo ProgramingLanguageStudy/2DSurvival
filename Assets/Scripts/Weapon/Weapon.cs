@@ -14,7 +14,7 @@ using UnityEngine;
 /// <summary>
 /// 무기의 공통 기능을 포함하는 추상 클래스.
 /// </summary>
-public abstract class Weapon : MonoBehaviour, IUpgradable
+public abstract class Weapon : MonoBehaviour, IUpgradable, IAttackable
 {
     [Header("----- 스탯 데이터 -----")]
     // 무기 데이터
@@ -31,11 +31,7 @@ public abstract class Weapon : MonoBehaviour, IUpgradable
     public Sprite IconSprite => _data.IconSprite;
     public int level => _level;
     public bool IsMaxLevel => _level >= _data.MaxLevel;
-
-    ///// <summary>
-    ///// 초기화 함수
-    ///// </summary>
-    //public abstract void Initialize();
+    public float Damage => _damage;
 
     /// <summary>
     /// 레벨에 따른 무기 스텟을 계산하는 함수
@@ -50,5 +46,15 @@ public abstract class Weapon : MonoBehaviour, IUpgradable
     {
         _level++;  // 무기 레벨을 하나 올리고
         CalculateStats();  // 스텟을 다시 계산한다.
+    }
+
+    /// <summary>
+    /// 무기데미지를 증가시키는 함수
+    /// 혹시 감소될 수도 있을까봐 Set이라고 했음
+    /// </summary>
+    /// <param name="additionalDamage">증가 혹은 감소될 데미지퍼센트</param>
+    public void SetDamage(float additionalDamage)
+    {
+        _damage *= (1+additionalDamage);
     }
 }

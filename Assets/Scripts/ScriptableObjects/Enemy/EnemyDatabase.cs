@@ -9,31 +9,9 @@ using UnityEngine;
 public class EnemyDatabase : ScriptableObject
 {
     public List<EnemyDataBundle> enemyDataBundleList;
-
-    /// <summary>
-    /// 스폰 확률에 따라 랜덤하게 적 인덱스를 선택해 반환하는 함수
-    /// </summary>
-    /// <returns>선택된 적 인덱스</returns>
-    public int GetRandomEnemyIndex()
+    
+    public EnemyDataBundle GetDataById(int id)
     {
-        float total = 0;
-        foreach (float rate in _spawnRates)
-        {
-            total += rate;
-        }
-
-        float randomPoint = Random.value * total;
-        for (int i = 0; i < _spawnRates.Length; i++)
-        {
-            if (randomPoint < _spawnRates[i])
-            {
-                return i;
-            }
-            else
-            {
-                randomPoint -= _spawnRates[i];
-            }
-        }
-        return _spawnRates.Length - 1;
+        return enemyDataBundleList.Find(b => b.EnemyId == id);
     }
 }

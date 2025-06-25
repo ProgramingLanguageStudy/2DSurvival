@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¿µ¿õÀÇ ¸ğµç µ¥ÀÌÅÍ¹øµéÀ» ¸®½ºÆ®·Î °®°í ÀÖ´Â µ¥ÀÌÅÍº£ÀÌ½º
+/// ì˜ì›…ì˜ ëª¨ë“  ë°ì´í„°ë²ˆë“¤ì„ ë¦¬ìŠ¤íŠ¸ë¡œ ê°–ê³  ìˆëŠ” ë°ì´í„°ë² ì´ìŠ¤
 /// </summary>
 [CreateAssetMenu(fileName = "HeroDatabase", menuName = "GameSettings/HeroDatabase")]
 public class HeroDatabase : ScriptableObject
