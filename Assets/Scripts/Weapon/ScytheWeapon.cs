@@ -14,6 +14,8 @@ public class ScytheWeapon : FiringWeapon
     [Header("----- 총알 프리펩 -----")]
     [SerializeField] ScytheBullet _bulletPrefab;
 
+    public override WeaponType WeaponType => WeaponType.Scythe;
+
     protected override void CalculateStats()
     {
         base.CalculateStats();

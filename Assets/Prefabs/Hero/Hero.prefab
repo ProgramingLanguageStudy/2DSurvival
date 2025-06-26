@@ -803,6 +803,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: b37a6317ab2aed443be66988aef6d719, type: 2}
   _level: -1
   _damage: 0
+  _weaponType: 4
   _bulletSpeed: 0
   _bulletCount: 0
   _coolTime: 0
@@ -975,6 +976,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 21725a5c815437e4da801da79095e60b, type: 2}
   _level: -1
   _damage: 100
+  _weaponType: 0
   _shootingRange: 100
   _bulletSpeed: 100
   _bulletCount: 100
@@ -1174,6 +1176,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 088ffea69f3bd9c438540355b2cd56a2, type: 2}
   _level: -1
   _damage: 0
+  _weaponType: 2
   _bulletSpeed: 0
   _bulletCount: 0
   _coolTime: 0
@@ -1227,6 +1230,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 376c70f4f1751c340bef1686b80807cf, type: 2}
   _level: -1
   _damage: 0
+  _weaponType: 1
   _bulletSpeed: 0
   _bulletCount: 0
   _coolTime: 0
@@ -1285,6 +1289,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 0c61210c1d1c0cf41a367ce12d1e6e82, type: 2}
   _level: -1
   _damage: 0
+  _weaponType: 3
   _bulletSpeed: 0
   _bulletCount: 0
   _coolTime: 0

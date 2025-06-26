@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,13 @@ public class Upgrader : MonoBehaviour
     IUpgradable[] _upgradables;     // 전체 업그레이드 가능한 대상들
     List<IUpgradable> _shuffledUpgradables = new();
 
+    [Header("----- 기본 지급할 무기 -----")]
+
+
     [SerializeField] GameObject _upgradePanel; // 업그레이드 패널
     [SerializeField] SelectionView[] _selectionViews;  // 업그레이드 선택 뷰 배열
+
+    public event Action<int> BasicWeaponSelected;
 
     int _upgradeCount = 0; // 남은 업그레이드 선택 횟수
     GameObject _hero;
@@ -23,6 +29,7 @@ public class Upgrader : MonoBehaviour
         _upgradables = _hero.gameObject.GetComponentsInChildren<IUpgradable>();
         // 시작 시 무기 하나 지급
         _upgradables[2].Upgrade();
+        BasicWeaponSelected?.Invoke(2);
     }
 
     /// <summary>
@@ -65,7 +72,7 @@ public class Upgrader : MonoBehaviour
         // 2. 선별된 후보들을 셔플
         for (int i = 0; i < +_shuffledUpgradables.Count; i++)
         {
-            int randomIndex = Random.Range(0, _shuffledUpgradables.Count);
+            int randomIndex = UnityEngine.Random.Range(0, _shuffledUpgradables.Count);
             IUpgradable temp = _shuffledUpgradables[i];
             _shuffledUpgradables[i] = _shuffledUpgradables[randomIndex];
             _shuffledUpgradables[randomIndex] = temp;

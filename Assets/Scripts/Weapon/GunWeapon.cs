@@ -21,6 +21,8 @@ public class GunWeapon : FiringWeapon
     /// </summary>
     Collider2D[] _colliders = new Collider2D[10];
 
+    public override WeaponType WeaponType => WeaponType.Gun;
+
     protected override void CalculateStats()
     {
         // 일단 부모 클래스의 스텟들은 계산하고

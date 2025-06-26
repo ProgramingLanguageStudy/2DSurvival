@@ -13,6 +13,8 @@ public class MeteoWeapon : FiringWeapon
     [Header(" ----- 총알 프리펩 ----- ")]
     [SerializeField] MeteoBullet _bulletPrefab; // 발사할 총알 프리팹
 
+    public override WeaponType WeaponType => WeaponType.Meteo;
+
     // 임시
     // 부모에게 몇몇 스탯들은 이미 있고(base.)
     // 나머지 필요한 스탯들을 생각해서 계산해줘야한다.

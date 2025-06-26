@@ -46,6 +46,7 @@ public class VoluspaWeapon : FiringWeapon
     
     List<Enemy> _detectedEnemies = new List<Enemy>();
 
+    public override WeaponType WeaponType => throw new System.NotImplementedException();
 
     protected override void CalculateStats()
     {

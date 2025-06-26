@@ -21,6 +21,8 @@ public class ShovelWeapon : Weapon
 
     // 생성된 총알 리스트
     List<Bullet> _bullets = new List<Bullet>();
+    
+    public override WeaponType WeaponType => WeaponType.Shovel;
 
     /// <summary>
     /// 레벨에 따른 무기의 현재 스텟(런타임 데이터)을 계산하는 함수

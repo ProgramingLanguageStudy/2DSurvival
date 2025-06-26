@@ -12,6 +12,20 @@ using UnityEngine;
 // abstract를 붙여놨으므로 이 클래스로는 객체를 생성하지 않겠다.
 
 /// <summary>
+/// 무기 타입을 enum 형으로 정의
+/// 나중에 추가될 무기의 타입을 추가할 수 있음.
+/// </summary>
+public enum WeaponType
+{
+    Shovel,     // 삽
+    Gun,        // 총
+    Tornado,    // 토네이도
+    Meteo,      // 메테오
+    Scythe,     // 낫
+    Count       // enum 크기 측정용
+}
+
+/// <summary>
 /// 무기의 공통 기능을 포함하는 추상 클래스.
 /// </summary>
 public abstract class Weapon : MonoBehaviour, IUpgradable, IAttackable
@@ -25,6 +39,12 @@ public abstract class Weapon : MonoBehaviour, IUpgradable, IAttackable
 
     // 데미지
     [SerializeField] protected float _damage;
+
+    // 무기 타입을 받을 변수
+    [SerializeField] protected WeaponType _weaponType;
+
+    // 자식들에게 너의 무기타입을 WeaponType이라는 변수로 공개하라라고 명령
+    public abstract WeaponType WeaponType { get; }
 
     public string UpgradeName => _data.WeaponName;
     public string Description => _data.Description;
