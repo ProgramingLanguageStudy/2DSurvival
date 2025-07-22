@@ -233,7 +233,8 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 누구를 때릴거야?를 받아온 뒤
+    /// 공격을 반복하는 코루틴
     /// </summary>
     /// <param name="hero"></param>
     /// <returns></returns>

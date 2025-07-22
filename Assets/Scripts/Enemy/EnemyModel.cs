@@ -70,7 +70,6 @@ public class EnemyModel : MonoBehaviour
             OnGoldChanged?.Invoke(_goldReward);
             // 사망 이벤트 발행
             OnDeath?.Invoke();
-            
         }
     }
 }
